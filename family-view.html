@@ -877,6 +877,16 @@ body.fs .wrap{max-width:none;padding:0;margin:0;gap:0;display:block}
 body.fs .phone{width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;margin:0!important;max-width:none!important}
 .fsbtn{position:fixed;z-index:50;right:14px;bottom:96px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(20,24,31,.72);color:#fff;font-size:20px;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .fsbtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.login{min-height:100%;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:24px 4px;max-width:420px;margin:0 auto}
+.lg-top{text-align:center}.lg-logo{width:76px;height:76px;margin:0 auto 10px;border-radius:22px;background:var(--primary);display:grid;place-items:center;font-size:40px}
+.lg-top h1{margin:0;font-size:30px}.lg-top p{margin:4px 0 0}
+.lg-err{color:#C0362C;font-weight:700;margin:0 0 10px;font-size:14px}
+.lg-who{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.lg-who button{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px 5px 5px;font:600 14px var(--font);color:var(--ink);cursor:pointer}
+body.auth .whobox,body.auth .tryblock{display:none}
+@media (max-width:760px){body.auth .side{display:none}body.auth .phone{height:100vh;height:100dvh;min-height:0}}
+.fld input[type=password]{border:1.5px solid var(--line);border-radius:var(--rs);background:var(--surface);color:var(--ink);font:500 16px var(--font);padding:11px 12px;width:100%;box-sizing:border-box;min-height:48px}
+@media (max-width:760px){body.auth .fsbtn{display:none}}
 /* Family View layout: one header band, then a row of phones that wraps; zoom fits four in a row on wide screens. */
 .fv-top{max-width:1760px;margin:0 auto;padding-block:20px 8px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:flex-end;justify-content:space-between}
 .fv-title{min-width:0;flex:1 1 360px}
@@ -1874,7 +1884,7 @@ const S={me:initialMe,tab:'home',stack:[],cal:'today',calSel:TODAY,calFilter:'al
   mp:{per:'month',from:'2026-09-01',to:'2026-09-30'},hf:{t:'all',r:'all',c:''},mtab2:'overview',tinsR:'month',trend:'EXPENSE',btab:'cat',form:'phone',tx:null,gdraft:null,fgdraft:null,
   cele:null,grd:null,grt:null,grw:null,gsa:null,gsp:null,gsSp:null,pl:{d:TODAY,pick:false},plr:'day'};
 const view=()=>S.stack[S.stack.length-1]||null;
-const theme=()=>S.me==='new'||S.me==='setup'?'PARENT':M[S.me].theme;
+const theme=()=>S.me==='new'||S.me==='setup'||S.me==='login'?'PARENT':M[S.me].theme;
 const mode=()=>S.me==='new'?'kids_boy':MODE[theme()];
 const isKidMode=()=>mode().startsWith('kids');
 const navFor=()=>isChild(S.me)?(band()==='LITTLE'?[['home','Home','home'],['growth','Stars','star'],['money','Money','pig'],['chat','Chat','chat'],['profile','Me','user']]
@@ -1900,7 +1910,7 @@ function kidsHome(){
   ${dcBanner(me)}<div class="tiles">
    <button class="tile t-day wide" data-a="go" data-v="myday"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><div><div class="nm" style="font-size:24px">📅 My Day</div><div class="sm">${p.n} activities</div></div><span class="em">${girl?'🌈':'☀️'}</span></div>
      <div><div class="sm" style="font-weight:700;margin-bottom:6px">${p.d} / ${p.n} Done${next?` · Next ${next.icon} ${next.start}`:''}</div><div class="bar"><i style="width:${p.n?p.d/p.n*100:0}%"></i></div></div></button>
-   <button class="tile h t-a3" data-a="go" data-v="myloc"><span class="em">📍</span><div><div class="nm">Location</div><div class="sm">${where(me).e} ${esc(where(me).kid)}</div></div></button>
+   ${LOC[me]?`<button class="tile h t-a3" data-a="go" data-v="myloc"><span class="em">📍</span><div><div class="nm">Location</div><div class="sm">${where(me).e} ${esc(where(me).kid)}</div></div></button>`:''}
    <button class="tile h t-a1" data-a="tab" data-v="chat"><span class="em">💬</span><div><div class="nm">Chat</div><div class="sm">${cu?cu+' new':'No new'}</div></div>${cu?`<span class="badge">${cu}</span>`:''}</button>
    <button class="tile h t-a2" data-a="go" data-v="ann"><span class="em">📣</span><div><div class="nm">Announcement</div><div class="sm">${au?(girl?'New!':au+' new'):'All read'}</div></div>${au?`<span class="badge">${au}</span>`:''}</button>
    ${pickTile(me)}${sosTile(me)}${starsTile(me)}${moneyTile(me)}${calTile()}
@@ -2121,7 +2131,7 @@ function childProfile(){
    <div class="switch"><span>This device belongs to <b>${esc(m.nick)}</b><small>${esc(m.device||'This iPhone')}</small></span></div>
    <div class="switch"><span>Face ID</span><button class="sw" role="switch" aria-checked="${!!S.face[me]}" data-a="face" aria-label="Face ID"></button></div>
    <div class="switch"><span>PIN code<small>4 numbers</small></span><button class="sw" role="switch" aria-checked="${!!S.pinOn[me]}" data-a="pinon" aria-label="PIN code"></button></div>
-   <div class="switch"><span>Log out<small>Needs a parent</small></span><button class="chip" style="border:0;cursor:pointer" data-a="unlinkask">Ask parent</button></div></div>`;
+   <div class="switch"><span>Log out<small>Switch to another account</small></span><button class="chip" style="border:0;cursor:pointer" data-a="logout">Log out</button></div></div>`;
 }
 function parentProfile(){
   const me=S.me,m=M[me],owner=m.role==='FAMILY_OWNER';
@@ -2144,6 +2154,7 @@ function parentProfile(){
   <div class="sec">Notifications</div><div class="card list">${[['ACTIVITY','Activity reminders','Normal reminder sound'],['CHAT','Chat notifications','Soft sound'],['ANNOUNCEMENT','Announcement notifications','Normal sound']].map(([k,l,s])=>`<div class="switch"><span>${l}<small>${s}</small></span><button class="sw" role="switch" aria-checked="${NPREF[me][k]}" data-a="npref" data-v="${k}" aria-label="${l}"></button></div>`).join('')}</div>
   <div class="sec">App appearance</div><div class="card list"><div class="switch"><span>Parent theme<small>Clean and calm</small></span><span class="chip">Light</span></div></div>
   <div class="sec">Security</div><div class="card list"><div class="switch"><span>Face ID<small>After first login</small></span><button class="sw" role="switch" aria-checked="${!!S.face[me]}" data-a="face" aria-label="Face ID"></button></div><div class="switch"><span>Password<small>Email login</small></span><span class="chip">Change</span></div></div>
+  <div class="sec">Account</div><div class="card list"><button class="row" data-a="logout"><span class="ricon">🚪</span><div class="t"><b>Log out</b><span>Signed in as ${esc(me)}</span></div></button></div>
   ${owner?`<div class="sec">Admin log</div><div class="card list">${AUDIT.slice(0,4).map(t=>`<div class="row static"><span class="ricon">🧾</span><div class="t"><b style="font-weight:500">${esc(t)}</b></div></div>`).join('')}</div>`:''}`;
 }
 function members(){
@@ -2677,7 +2688,7 @@ const osDialog=()=>{const o=S.os;if(!o) return '';const cam=o.k==='cam';
 // ================= PHASE 5: THEME ENGINE + MY MONEY =================
 const kc=k=>KCOL[k]||"#64748B";
 const pic=(k,cls='',alt='')=>IMG[k]?`<img class="${cls}" src="${IMG[k]}" alt="${esc(alt)}" ${alt?'':'aria-hidden="true"'} draggable="false">`:'';
-const curLook=()=>S.me==='new'?LOOKS.playful:S.me==='setup'?LOOKS.parent:lookOf(S.me);
+const curLook=()=>S.me==='new'?LOOKS.playful:S.me==='setup'||S.me==='login'?LOOKS.parent:lookOf(S.me);
 const band=()=>curLook().band;
 function applyLook(){const L=curLook();phone.dataset.age=L.band;phone.dataset.look=L.id;phone.dataset.dark=L.dark?'1':'0';phone.dataset.form=S.form;
   const soft=`color-mix(in srgb,${L.primary} 15%,${L.surface})`;
@@ -3440,8 +3451,26 @@ function setPhoto(me,file){if(!file||!/^image\//.test(file.type||'')){toast('Cho
     S.phd={real,toon:toonify(c),sel:'toon'};sheet(photoSheet());};
     img.onerror=()=>toast('That photo could not be opened');img.src=r.result;};r.readAsDataURL(file);}
 
+// ---------- Login: every family member has their own account ----------
+const LOGINS={papa:'papa',mama:'mama',radja:'radja',rada:'dinda',raiya:'raiya',renatta:'renatta',rixty:'tiana'};
+const DEMO_PW='123456'; // prototype only: the real app signs in through Supabase Auth
+function loginView(){const e=S.lerr;
+  return `<div class="login"><div class="lg-top"><div class="lg-logo">🏡</div><h1>JAENS Family</h1><p class="muted">Masuk ke akunmu</p></div>
+  <form id="loginf" class="card" novalidate autocomplete="on">
+   <div class="fld"><label for="lg-u">Username</label><input id="lg-u" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="username" placeholder="contoh: papa" value="${esc(S.lu||'')}"></div>
+   <div class="fld"><label for="lg-p">Password</label><input id="lg-p" type="password" autocomplete="current-password" placeholder="••••••"></div>
+   ${e?`<p class="lg-err" role="alert">${esc(e)}</p>`:''}
+   <button class="btn block" type="submit">Masuk</button></form>
+  <div class="lg-who">${Object.entries(LOGINS).map(([u,k])=>`<button type="button" data-a="lgpick" data-v="${u}">${av(k,'sm')}<span>${esc(M[k].nick)}</span></button>`).join('')}</div>
+  <p class="muted small center">Ketuk nama untuk mengisi username.</p></div>`;}
+function doLogin(){const u=(($('lg-u')||{}).value||'').trim().toLowerCase(),p=($('lg-p')||{}).value||'';S.lu=u;
+  const k=LOGINS[u];if(!k||p!==DEMO_PW){S.lerr=!u||!p?'Isi username dan password.':'Username atau password salah.';rerender();return;}
+  S.lerr=null;S.lu='';S.me=k;S.tab='home';S.stack=[];S.thread=null;S.sheet=null;try{localStorage.setItem('jf_user',k);}catch(e){}render();scrollTop();}
+function doLogout(){S.me='login';S.tab='home';S.stack=[];S.thread=null;S.sheet=null;S.push=null;try{localStorage.removeItem('jf_user');}catch(e){}render();scrollTop();}
+
 // ================= RENDER =================
 function screen(){
+  if(S.me==='login') return loginView();
   if(S.me==='new') return joinFamily();
   if(S.me==='setup'&&!view()) return onboarding();
   if(S.loading) return skeleton();
@@ -3481,8 +3510,8 @@ function render(){
   let h=`<div class="status"><span>15:40</span><span class="isl"></span><span class="r">●●● 5G ▮</span></div>`;
   if(G.offline) h+=`<div class="offline">No internet. You can still read everything.</div>`;
   h+=inChat?`<div style="flex:1;min-height:0">${chatThread()}</div>`:`<main class="scr" id="scr">${screen()}</main>`;
-  if(!['new','setup'].includes(S.me)&&!inChat) h+=`<nav class="nav" aria-label="Main">${navFor().map(([k,l,i])=>{const b=k==='chat'?chatUnread(S.me):0;return `<button data-a="${k==='more'?'more':'tab'}" data-v="${k}" ${(S.tab===k||(k==='more'&&MORE_TABS.includes(S.tab)))&&!view()?'aria-current="page"':''}>${ic(i)}${l}${b?`<span class="badge">${b}</span>`:''}</button>`}).join('')}</nav>`;
-  if(!['new','setup'].includes(S.me)) h+=callLayer();
+  if(!['new','setup','login'].includes(S.me)&&!inChat) h+=`<nav class="nav" aria-label="Main">${navFor().map(([k,l,i])=>{const b=k==='chat'?chatUnread(S.me):0;return `<button data-a="${k==='more'?'more':'tab'}" data-v="${k}" ${(S.tab===k||(k==='more'&&MORE_TABS.includes(S.tab)))&&!view()?'aria-current="page"':''}>${ic(i)}${l}${b?`<span class="badge">${b}</span>`:''}</button>`}).join('')}</nav>`;
+  if(!['new','setup','login'].includes(S.me)) h+=callLayer();
   if(S.sheet) h+=`<div class="sheetbg" data-a="close"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${S.sheet.html}</div></div>`;
   h+=celeLayer();
   if(S.toast) h+=`<div class="toast" role="status">${S.toast}</div>`;
@@ -3632,6 +3661,8 @@ phone.addEventListener('click',e=>{
   if(a==='avset'){M[S.me].emoji=v;S.sheet=null;rerender();return;}
   if(a==='face'){S.face[S.me]=!S.face[S.me];rerender();return;}
   if(a==='pinon'){S.pinOn[S.me]=!S.pinOn[S.me];rerender();return;}
+  if(a==='logout'){doLogout();return;}
+  if(a==='lgpick'){S.lu=v;S.lerr=null;rerender();const p=$('lg-p');if(p)p.focus();return;}
   if(a==='unlinkask'){sheet(`<h3>Ask a parent</h3><p>Only Papa or Mama can log this phone out of ${esc(FAMILY.name)}.</p><button class="btn block" data-a="close">OK</button>`);return;}
   if(a==='npref'){NPREF[S.me][v]=!NPREF[S.me][v];rerender();return;}
   if(a==='perm'){PERM[v]=!PERM[v];audit(v==='kidCalls'?`Family calls for children ${PERM[v]?'on':'off'}`:v==='kidsDM'?`Children can chat with each other: ${PERM[v]?'on':'off'}`:v==='mamaDevices'?`Parent access changed: Mama device rules ${PERM[v]?'on':'off'}`:v==='mamaLocation'?`Location visibility changed: Mama ${PERM[v]?'can':'can’t'} see location`:`Parent access changed: Mama ${v==='mamaAnnounce'?'announcements':'activities'} ${PERM[v]?'on':'off'}`);rerender();return;}
@@ -3902,6 +3933,7 @@ phone.addEventListener('change',e=>{if(e.target.id==='hcat'){S.hf.c=e.target.val
   if(e.target.id==='pp-file'&&!isChild(S.me)) setPhoto(S.me,e.target.files&&e.target.files[0]);});
 phone.addEventListener('submit',e=>{
   e.preventDefault();const id=e.target.id;
+  if(id==='loginf'){doLogin();return;}
   if(id.startsWith('p5')){submitP5(id);return;}
   if(id.startsWith('p6')){submitP6(id);return;}
   if(id==='cform'){sendMsg($('cin').value);return;}
