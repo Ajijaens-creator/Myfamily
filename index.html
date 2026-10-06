@@ -1,3 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="JAENS Family"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1F6F5C"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="apple-touch-icon.png">
 <title>JAENS Family OS Prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
@@ -3987,7 +3992,7 @@ phone.addEventListener('contextmenu',e=>{if(e.target.closest('[data-hold]'))e.pr
 window.addEventListener('pointerup',holdEnd);window.addEventListener('pointercancel',holdEnd);
 
 document.getElementById('who').addEventListener('click',e=>{const b=e.target.closest('[data-who]');if(!b)return;
-  S.me=b.dataset.who;S.tab='home';S.stack=[];S.thread=null;S.sheet=null;S.push=null;S.rec=null;S.play=null;S.os=null;S.day=TODAY;S.cal='today';S.calFilter='all';S.annTab='all';
+  S.me=b.dataset.who;try{if(M[S.me])localStorage.setItem('jf_who',S.me);}catch(e){}S.tab='home';S.stack=[];S.thread=null;S.sheet=null;S.push=null;S.rec=null;S.play=null;S.os=null;S.day=TODAY;S.cal='today';S.calFilter='all';S.annTab='all';
   S.join=S.me==='new'?{step:'start',pin:''}:null;S.ob=S.me==='setup'?{step:'welcome',fam:'',name:'',emoji:'👨🏻',rel:'Father',added:[],places:{}}:null;render();scrollTop();});
 document.getElementById('offline').addEventListener('change',e=>{S.offline=e.target.checked;rerender();});
 document.querySelector('.try').addEventListener('click',e=>{const b=e.target.closest('[data-sim]');if(!b)return;
@@ -4069,6 +4074,7 @@ document.getElementById('try7').addEventListener('click',e=>{const b=e.target.cl
   render();scrollTop();if(push)showPush(push);if(typeof syncOthers==='function') syncOthers();
 });
 document.getElementById('form').addEventListener('click',e=>{const b=e.target.closest('[data-form]');if(!b)return;S.form=b.dataset.form;render();});
+try{const w=localStorage.getItem('jf_who');if(w&&M[w])S.me=w;}catch(e){}
 render();
 })();
 </script>
