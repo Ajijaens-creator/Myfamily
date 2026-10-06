@@ -871,6 +871,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .status{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body.fs{padding:0;overflow:hidden}
+body.fs .side{display:none}
+body.fs .wrap{max-width:none;padding:0;margin:0;gap:0;display:block}
+body.fs .phone{width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;margin:0!important;max-width:none!important}
+.fsbtn{position:fixed;z-index:50;right:14px;bottom:96px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(20,24,31,.72);color:#fff;font-size:20px;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.fsbtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* Family View layout: one header band, then a row of phones that wraps; zoom fits four in a row on wide screens. */
 .fv-top{max-width:1760px;margin:0 auto;padding-block:20px 8px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:flex-end;justify-content:space-between}
 .fv-title{min-width:0;flex:1 1 360px}

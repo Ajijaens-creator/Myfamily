@@ -876,6 +876,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .status{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body.fs{padding:0;overflow:hidden}
+body.fs .side{display:none}
+body.fs .wrap{max-width:none;padding:0;margin:0;gap:0;display:block}
+body.fs .phone{width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;margin:0!important;max-width:none!important}
+.fsbtn{position:fixed;z-index:50;right:14px;bottom:96px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(20,24,31,.72);color:#fff;font-size:20px;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.fsbtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 </style>
 
 <div class="wrap">
@@ -971,6 +977,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
     </div>
   </aside>
   <div class="phone" id="phone" data-mode="parent"></div>
+  <button class="fsbtn" id="fsbtn" type="button"></button>
 </div>
 
 <script>
@@ -4073,8 +4080,13 @@ document.getElementById('try7').addEventListener('click',e=>{const b=e.target.cl
   if(k==='pause'){S.me='papa';S.tab='home';if(PSHARE.mama.on){PSHARE.mama.on=false;audit('Mama paused location sharing with Papa');const id=notify('papa','SYSTEM','⏸️ Mama paused location sharing',`Since ${NOWT}`,{k:'ploc',v:'mama'});const n=NOTIF.find(y=>y.id===id);if(n)push={cat:n.type,title:n.title,body:n.body,ref:n.ref,nid:id};}}
   render();scrollTop();if(push)showPush(push);if(typeof syncOthers==='function') syncOthers();
 });
-document.getElementById('form').addEventListener('click',e=>{const b=e.target.closest('[data-form]');if(!b)return;S.form=b.dataset.form;render();});
-try{const w=localStorage.getItem('jf_who');if(w&&M[w])S.me=w;}catch(e){}
+document.getElementById('form').addEventListener('click',e=>{const b=e.target.closest('[data-form]');if(!b)return;S.form=b.dataset.form;try{localStorage.setItem('jf_form',S.form);}catch(e){}render();});
+try{const w=localStorage.getItem('jf_who');if(w&&M[w])S.me=w;const f=localStorage.getItem('jf_form');if(['phone','ipad','ipadl','laptop','desktop'].includes(f))S.form=f;}catch(e){}
+const FSI={on:'<svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg>',off:'<svg viewBox="0 0 24 24"><path d="M4 9h5V4M20 9h-5V4M4 15h5v5M20 15h-5v5"/></svg>'};
+function setFs(on){document.body.classList.toggle('fs',on);const b=document.getElementById('fsbtn');b.innerHTML=on?FSI.off:FSI.on;b.setAttribute('aria-label',on?'Exit full screen':'Full screen');b.title=on?'Show the side panel again':'Full screen: app only';try{localStorage.setItem('jf_fs',on?'1':'0');}catch(e){}}
+let fsStart=false;try{fsStart=localStorage.getItem('jf_fs')==='1';}catch(e){}
+setFs(fsStart);
+document.getElementById('fsbtn').addEventListener('click',()=>{setFs(!document.body.classList.contains('fs'));render();});
 render();
 })();
 </script>
