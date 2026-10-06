@@ -901,6 +901,27 @@ body.auth .whobox,body.auth .tryblock{display:none}
 .mzc button{width:38px;height:38px;border-radius:12px;border:0;background:rgba(255,255,255,.96);color:#14181F;font:700 22px/1 var(--f-ui);box-shadow:0 2px 8px rgba(0,0,0,.18);cursor:pointer;display:grid;place-items:center;padding:0}
 .mzc button[disabled]{opacity:.4}
 .mzc .rs{font-size:13px}
+.scr.scr-map{padding:0!important;overflow:hidden;position:relative}
+.rmw{position:relative;height:100%;min-height:420px;background:#0B1D33;overflow:hidden}
+#rmap-slot{position:absolute;inset:0}
+.rmw .rmap-canvas{position:absolute!important;inset:0;width:100%;height:100%}
+.rmtop{position:absolute;left:0;right:0;top:0;z-index:5;padding:10px 12px 18px;display:flex;flex-direction:column;gap:6px;pointer-events:none;background:linear-gradient(color-mix(in srgb,var(--bg) 92%,transparent) 60%,transparent)}
+.rmtop>*{pointer-events:auto}.rmtop .filters{margin:0}
+.rmh{display:flex;align-items:center;justify-content:space-between}.rmh h1{font-size:24px;margin:0}
+.rmtools{position:absolute;right:10px;top:118px;z-index:5;display:flex;flex-direction:column;gap:8px}
+.rmtools button{width:42px;height:42px;border-radius:12px;border:0;background:rgba(255,255,255,.96);color:#14181F;font:700 22px/1 var(--f-ui);box-shadow:0 2px 10px rgba(0,0,0,.22);cursor:pointer;display:grid;place-items:center;padding:0}
+.rmc{position:absolute;left:10px;bottom:30px;z-index:5;background:rgba(20,24,31,.78);color:#fff;font:600 12px/1.4 ui-monospace,Menlo,monospace;padding:4px 9px;border-radius:8px;pointer-events:none}
+.rmcard{position:absolute;left:10px;right:10px;bottom:56px;z-index:6;max-width:560px;margin:0 auto;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.rmx{position:absolute;right:8px;top:8px;width:30px;height:30px;border-radius:50%;border:0;background:var(--surface2);cursor:pointer;color:var(--ink)}
+.rmll{font:600 13px/1.5 ui-monospace,Menlo,monospace;color:var(--muted);margin-top:2px}
+.rmbtn{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.rmbtn .btn{flex:1;min-height:42px;padding:0 12px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.rmk{border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+.rmk .p{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px;border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.35);overflow:hidden;box-sizing:border-box}
+.rmk .p img{width:100%;height:100%;object-fit:cover}
+.rmk .n{margin-top:2px;font:700 11px/1.5 var(--f-ui);background:rgba(255,255,255,.95);color:#14181F;padding:0 6px;border-radius:7px;white-space:nowrap}
+.rmk.attn .p{border-color:#F0A020}.rmk.sos .p{border-color:#D7262F}.rmk.sel .p{box-shadow:0 0 0 3px var(--primary),0 3px 10px rgba(0,0,0,.35)}
+.rpl{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;font-size:16px;box-shadow:0 1px 5px rgba(0,0,0,.25)}
+.maplibregl-ctrl-attrib{font-size:10px}
 </style>
 
 <div class="wrap">
@@ -2314,6 +2335,7 @@ function timeline(ev,k){
 const callActs=(k,extra='')=>`<div class="acts ${extra?'five':'four'}">${extra}<button data-a="call" data-v="${k}">${ic('phone')}Call</button><button data-a="vcall" data-v="${k}">${ic('vid')}Video</button><button data-a="dm" data-v="${k}">${ic('chat')}Message</button><button data-a="navto" data-v="${k}">${ic('nav')}Navigate</button></div>`;
 
 function familyMap(){
+  if(rmReady()) return rmFamilyMap();
   const me=S.me,f=S.mapF;let ids=ORDER.filter(k=>LOC[k]&&(isChild(k)?canSeeLoc(me,k):isChild(me)||canSeePartner(me,k)));
   if(f==='kids') ids=ids.filter(isChild); else if(f==='parents') ids=ids.filter(k=>!isChild(k));
   const sel=ids.includes(S.mapSel)?S.mapSel:null;
@@ -3506,6 +3528,55 @@ function doLogin(){const u=((document.getElementById('lg-u')||{}).value||'').tri
   S.lerr=null;S.lu='';S.me=k;S.tab='home';S.stack=[];S.thread=null;S.sheet=null;try{localStorage.setItem('jf_user',k);}catch(e){}render();scrollTop();}
 function doLogout(){S.me='login';S.tab='home';S.stack=[];S.thread=null;S.sheet=null;S.push=null;try{localStorage.removeItem('jf_user');}catch(e){}render();scrollTop();}
 
+// ---------- Real world map (MapLibre): globe ↔ street level, satellite, coordinates, Street View ----------
+// Sample positions sit in one sample neighbourhood; the real app uses each phone's own GPS.
+const RM_BASE={lat:-6.1900,lng:106.8230};
+const ll=(x,y)=>[+(RM_BASE.lng+(x-180)*12.5/(111320*Math.cos(RM_BASE.lat*Math.PI/180))).toFixed(6),+(RM_BASE.lat-(y-130)*12.5/111320).toFixed(6)];
+const RM_SRC='https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/';
+const fmtLL=(lng,lat)=>`${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+const svUrl=(lng,lat)=>`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat.toFixed(6)},${lng.toFixed(6)}`;
+const gmUrl=(lng,lat)=>`https://www.google.com/maps/search/?api=1&query=${lat.toFixed(6)},${lng.toFixed(6)}`;
+function rmLoad(){if(window.__rmP) return window.__rmP;
+  window.__rmP=new Promise((ok,no)=>{if(window.maplibregl) return ok();const l=document.createElement('link');l.rel='stylesheet';l.href=RM_SRC+'maplibre-gl.css';document.head.appendChild(l);
+    const s=document.createElement('script');s.src=RM_SRC+'maplibre-gl.js';s.onload=()=>window.maplibregl?ok():no();s.onerror=no;document.head.appendChild(s);setTimeout(no,9000);});
+  window.__rmP.catch(()=>{if(!window.maplibregl) window.__rmFail=true;});return window.__rmP;}
+const RM_STYLE=()=>({version:8,projection:{type:'globe'},
+  sources:{osm:{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'© OpenStreetMap contributors'},
+   sat:{type:'raster',tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:19,attribution:'Imagery © Esri, Maxar, Earthstar Geographics'},
+   lbl:{type:'raster',tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:19}},
+  layers:[{id:'osm',type:'raster',source:'osm'},{id:'sat',type:'raster',source:'sat',layout:{visibility:'none'}},{id:'lbl',type:'raster',source:'lbl',layout:{visibility:'none'}}]});
+const RM={el:null,map:null,mk:[],mode:'map'};
+function rmReady(){if(window.maplibregl&&!S.offline) return true;if(!window.__rmFail&&!S.offline) rmLoad().then(()=>{if(S.tab==='map'&&!view()) rerender();},()=>{});return false;}
+function rmIds(){const me=S.me,f=S.mapF;let ids=ORDER.filter(k=>LOC[k]&&(isChild(k)?canSeeLoc(me,k):isChild(me)||canSeePartner(me,k)));
+  if(f==='kids') ids=ids.filter(isChild); else if(f==='parents') ids=ids.filter(k=>!isChild(k));return ids;}
+function rmEnsure(){if(RM.map) return RM.el;const el=document.createElement('div');el.className='rmap-canvas';RM.el=el;
+  const c=ll(150,180),map=new maplibregl.Map({container:el,style:RM_STYLE(),center:c,zoom:15,minZoom:0.6,maxZoom:19,attributionControl:{compact:true},dragRotate:true});
+  map.on('move',rmCoord);map.on('click',e=>{if(e.originalEvent&&e.originalEvent.target.closest('.rmk,.rpl'))return;S.rmPin=[e.lngLat.lng,e.lngLat.lat];S.mapSel=null;rerender();});
+  map.on('style.load',()=>{try{map.setProjection({type:'globe'});}catch(e){}rmLayer();});RM.map=map;return el;}
+function rmLayer(){const m=RM.map;if(!m||!m.getLayer('osm'))return;const sat=RM.mode==='sat';m.setLayoutProperty('osm','visibility',sat?'none':'visible');m.setLayoutProperty('sat','visibility',sat?'visible':'none');m.setLayoutProperty('lbl','visibility',sat?'visible':'none');}
+function rmCoord(){const el=phone.querySelector('#rm-c');if(!el||!RM.map)return;const c=RM.map.getCenter();el.textContent=`${fmtLL(c.lng,c.lat)} · zoom ${RM.map.getZoom().toFixed(1)}`;}
+function rmMarkers(){RM.mk.forEach(m=>m.remove());RM.mk=[];const map=RM.map;
+  PLACES.filter(p=>p.active).forEach(p=>{const d=document.createElement('div');d.className='rpl';d.innerHTML=`<span>${p.icon}</span>`;d.title=p.name;RM.mk.push(new maplibregl.Marker({element:d}).setLngLat(ll(p.x,p.y)).addTo(map));});
+  rmIds().forEach(k=>{const L=LOC[k],b=document.createElement('button');b.type='button';b.className=`rmk ${tone(k)} ${S.mapSel===k?'sel':''}`;b.dataset.k=k;b.setAttribute('aria-label',`${M[k].nick}: ${where(k).long}`);
+    b.innerHTML=`<span class="p" style="background:${M[k].bg}">${M[k].img&&IMG[M[k].img]?`<img src="${IMG[M[k].img]}" alt="">`:M[k].emoji}</span><span class="n">${esc(M[k].nick)}</span>`;
+    b.addEventListener('click',e=>{e.stopPropagation();S.mapSel=k;S.rmPin=null;rerender();RM.map.easeTo({center:ll(L.x,L.y),zoom:Math.max(RM.map.getZoom(),16.5),duration:700});});
+    RM.mk.push(new maplibregl.Marker({element:b,anchor:'bottom'}).setLngLat(ll(L.x,L.y)).addTo(map));});}
+function rmAttach(){const slot=phone.querySelector('#rmap-slot');if(!slot||!window.maplibregl)return;slot.appendChild(rmEnsure());RM.map.resize();rmLayer();rmMarkers();rmCoord();}
+function rmFamilyMap(){const me=S.me,ids=rmIds(),sel=ids.includes(S.mapSel)?S.mapSel:null,f=S.mapF;let card='';
+  if(sel){const w=where(sel),L=LOC[sel],[lng,lat]=ll(L.x,L.y),ch=isChild(sel);
+    card=`<div class="rmcard card"><button class="rmx" data-a="rmclose" aria-label="Close">✕</button><div style="display:flex;gap:12px;align-items:center">${av(sel)}<div style="flex:1;min-width:0"><b style="font-size:17px">${nk(sel)}${sel===me?' (you)':''}</b><div class="small">${w.e} ${esc(w.long)}</div>${freshHtml(ch?fresh(sel,S.live[sel]):pFresh(sel))}<div class="rmll">📍 ${fmtLL(lng,lat)}</div></div></div>
+     <div class="rmbtn">${sel===me?'':`<button class="btn" data-a="${ch?'childloc':'ploc'}" data-v="${sel}">${ic('pin')} ${ch?'Details':'History'}</button>`}<a class="btn ghost" href="${svUrl(lng,lat)}" target="_blank" rel="noopener">🚶 Street View</a><a class="btn ghost" href="${gmUrl(lng,lat)}" target="_blank" rel="noopener">🗺️ Google Maps</a></div></div>`;}
+  else if(S.rmPin){const [lng,lat]=S.rmPin;card=`<div class="rmcard card"><button class="rmx" data-a="rmclose" aria-label="Close">✕</button><b>📍 Titik ini</b><div class="rmll" style="font-size:16px">${fmtLL(lng,lat)}</div>
+     <div class="rmbtn"><a class="btn" href="${svUrl(lng,lat)}" target="_blank" rel="noopener">🚶 Street View</a><a class="btn ghost" href="${gmUrl(lng,lat)}" target="_blank" rel="noopener">🗺️ Google Maps</a><button class="btn ghost" data-a="rmcopy" data-v="${fmtLL(lng,lat)}">Copy</button></div></div>`;}
+  return `<div class="rmw"><div id="rmap-slot"></div>
+   <div class="rmtop"><div class="rmh"><h1>Family Map</h1>${bell()}</div>
+    <div class="filters">${[['all','All'],['kids','Children'],['parents','Parents']].map(([v,l])=>`<button aria-pressed="${f===v}" data-a="mapf" data-v="${v}">${l}</button>`).join('')}<button data-a="rmlist">☰ List</button></div></div>
+   <div class="rmtools"><button data-a="rmzin" aria-label="Zoom in">+</button><button data-a="rmzout" aria-label="Zoom out">−</button>
+    <button data-a="rmmode" aria-label="Map or satellite" title="Peta / Satelit">${RM.mode==='sat'?'🗺️':'🛰️'}</button><button data-a="rmglobe" aria-label="Whole world" title="Globe">🌍</button><button data-a="rmfam" aria-label="Show family" title="Family">👪</button><button data-a="rmnorth" aria-label="North up" title="North up">🧭</button></div>
+   <div class="rmc" id="rm-c"></div>${card}</div>`;}
+function rmList(){const ids=rmIds();return `<h3>Family</h3><div class="list">${ids.filter(isChild).map(statusRow).join('')}${ids.filter(k=>!isChild(k)).map(k=>{const w=where(k);return isChild(S.me)?'':`<button class="row" data-a="ploc" data-v="${k}">${av(k)}<div class="t"><b>${nk(k)}${k===S.me?' (you)':''}</b><span>${w.e} ${esc(w.short)}</span></div>${ic('chev')}</button>`;}).join('')}</div><p class="muted small">Sample positions. The app uses each phone's GPS.</p>`;}
+function rmFit(){const ids=rmIds();if(!ids.length||!RM.map)return;const b=new maplibregl.LngLatBounds();ids.forEach(k=>b.extend(ll(LOC[k].x,LOC[k].y)));RM.map.fitBounds(b,{padding:{top:150,bottom:120,left:50,right:70},maxZoom:16.5,duration:900});}
+
 // ================= RENDER =================
 function screen(){
   if(S.me==='login') return loginView();
@@ -3547,7 +3618,7 @@ function render(){
   const sc=document.getElementById('scr'),keep=sc?sc.scrollTop:0,keepFlag=S.keepScroll;S.keepScroll=false;
   let h=`<div class="status"><span>15:40</span><span class="isl"></span><span class="r">●●● 5G ▮</span></div>`;
   if(S.offline) h+=`<div class="offline">No internet. You can still read everything.</div>`;
-  h+=inChat?`<div style="flex:1;min-height:0">${chatThread()}</div>`:`<main class="scr" id="scr">${screen()}</main>`;
+  h+=inChat?`<div style="flex:1;min-height:0">${chatThread()}</div>`:`<main class="scr ${S.tab==='map'&&!view()&&window.maplibregl&&!S.offline?'scr-map':''}" id="scr">${screen()}</main>`;
   if(!['new','setup','login'].includes(S.me)&&!inChat) h+=`<nav class="nav" aria-label="Main">${navFor().map(([k,l,i])=>{const b=k==='chat'?chatUnread(S.me):0;return `<button data-a="${k==='more'?'more':'tab'}" data-v="${k}" ${(S.tab===k||(k==='more'&&MORE_TABS.includes(S.tab)))&&!view()?'aria-current="page"':''}>${ic(i)}${l}${b?`<span class="badge">${b}</span>`:''}</button>`}).join('')}</nav>`;
   if(!['new','setup','login'].includes(S.me)) h+=callLayer();
   if(S.sheet) h+=`<div class="sheetbg" data-a="close"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${S.sheet.html}</div></div>`;
@@ -3558,6 +3629,7 @@ function render(){
   const keepIn=S.sheet?[...phone.querySelectorAll('.sheet input[id]')].map(i=>[i.id,i.value]):[];
   phone.innerHTML=h;
   keepIn.forEach(([id,v])=>{const el=phone.querySelector('.sheet #'+id);if(el)el.value=v;});
+  rmAttach();
   const ms=document.getElementById('msgs');if(ms) ms.scrollTop=ms.scrollHeight;
   const sc2=document.getElementById('scr');if(sc2&&keepFlag) sc2.scrollTop=keep;
   clearTimeout(render.tk);const cv=view();   // SOS cancel window countdown
@@ -3732,7 +3804,16 @@ phone.addEventListener('click',e=>{
   // ----- Phase 2 -----
   if(a==='home'){S.stack=[];S.tab='home';render();scrollTop();return;}
   if(a==='mk'){if(S.tab==='map'&&!view()){S.mapSel=S.mapSel===v?null:v;rerender();}return;}
-  if(a==='mapf'){S.mapF=v;S.mapSel=null;rerender();return;}
+  if(a==='mapf'){S.mapF=v;S.mapSel=null;rerender();if(RM.map&&window.maplibregl)rmFit();return;}
+  if(a==='rmzin'){RM.map&&RM.map.zoomIn();return;}
+  if(a==='rmzout'){RM.map&&RM.map.zoomOut();return;}
+  if(a==='rmmode'){RM.mode=RM.mode==='sat'?'map':'sat';rmLayer();rerender();return;}
+  if(a==='rmglobe'){RM.map&&RM.map.flyTo({center:[RM.map.getCenter().lng,0],zoom:1,pitch:0,bearing:0,duration:1600});return;}
+  if(a==='rmfam'){rmFit();return;}
+  if(a==='rmnorth'){RM.map&&RM.map.easeTo({bearing:0,pitch:0,duration:500});return;}
+  if(a==='rmclose'){S.mapSel=null;S.rmPin=null;rerender();return;}
+  if(a==='rmlist'){sheet(rmList());return;}
+  if(a==='rmcopy'){try{navigator.clipboard.writeText(v);}catch(e){}toast('Koordinat disalin');return;}
   if(a==='childloc'){if(isChild(S.me)){go('myloc');return;}go('childloc',{id:v});return;}
   if(a==='hist'){S.hist={kid:v,d:TODAY,pick:false};go('hist');return;}
   if(a==='histkid'){S.hist.kid=v;rerender();return;}
