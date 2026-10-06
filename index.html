@@ -838,7 +838,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .ft{grid-template-columns:repeat(7,minmax(0,1fr))}.pd-rm{grid-template-columns:repeat(3,minmax(0,1fr))}.chg{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 .gh-top h1{font-size:26px;font-weight:800;font-family:var(--font)}.gk .dchip{white-space:normal;line-height:1.25}
-/* Phase 7: Papa ↔ Mama location */
+/* Phase 7: Ajik ↔ Ibuk location */
 .pboth .pbh{font-weight:800;margin-bottom:2px}
 .pboth .kv span{display:flex;align-items:center;gap:8px}.pboth .kv .av{width:28px;height:28px;font-size:16px}
 .pboth b.ok{color:var(--success)}.pboth b.off{color:var(--muted)}
@@ -892,13 +892,22 @@ body.auth .whobox,body.auth .tryblock{display:none}
 @media (max-width:760px){body.auth .side{display:none}body.auth .phone{height:100vh;height:100dvh;min-height:0}}
 .fld input[type=password]{border:1.5px solid var(--line);border-radius:var(--rs);background:var(--surface);color:var(--ink);font:500 16px var(--font);padding:11px 12px;width:100%;box-sizing:border-box;min-height:48px}
 @media (max-width:760px){body.auth .fsbtn{display:none}}
+.map{max-width:720px;margin-left:auto;margin-right:auto}
+.map.zm{touch-action:pan-y}.map.zm.zoomed{touch-action:none;cursor:grab}
+.mz{position:relative;transform-origin:0 0;--iz:1}
+.mz .mk{transform:translate(-50%,-50%) scale(var(--iz))}
+.mz .pinpt{transform:translate(-50%,-92%) scale(var(--iz))}
+.mzc{position:absolute;right:8px;top:8px;z-index:3;display:flex;flex-direction:column;gap:6px}
+.mzc button{width:38px;height:38px;border-radius:12px;border:0;background:rgba(255,255,255,.96);color:#14181F;font:700 22px/1 var(--f-ui);box-shadow:0 2px 8px rgba(0,0,0,.18);cursor:pointer;display:grid;place-items:center;padding:0}
+.mzc button[disabled]{opacity:.4}
+.mzc .rs{font-size:13px}
 </style>
 
 <div class="wrap">
   <aside class="side">
     <div>
       <h1>JAENS Family OS</h1>
-      <p class="sub">Phases 1 to 6 prototype (NP-01 to NP-06) plus Papa ↔ Mama location. Pick who is holding the phone. Everything is tappable; all data is sample data.</p>
+      <p class="sub">Phases 1 to 6 prototype (NP-01 to NP-06) plus Ajik ↔ Ibuk location. Pick who is holding the phone. Everything is tappable; all data is sample data.</p>
     </div>
     <div class="whobox">
       <div class="lbl">View as</div>
@@ -907,9 +916,9 @@ body.auth .whobox,body.auth .tryblock{display:none}
     <div class="tryblock">
       <div class="lbl">Try a notification</div>
       <div class="try">
-        <button data-sim="chat">💬 Mama sends a message</button>
+        <button data-sim="chat">💬 Ibuk sends a message</button>
         <button data-sim="activity">⏰ Activity reminder fires</button>
-        <button data-sim="ann">📣 Papa posts an announcement</button>
+        <button data-sim="ann">📣 Ajik posts an announcement</button>
       </div>
     </div>
     <div class="tryblock">
@@ -933,9 +942,9 @@ body.auth .whobox,body.auth .tryblock{display:none}
     <div class="tryblock">
       <div class="lbl">Try Phase 4 (chat & calls)</div>
       <div class="try" id="try4">
-        <button data-sim4="vcall">📹 Mama video-calls you</button>
-        <button data-sim4="photo">📷 Mama sends a photo</button>
-        <button data-sim4="missed">📞 Papa calls, nobody answers</button>
+        <button data-sim4="vcall">📹 Ibuk video-calls you</button>
+        <button data-sim4="photo">📷 Ibuk sends a photo</button>
+        <button data-sim4="missed">📞 Ajik calls, nobody answers</button>
         <button data-sim4="poor">📶 Poor connection in a video call</button>
         <button data-sim4="drop">🔄 Connection drops for a moment</button>
       </div>
@@ -943,7 +952,7 @@ body.auth .whobox,body.auth .tryblock{display:none}
     <div class="tryblock">
       <div class="lbl">Try Phase 5 (money & themes)</div>
       <div class="try" id="try5">
-        <button data-sim5="give">💝 Papa gives Raiya Rp 20.000</button>
+        <button data-sim5="give">💝 Ajik gives Raiya Rp 20.000</button>
         <button data-sim5="spend">🧾 Rada adds an expense</button>
         <button data-sim5="dash">📊 Open the parent money dashboard</button>
         <button data-sim5="budget">📋 Open the family budget</button>
@@ -952,21 +961,21 @@ body.auth .whobox,body.auth .tryblock{display:none}
     <div class="tryblock">
       <div class="lbl">Try Phase 6 (growth points)</div>
       <div class="try" id="try6">
-        <button data-sim6="special">❤️ Papa gives Raiya +15 special points</button>
+        <button data-sim6="special">❤️ Ajik gives Raiya +15 special points</button>
         <button data-sim6="sleep">🌙 Raiya taps GOING TO SLEEP</button>
         <button data-sim6="reward">🎁 Rada asks for a reward</button>
         <button data-sim6="school">🎓 Radja scores 92 in Physics</button>
-        <button data-sim6="approve">✅ Papa checks activities to approve</button>
+        <button data-sim6="approve">✅ Ajik checks activities to approve</button>
         <button data-sim6="dash">📊 Open the Family Growth dashboard</button>
       </div>
     </div>
     <div class="tryblock">
-      <div class="lbl">Try Papa ↔ Mama location</div>
+      <div class="lbl">Try Ajik ↔ Ibuk location</div>
       <div class="try" id="try7">
-        <button data-sim7="live">📍 Papa opens Mama’s live location</button>
-        <button data-sim7="date">📅 Papa checks where Mama went on Fri 2 Oct</button>
-        <button data-sim7="week">📊 Mama sees Papa’s 7-day report</button>
-        <button data-sim7="pause">⏸️ Mama pauses sharing (Papa is told)</button>
+        <button data-sim7="live">📍 Ajik opens Ibuk’s live location</button>
+        <button data-sim7="date">📅 Ajik checks where Ibuk went on Fri 2 Oct</button>
+        <button data-sim7="week">📊 Ibuk sees Ajik’s 7-day report</button>
+        <button data-sim7="pause">⏸️ Ibuk pauses sharing (Ajik is told)</button>
       </div>
       <div class="lbl" style="margin-top:12px">Theme for this child</div>
       <select class="looksel" id="looksel" aria-label="Theme for the child holding the phone"></select>
@@ -979,10 +988,10 @@ body.auth .whobox,body.auth .tryblock{display:none}
       <b>Phase 3 is in:</b> Night Mode, School Focus, allowed and restricted apps, extra time, time requests and device control setup. Open a child in Map or Settings › Device control. In the real app Apple’s Screen Time enforces the rules on the child’s iPhone.<br><br>
       <b>Phase 4 is in:</b> photos, videos, voice notes, files and location in chat; audio, video and group calls with Accept and Decline; missed calls and call history in chat. Calls are simulated: the other person answers by themselves.<br><br>
       <b>Phase 5 is in:</b> My Money (balance, savings, goals, history) for every age, the parent money dashboard with period filter and charts, the family budget and family plans. 11 themes by age: Little Kids, Kids, Teen and Parent. No real bank money.<br><br>
-      <b>Phase 6 is in:</b> My Stars (Little, Kids) and My Growth (Teen, with Focus Mode), points that come straight from My Day, I’M AWAKE and GOING TO SLEEP check-ins, streaks that never punish, badges, rewards with parent approval, special points from Papa or Mama, school achievements, Family Growth, Family Today, Reports and a sidebar on iPad landscape, laptop and desktop. No sibling ranking.<br><br>
-      <b>Papa ↔ Mama location:</b> Papa and Mama see each other live 24 hours, on the Family Map and on Home. Each day has a route, a timeline and a tracking report (distance, places, time away, trips), for today or any day in the last 30 days, plus a 7-day view. Sharing is mutual and always visible: if one pauses, the other is told. Children never see it. Papa and Mama can add their own profile photo in Settings.<br><br>
+      <b>Phase 6 is in:</b> My Stars (Little, Kids) and My Growth (Teen, with Focus Mode), points that come straight from My Day, I’M AWAKE and GOING TO SLEEP check-ins, streaks that never punish, badges, rewards with parent approval, special points from Ajik or Ibuk, school achievements, Family Growth, Family Today, Reports and a sidebar on iPad landscape, laptop and desktop. No sibling ranking.<br><br>
+      <b>Ajik ↔ Ibuk location:</b> Ajik and Ibuk see each other live 24 hours, on the Family Map and on Home. Each day has a route, a timeline and a tracking report (distance, places, time away, trips), for today or any day in the last 30 days, plus a 7-day view. Sharing is mutual and always visible: if one pauses, the other is told. Children never see it. Ajik and Ibuk can add their own profile photo in Settings.<br><br>
       <b>Never in JAENS:</b> remote power-off, wiping, hidden camera or microphone, app usage tracking.<br><br>
-      <b>Family:</b> Papa Aji, Mama Ariani and five children: Radja 16 (Teen), Rada 14, Renatta 10, Raiya 8 and Rixty 6 (all Kids Girl). Renatta and Rixty have no phone yet, so they can be paired from Settings › Devices. Places, activities and messages are sample data.<br><br>
+      <b>Family:</b> Ajik Aji, Ibuk Ariani and five children: Radja 16 (Teen), Rada 14, Renatta 10, Raiya 8 and Rixty 6 (all Kids Girl). Renatta and Rixty have no phone yet, so they can be paired from Settings › Devices. Places, activities and messages are sample data.<br><br>
       Prototype clock: Monday 5 October 2026, 15:40.
     </div>
   </aside>
@@ -1036,8 +1045,8 @@ const MODE={KIDS_BOY:'kids_boy',KIDS_GIRL:'kids_girl',TEEN:'teen',PARENT:'parent
 function ageOf(dob){const [y,m,d]=dob.split('-').map(Number);let a=2026-y;if(m>10||(m===10&&d>5))a--;return a;}
 function autoTheme(role,dob,gender){ if(role!=='CHILD') return 'PARENT'; const a=ageOf(dob); if(a>=15) return 'TEEN'; return gender==='female'?'KIDS_GIRL':'KIDS_BOY'; }
 const M={
- papa:{id:'papa',name:'Aji',nick:'Papa',role:'FAMILY_OWNER',rel:'Father',emoji:'👨🏻',bg:'#DCEBE6',theme:'PARENT'},
- mama:{id:'mama',name:'Ariani',nick:'Mama',role:'PARENT_GUARDIAN',rel:'Mother',emoji:'👩🏻',bg:'#F4E2D8',theme:'PARENT'},
+ papa:{id:'papa',name:'Aji',nick:'Ajik',role:'FAMILY_OWNER',rel:'Father',emoji:'👨🏻',bg:'#DCEBE6',theme:'PARENT'},
+ mama:{id:'mama',name:'Ariani',nick:'Ibuk',role:'PARENT_GUARDIAN',rel:'Mother',emoji:'👩🏻',bg:'#F4E2D8',theme:'PARENT'},
  radja:{id:'radja',name:'Radja',nick:'Radja',role:'CHILD',rel:'Son',dob:'2010-05-11',gender:'male',emoji:'🧑🏻',bg:'#E1E4F8',theme:'TEEN',device:'iPhone 15',canTheme:false},
  dinda:{id:'dinda',name:'Rada',nick:'Rada',role:'CHILD',rel:'Daughter',dob:'2012-01-22',gender:'female',emoji:'👧🏻',bg:'#FFD6E6',theme:'KIDS_GIRL',device:'iPhone 12',canTheme:true},
  renatta:{id:'renatta',name:'Renatta',nick:'Renatta',role:'CHILD',rel:'Daughter',dob:'2015-11-03',gender:'female',emoji:'👧🏻',bg:'#E8DDFB',theme:'KIDS_GIRL',device:null,canTheme:true},
@@ -1153,13 +1162,13 @@ let nid=0;const NOTIF=[];
 const notify=(member,type,title,body,ref,time='15:41',read=false)=>{NOTIF.unshift({id:++nid,member,type,title,body,ref,time,read});return nid;};
 [['raiya','ACTIVITY','Homework at 19:30','✏️ Reminder: 10 min before',{k:'act',v:findA('raiya','Homework').id},'Fri',true],
  ['raiya','ANNOUNCEMENT','📣 Family Dinner','Dinner together at 7 PM ❤️',{k:'ann',v:1},'09:10'],
- ['raiya','CHAT','Mama','Great job tidying your room! ⭐',{k:'thread',v:tid('raiya','mama')},'15:25'],
+ ['raiya','CHAT','Ibuk','Great job tidying your room! ⭐',{k:'thread',v:tid('raiya','mama')},'15:25'],
  ['dinda','ANNOUNCEMENT','📣 Family Dinner','Dinner together at 7 PM ❤️',{k:'ann',v:1},'09:10'],
- ['dinda','CHAT','Papa','How was piano? 🎹',{k:'thread',v:tid('dinda','papa')},'14:50',true],
+ ['dinda','CHAT','Ajik','How was piano? 🎹',{k:'thread',v:tid('dinda','papa')},'14:50',true],
  ['dinda','ACTIVITY','English Class at 16:00','📘 Today, 16:00 to 17:00',{k:'act',v:findA('dinda','English Class').id},'15:30'],
  ['radja','ANNOUNCEMENT','⚠️ School starts early','School starts at 06:30 tomorrow.',{k:'ann',v:2},'12:40'],
  ['radja','ACTIVITY','Futsal at 16:00','⚽ Reminder: 30 min before',{k:'act',v:findA('radja','Futsal').id},'15:30'],
- ['radja','CHAT','Papa','Take your jacket',{k:'thread',v:tid('radja','papa')},'15:33'],
+ ['radja','CHAT','Ajik','Take your jacket',{k:'thread',v:tid('radja','papa')},'15:33'],
  ['papa','SYSTEM','Rada’s iPhone 12 connected','Device paired to Jaens Family',{k:'members'},'Thu',true],
  ['papa','ACTIVITY','Raiya finished Tidy my room','✓ Done at 13:45',{k:'act',v:findA('raiya','Tidy my room').id},'13:45'],
  ['papa','CHAT','Radja','Can I go to Rafi’s after futsal?',{k:'thread',v:tid('radja','papa')},'15:30',true],
@@ -1210,7 +1219,7 @@ function dayJourney(k,d){
   const j=JOURNEY[k],e=j.ev.findIndex(x=>x[1]==='arrive'&&x[2]==='home'),p=j.pts.findIndex((x,i)=>i>0&&x[0]===70&&x[1]===192);
   return {pts:j.pts.slice(0,p+1),ev:j.ev.slice(0,e+1)};
 }
-// ---------- Phase 7: Papa ↔ Mama location (always on, both sides see it) ----------
+// ---------- Phase 7: Ajik ↔ Ibuk location (always on, both sides see it) ----------
 PLACES.push(P('mkt','Pasar Segar','OTHER',336,26,150,{icon:'🛒'}),P('cafe','Kopi Pagi','OTHER',150,150,80,{icon:'☕'}));
 LOC.papa.battery=72;LOC.mama.battery=58;LOC.papa.age=0;LOC.mama.age=0; // parents share live, all day
 // Each parent decides to share with the other. Pausing is never silent: the other parent sees it.
@@ -1390,7 +1399,7 @@ Object.assign(NICON,{LOCATION_ENTER:'✅',LOCATION_EXIT:'🔔',LOCATION_ATTENTIO
 const ngroup=t=>/^(GROWTH_POINT|ACTIVITY_APPROVAL|STREAK_MILESTONE|ACHIEVEMENT|REWARD_AVAILABLE|REWARD_REQUEST|SPECIAL_RECOGNITION)$/.test(t)?'GROWTH':/^(CALL|MISSED_CALL)$/.test(t)?'CHAT':/^(DEVICE|TIME|TEMPORARY)/.test(t)?'DEVICE':t.startsWith('LOCATION')?'LOCATION':(t.startsWith('PICKUP')||t.startsWith('SOS'))?'SAFETY':t;
 const CATL={LOCATION_ENTER:'LOCATION',LOCATION_EXIT:'LOCATION',LOCATION_ATTENTION:'LOCATION',PICKUP_REQUEST:'PICKUP',PICKUP_ACCEPTED:'PICKUP',PICKUP_COMPLETED:'PICKUP',SOS_ACTIVE:'SOS · CRITICAL ALERT',SOS_ACKNOWLEDGED:'SOS',SOS_RESOLVED:'SOS'};
 [['papa','LOCATION_EXIT','🔔 Raiya left SD Cendekia','12:42',{k:'loc',v:'raiya'},'12:42',true],
- ['raiya','PICKUP_COMPLETED','Papa picked you up','SD Cendekia · 12:42',{k:'pickup',v:2},'12:42',true],
+ ['raiya','PICKUP_COMPLETED','Ajik picked you up','SD Cendekia · 12:42',{k:'pickup',v:2},'12:42',true],
  ['papa','LOCATION_ENTER','✅ Raiya arrived at Home','13:05',{k:'loc',v:'raiya'},'13:05',true],
  ['papa','LOCATION_ENTER','✅ Rada arrived at Home','13:34',{k:'loc',v:'dinda'},'13:34',true],
  ['papa','LOCATION_EXIT','🔔 Radja left SMA Nusantara','14:38',{k:'loc',v:'radja'},'14:38',true],
@@ -1410,7 +1419,7 @@ const DCR=(start,end,on,days)=>({on,start,end,days:[...days],now:false,skip:fals
 const DC={
  raiya:{setup:'ok',night:DCR('20:30','06:00',true,EVERY),school:DCR('07:00','12:30',true,WEEKDAYS),
   allowed:['📞 Phone','💬 Messages','🗺️ Maps','🏡 JAENS Family','🧮 Calculator','📚 School apps'],restricted:['🎮 Games','👥 Social Media','🎬 Entertainment','📺 Streaming'],temp:null,
-  log:[['Today 05:30','Night Mode ended'],['Sun 21:30','Night Mode started'],['Sun 19:42','+30 min given by Papa']]},
+  log:[['Today 05:30','Night Mode ended'],['Sun 21:30','Night Mode started'],['Sun 19:42','+30 min given by Ajik']]},
  dinda:{setup:'none',night:DCR('21:00','05:30',false,EVERY),school:DCR('07:00','13:00',false,WEEKDAYS),allowed:['📞 Phone','💬 Messages','🏡 JAENS Family'],restricted:[],temp:null,log:[]},
  renatta:{setup:'none',night:DCR('21:00','05:30',false,EVERY),school:DCR('07:00','12:30',false,WEEKDAYS),allowed:['📞 Phone','💬 Messages','🏡 JAENS Family'],restricted:[],temp:null,log:[]},
  tiana:{setup:'none',night:DCR('20:00','06:00',false,EVERY),school:DCR('07:30','10:30',false,WEEKDAYS),allowed:['📞 Phone','🏡 JAENS Family'],restricted:[],temp:null,log:[]},
@@ -1519,7 +1528,7 @@ function callBlock(by,to,group){
   for(const k of [by,to]) if(inNight(k)){
     if(group&&!NIGHTC.groupCalls) return 'Night Mode';
     if(!group&&(kidPair||!NIGHTC.parentCalls)) return 'Night Mode';}
-  if(kidPair&&!group&&!PERM.kidsDM) return 'Ask Papa to allow';
+  if(kidPair&&!group&&!PERM.kidsDM) return 'Ask Ajik to allow';
   return '';
 }
 function startCall(by,members,video,th,opt={}){
@@ -1648,7 +1657,7 @@ const dLab=s=>{const t=dOf(s);return `${t.getUTCDate()} ${MON[t.getUTCMonth()]}`
 const dLabY=s=>dLab(s)+' '+s.slice(0,4);
 const RP=n=>(n<0?'−':'')+'Rp '+Math.abs(Math.round(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
 const RPk=n=>{const a=Math.abs(n);return (n<0?'−':'')+(a>=1e6?(+(a/1e6).toFixed(a>=1e7?0:2)).toString().replace('.',',')+'M':a>=1e3?Math.round(a/1e3)+'K':String(a));};
-const INC={UANG_BEKAL:{l:'Uang Bekal',s:'Bekal',e:'🎒',c:'#3B82F6'},SALARY:{l:'Uang Kerja',s:'Kerja',e:'💼',c:'#14B8A6'},BONUS:{l:'Bonus',s:'Bonus',e:'⭐',c:'#F59E0B'},GIFT_IN:{l:'Hadiah',s:'Hadiah',e:'🎁',c:'#EC4899'},PARENT:{l:'Dari Papa/Mama',s:'Papa/Mama',e:'💝',c:'#8B5CF6'},OTHER_IN:{l:'Lainnya',s:'Lainnya',e:'↩️',c:'#94A3B8'}};
+const INC={UANG_BEKAL:{l:'Uang Bekal',s:'Bekal',e:'🎒',c:'#3B82F6'},SALARY:{l:'Uang Kerja',s:'Kerja',e:'💼',c:'#14B8A6'},BONUS:{l:'Bonus',s:'Bonus',e:'⭐',c:'#F59E0B'},GIFT_IN:{l:'Hadiah',s:'Hadiah',e:'🎁',c:'#EC4899'},PARENT:{l:'Dari Ajik/Ibuk',s:'Ajik/Ibuk',e:'💝',c:'#8B5CF6'},OTHER_IN:{l:'Lainnya',s:'Lainnya',e:'↩️',c:'#94A3B8'}};
 const EXP={FOOD:{l:'Makan & Minum',s:'Makan',e:'🍱',c:'#F59E0B'},SCHOOL:{l:'Sekolah',s:'Sekolah',e:'🏫',c:'#3B82F6'},TRANSPORT:{l:'Transport',s:'Transport',e:'🚌',c:'#10B981'},FUN:{l:'Main / Hiburan',s:'Main',e:'🎮',c:'#8B5CF6'},SHOP:{l:'Shopping',s:'Shopping',e:'🛍️',c:'#EC4899'},GIFT_OUT:{l:'Hadiah',s:'Hadiah',e:'🎁',c:'#F97316'},OTHER:{l:'Lainnya',s:'Lainnya',e:'⋯',c:'#94A3B8'}};
 const SRC={CHILD_ENTRY:'Dicatat anak',PARENT_ENTRY:'Dicatat orang tua',SYSTEM_ENTRY:'Sistem'};
 const WALLETS=[];kids().forEach(k=>{WALLETS.push({wallet_id:`w_${k}_spend`,family_id:FAMID,member_id:k,wallet_type:'SPENDING',currency:'IDR',created_at:'2026-06-01T08:00'},{wallet_id:`w_${k}_save`,family_id:FAMID,member_id:k,wallet_type:'SAVINGS',currency:'IDR',created_at:'2026-06-01T08:00'});});
@@ -1705,7 +1714,7 @@ const cntTx=(ks,r)=>{ks=[].concat(ks);return liveTx().filter(t=>ks.includes(t.me
       if(!school&&rnd()<p.fun[2]*3) ex('FUN',r(p.fun[0],p.fun[1]),['Main futsal','Nonton bioskop','Timezone','Main bareng teman'][Math.floor(rnd()*4)],'16:30');
       if(rnd()<p.shop[2]) ex('SHOP',r(p.shop[0],p.shop[1],1000),['Beli kaos','Aksesoris','Alat tulis lucu','Gantungan kunci'][Math.floor(rnd()*4)],'17:45');
       if(school&&rnd()<p.sch[2]) ex('SCHOOL',r(p.sch[0],p.sch[1]),['Fotokopi tugas','Buku tulis','Iuran kelas','Bahan prakarya'][Math.floor(rnd()*4)],'09:30');
-      if(p.job[0]&&dow===6&&rnd()<p.job[1]*2) postTx({member_id:k,transaction_type:'INCOME',category:'SALARY',amount:p.job[0],description:'Bantu Papa di kantor',transaction_date:d,time:'17:00',created_by:k,source:'CHILD_ENTRY'});
+      if(p.job[0]&&dow===6&&rnd()<p.job[1]*2) postTx({member_id:k,transaction_type:'INCOME',category:'SALARY',amount:p.job[0],description:'Bantu Ajik di kantor',transaction_date:d,time:'17:00',created_by:k,source:'CHILD_ENTRY'});
       if(d.endsWith('-15')&&rnd()<.5) postTx({member_id:k,transaction_type:'INCOME',category:'GIFT_IN',amount:r(p.allow*.3,p.allow*.8,5000),description:'Hadiah dari Nenek',transaction_date:d,time:'11:00',created_by:'mama',source:'PARENT_ENTRY'});
       if(rnd()<.03) ex('GIFT_OUT',r(p.allow*.1,p.allow*.3,1000),'Kado ulang tahun teman','15:30');
     }});
@@ -1716,7 +1725,7 @@ const cntTx=(ks,r)=>{ks=[].concat(ks);return liveTx().filter(t=>ks.includes(t.me
   postTx({member_id:'renatta',transaction_type:'EXPENSE',category:'SCHOOL',amount:12000,description:'Bahan prakarya',time:'09:30',created_by:'mama',source:'PARENT_ENTRY'});
   // A corrected mistake, kept in the ledger as a VOID record
   const wrong=postTx({member_id:'dinda',transaction_type:'EXPENSE',category:'SHOP',amount:150000,description:'Salah ketik (harusnya 15.000)',transaction_date:'2026-10-03',time:'16:00',created_by:'dinda',source:'CHILD_ENTRY'});
-  postTx({member_id:'dinda',transaction_type:'VOID',category:null,amount:150000,description:'Dibatalkan oleh Mama: salah ketik',transaction_date:'2026-10-03',time:'19:10',created_by:'mama',source:'PARENT_ENTRY',ref_id:wrong.transaction_id});
+  postTx({member_id:'dinda',transaction_type:'VOID',category:null,amount:150000,description:'Dibatalkan oleh Ibuk: salah ketik',transaction_date:'2026-10-03',time:'19:10',created_by:'mama',source:'PARENT_ENTRY',ref_id:wrong.transaction_id});
   postTx({member_id:'dinda',transaction_type:'EXPENSE',category:'SHOP',amount:15000,description:'Gantungan kunci',transaction_date:'2026-10-03',time:'16:00',created_by:'mama',source:'PARENT_ENTRY'});
 })();
 
@@ -1847,8 +1856,8 @@ function checkAch(k,notifyIt){ACH.forEach(a=>{if(MACH.find(m=>m.member_id===k&&m
 const REWARDS=[];let rwn=0,rdn=0;const REDEEM=[];
 const addReward=(title,desc,pts,icon,extra={})=>REWARDS.push({id:'rw'+(++rwn),family_id:FAMID,title,description:desc,points_required:pts,icon,active:true,requires_parent_approval:true,created_by:'papa',...extra});
 addReward('Pilih menu makan malam','Kamu pilih menu makan malam keluarga',150,'🍕');addReward('Pilih film keluarga','Kamu pilih film untuk movie night',200,'🎬');
-addReward('Es krim bareng Papa','Jalan-jalan beli es krim',250,'🍦');addReward('+30 menit screen time','Tambahan waktu di iPhone, setelah disetujui',300,'📱',{kind:'SCREEN_TIME',minutes:30});
-addReward('Pilih kegiatan akhir pekan','Kamu pilih kegiatan keluarga hari Minggu',400,'🎡');addReward('Bonus kecil','Papa atau Mama memutuskan bonus di My Money',600,'🎁',{kind:'MONEY_BONUS'});
+addReward('Es krim bareng Ajik','Jalan-jalan beli es krim',250,'🍦');addReward('+30 menit screen time','Tambahan waktu di iPhone, setelah disetujui',300,'📱',{kind:'SCREEN_TIME',minutes:30});
+addReward('Pilih kegiatan akhir pekan','Kamu pilih kegiatan keluarga hari Minggu',400,'🎡');addReward('Bonus kecil','Ajik atau Ibuk memutuskan bonus di My Money',600,'🎁',{kind:'MONEY_BONUS'});
 const earned=k=>gOk().filter(t=>t.member_id===k).reduce((s,t)=>s+(t.source_type==='ADJUSTMENT'&&t.direction<0?-t.points:t.points),0);
 const reserved=k=>REDEEM.filter(r=>r.member_id===k&&r.status!=='DECLINED').reduce((s,r)=>s+r.points_used,0);
 const available=k=>earned(k)-reserved(k);
@@ -1885,8 +1894,8 @@ function recognize(k,by,pts,reason,cat,date,time){const g=award(k,{rule_id:cat==
   gLive().filter(t=>t.validation_status==='APPROVED'&&t.validation_type==='PARENT_VERIFY').forEach((t,i)=>{t.decided_by=i%2?'mama':'papa';t.decided_at=t.transaction_date+'T19:30';});
   recognize('dinda','mama',10,'Jujur mengembalikan uang kembalian','CHAR','2026-09-20','18:10');
   recognize('radja','mama',20,'Mengajari Raiya matematika','FAM','2026-09-28','20:05');
-  recognize('raiya','papa',15,'Membantu Mama tanpa diminta','FAM','2026-10-03','17:40');
-  recognize('renatta','papa',10,'Menjaga Rixty saat Mama memasak','FAM','2026-10-04','17:15');
+  recognize('raiya','papa',15,'Membantu Ibuk tanpa diminta','FAM','2026-10-03','17:40');
+  recognize('renatta','papa',10,'Menjaga Rixty saat Ibuk memasak','FAM','2026-10-04','17:15');
   addSchoolAch({member_id:'radja',subject:'Matematika',type:'EXAM',score:84,previous_score:75,description:'Ulangan Matematika 84',date:'2026-09-25',by:'papa'});
   addSchoolAch({member_id:'dinda',subject:'Bahasa Inggris',type:'EXAM',score:92,description:'Ulangan Bahasa Inggris 92',date:'2026-09-30',by:'mama'});
   addSchoolAch({member_id:'renatta',type:'COMPETITION',points:30,description:'Juara 2 lomba menggambar',date:'2026-09-18',by:'papa'});
@@ -1909,7 +1918,7 @@ const S={me:'papa',tab:'home',stack:[],cal:'today',calSel:TODAY,calFilter:'all',
   face:{raiya:true,dinda:false,radja:true,papa:true,mama:true},pinOn:{raiya:false,dinda:false,radja:true},
   mapF:'all',mapSel:null,live:{},hist:null,tLoc:'live',lkid:'raiya',pdraft:null,hold:null,ddraft:null,dcs:null,tr:{mins:30,reason:null},att:null,rec:null,play:null,mtab:'PHOTO',cpick:null,os:null,spk:false,
   mp:{per:'month',from:'2026-09-01',to:'2026-09-30'},hf:{t:'all',r:'all',c:''},mtab2:'overview',tinsR:'month',trend:'EXPENSE',btab:'cat',form:'phone',tx:null,gdraft:null,fgdraft:null,
-  cele:null,grd:null,grt:null,grw:null,gsa:null,gsp:null,gsSp:null,pl:{d:TODAY,pick:false},plr:'day'};
+  cele:null,grd:null,grt:null,grw:null,gsa:null,gsp:null,gsSp:null,pl:{d:TODAY,pick:false},plr:'day',mz:{z:1,x:0,y:0}};
 const view=()=>S.stack[S.stack.length-1]||null;
 const theme=()=>S.me==='new'||S.me==='setup'||S.me==='login'?'PARENT':M[S.me].theme;
 const mode=()=>S.me==='new'?'kids_boy':MODE[theme()];
@@ -1975,7 +1984,7 @@ function parentHome(){
   <div class="stack">${alerts||`<div class="alert ok"><span class="ae">✅</span><div class="t"><b>All good</b><span>No pickup, SOS or time requests right now.</span></div></div>`}</div>
   ${familyToday(me)}
   <div class="sec">Family status ${seen.length?'<button data-a="tab" data-v="map">Open map</button>':''}</div>
-  <div class="card list">${seen.map(statusRow).join('')||'<p class="muted small" style="padding:10px 0;margin:0">Papa hasn’t shared the children’s location with you.</p>'}</div>
+  <div class="card list">${seen.map(statusRow).join('')||'<p class="muted small" style="padding:10px 0;margin:0">Ajik hasn’t shared the children’s location with you.</p>'}</div>
   ${partnerCard(me)}
   <div class="sec">Today’s summary</div>
   <div class="card"><div class="sum"><div><div class="n">${tn}</div><div class="l">activities</div></div><div><div class="n" style="color:var(--success)">${td}</div><div class="l">completed</div></div><div style="flex:1;min-width:0"><div class="bar"><i style="width:${tn?td/tn*100:0}%"></i></div><div class="l" style="margin-top:6px">${td} of ${tn} completed</div></div></div></div>
@@ -2064,7 +2073,7 @@ function activities(){
   ${strip(d,'day')}
   <div class="card" style="padding:12px 16px;margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-weight:700;margin-bottom:8px"><span>${dayLabel(d)}</span><span>${p.d} of ${p.n} completed</span></div><div class="bar"><i style="width:${p.n?p.d/p.n*100:0}%"></i></div></div>
   <div class="stack">${list.length?list.map(a=>actRow(a,d)).join(''):empty('☀️','No activities today ☀️')}</div>
-  ${can(S.me,'activities')?`<button class="btn block" style="margin-top:14px" data-a="addact">${ic('plus')} Add Activity for ${esc(M[k].nick)}</button>`:`<p class="center muted small">Only Papa can add activities right now.</p>`}`;
+  ${can(S.me,'activities')?`<button class="btn block" style="margin-top:14px" data-a="addact">${ic('plus')} Add Activity for ${esc(M[k].nick)}</button>`:`<p class="center muted small">Only Ajik can add activities right now.</p>`}`;
 }
 function actForm(){
   const d=S.adraft;
@@ -2151,7 +2160,7 @@ function childProfile(){
   <div class="sec">Appearance</div><div class="card list"><button class="row" data-a="appearance" data-v="${me}"><span class="ricon">${LOOKS[m.look].e}</span><div class="t"><b>Theme</b><span>${esc(LOOKS[m.look].name)}${m.canTheme?'':' · ask a parent to change'}</span></div>${m.canTheme?ic('chev'):ic('lock')}</button></div>
   <div class="sec">My family</div><div class="card" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:space-between">${ORDER.map(k=>`<div class="center small" style="width:56px;display:flex;flex-direction:column;align-items:center;gap:4px">${av(k)}${esc(M[k].nick)}</div>`).join('')}</div>
   ${LOC[me]?`<div class="sec">Safety</div><div class="card list">
-   <div class="switch"><span>📍 Location<small>${LOC[me].perm?'Papa and Mama can see where you are':'Ask a parent to help turn it on'}</small></span><span class="chip ${LOC[me].perm?'ok':'warn'}">${LOC[me].perm?'Working':'Needs attention'}</span></div>
+   <div class="switch"><span>📍 Location<small>${LOC[me].perm?'Ajik and Ibuk can see where you are':'Ask a parent to help turn it on'}</small></span><span class="chip ${LOC[me].perm?'ok':'warn'}">${LOC[me].perm?'Working':'Needs attention'}</span></div>
    <div class="switch"><span>☎️ Emergency contacts<small>${parents().map(p=>esc(M[p].nick)).join(', ')} get your SOS</small></span></div>
    <div class="switch"><span>🔔 Notifications<small>Allowed on this iPhone</small></span><span class="chip ok">On</span></div></div>`:''}
   <div class="sec">This phone</div><div class="card list">
@@ -2168,7 +2177,7 @@ function parentProfile(){
   <div class="sec">Family</div><div class="card list">
    <button class="row" data-a="go" data-v="members"><span class="ricon">👨‍👩‍👧‍👦</span><div class="t"><b>Family Members</b><span>${ORDER.length} members</span></div>${ic('chev')}</button>
    <button class="row" data-a="go" data-v="devices"><span class="ricon">📱</span><div class="t"><b>Devices</b><span>${kids().filter(k=>M[k].device).length} of ${kids().length} children connected</span></div>${ic('chev')}</button>
-   ${owner?`<button class="row" data-a="go" data-v="access"><span class="ricon">🛡️</span><div class="t"><b>Parent access</b><span>What Mama can do</span></div>${ic('chev')}</button>`:''}
+   ${owner?`<button class="row" data-a="go" data-v="access"><span class="ricon">🛡️</span><div class="t"><b>Parent access</b><span>What Ibuk can do</span></div>${ic('chev')}</button>`:''}
    <button class="row" data-a="go" data-v="callset"><span class="ricon">📞</span><div class="t"><b>Chat & calls</b><span>Family calls ${PERM.kidCalls?'on':'off'} for children</span></div>${ic('chev')}</button></div>
   <div class="sec">Safety</div><div class="card list">
    <button class="row" data-a="go" data-v="places"><span class="ricon">📍</span><div class="t"><b>Saved Places</b><span>${PLACES.length} places · Home, schools, course</span></div>${ic('chev')}</button>
@@ -2182,7 +2191,7 @@ function parentProfile(){
   <div class="sec">Notifications</div><div class="card list">${[['ACTIVITY','Activity reminders','Normal reminder sound'],['CHAT','Chat notifications','Soft sound'],['ANNOUNCEMENT','Announcement notifications','Normal sound']].map(([k,l,s])=>`<div class="switch"><span>${l}<small>${s}</small></span><button class="sw" role="switch" aria-checked="${NPREF[me][k]}" data-a="npref" data-v="${k}" aria-label="${l}"></button></div>`).join('')}</div>
   <div class="sec">App appearance</div><div class="card list"><div class="switch"><span>Parent theme<small>Clean and calm</small></span><span class="chip">Light</span></div></div>
   <div class="sec">Security</div><div class="card list"><div class="switch"><span>Face ID<small>After first login</small></span><button class="sw" role="switch" aria-checked="${!!S.face[me]}" data-a="face" aria-label="Face ID"></button></div><div class="switch"><span>Password<small>Email login</small></span><span class="chip">Change</span></div></div>
-  <div class="sec">Account</div><div class="card list"><button class="row" data-a="logout"><span class="ricon">🚪</span><div class="t"><b>Log out</b><span>Signed in as ${esc(me)}</span></div></button></div>
+  <div class="sec">Account</div><div class="card list"><button class="row" data-a="logout"><span class="ricon">🚪</span><div class="t"><b>Log out</b><span>Signed in as ${esc(Object.keys(LOGINS).find(u=>LOGINS[u]===me)||me)}</span></div></button></div>
   ${owner?`<div class="sec">Admin log</div><div class="card list">${AUDIT.slice(0,4).map(t=>`<div class="row static"><span class="ricon">🧾</span><div class="t"><b style="font-weight:500">${esc(t)}</b></div></div>`).join('')}</div>`:''}`;
 }
 function members(){
@@ -2202,10 +2211,10 @@ function memberDetail(){
 function devices(){
   const owner=M[S.me].role==='FAMILY_OWNER';
   return top('Devices')+`<div class="card list">${kids().map(k=>`<div class="row static">${av(k)}<div class="t"><b>${esc(M[k].nick)}</b><span>${M[k].device?esc(M[k].device)+' · connected':'No device'}</span></div>${owner?(M[k].device?`<button class="chip" style="border:0;cursor:pointer;color:var(--danger)" data-a="unpair" data-v="${k}">Unpair</button>`:`<button class="chip" style="border:0;cursor:pointer" data-a="pairfor" data-v="${k}">Pair</button>`):''}</div>`).join('')}</div>
-  ${owner?`<button class="btn block" style="margin-top:14px" data-a="go" data-v="pair">${ic('qr')} Add Child Device</button>`:'<p class="center muted small">Only Papa can pair devices.</p>'}`;
+  ${owner?`<button class="btn block" style="margin-top:14px" data-a="go" data-v="pair">${ic('qr')} Add Child Device</button>`:'<p class="center muted small">Only Ajik can pair devices.</p>'}`;
 }
 function access(){
-  return top('Parent access')+`<div class="card list">${[['mamaActivities','Mama can create and edit activities'],['mamaAnnounce','Mama can send announcements'],['mamaLocation','Mama can see children’s location'],['mamaDevices','Mama can manage device rules and extra time'],['mamaMoney','Mama can see and manage family money'],['mamaGrowth','Mama can give points and approve activities and rewards']].map(([k,l])=>`<div class="switch"><span>${l}</span><button class="sw" role="switch" aria-checked="${PERM[k]}" data-a="perm" data-v="${k}" aria-label="${l}"></button></div>`).join('')}</div><p class="muted small center">Children can never change these.</p>`;
+  return top('Parent access')+`<div class="card list">${[['mamaActivities','Ibuk can create and edit activities'],['mamaAnnounce','Ibuk can send announcements'],['mamaLocation','Ibuk can see children’s location'],['mamaDevices','Ibuk can manage device rules and extra time'],['mamaMoney','Ibuk can see and manage family money'],['mamaGrowth','Ibuk can give points and approve activities and rewards']].map(([k,l])=>`<div class="switch"><span>${l}</span><button class="sw" role="switch" aria-checked="${PERM[k]}" data-a="perm" data-v="${k}" aria-label="${l}"></button></div>`).join('')}</div><p class="muted small center">Children can never change these.</p>`;
 }
 function memberForm(){
   const d=S.mdraft,auto=d.role==='CHILD'&&d.dob?autoLook('CHILD',d.dob,d.gender):null,th=d.themeOverride||auto;
@@ -2238,12 +2247,12 @@ function pairing(){
 }
 function joinFamily(){
   const j=S.join;
-  if(j.step==='start') return `<div class="center" style="padding-top:80px"><div style="font-size:76px">🏡</div><div class="big" style="font-size:30px">Join Family</div><p class="muted" style="font-size:16px;margin:4px 0 40px">Ask Papa or Mama for the code.</p>
+  if(j.step==='start') return `<div class="center" style="padding-top:80px"><div style="font-size:76px">🏡</div><div class="big" style="font-size:30px">Join Family</div><p class="muted" style="font-size:16px;margin:4px 0 40px">Ask Ajik or Ibuk for the code.</p>
     <button class="btn block" style="min-height:62px;font-size:20px" data-a="join" data-v="scan">${ic('qr')} Join Family</button></div>`;
   if(j.step==='scan') return `<div class="big center">Scan the code</div><div class="cam"><div class="frame"></div><div class="scan"></div></div><button class="btn block" data-a="join" data-v="ok">Simulate scan</button>`;
   if(j.step==='ok') return `<div class="center" style="padding-top:50px">${av('raiya','xl')}<div class="big">Connected to ${esc(FAMILY.name)}</div><p class="muted" style="font-size:16px">This device belongs to <b>Raiya</b>.</p>
     <button class="btn block" data-a="join" data-v="loc1" style="margin:20px 0 10px">Continue</button></div>`;
-  if(j.step==='loc1') return `<div class="center" style="padding-top:80px"><div style="font-size:76px">📍</div><div class="big" style="font-size:26px">Location keeps your family connected.</div><p class="muted" style="font-size:16px">Papa and Mama can see where you are, and you can ask for pickup or help any time.</p><button class="btn block" style="margin-top:34px" data-a="join" data-v="loc2">Continue</button></div>`;
+  if(j.step==='loc1') return `<div class="center" style="padding-top:80px"><div style="font-size:76px">📍</div><div class="big" style="font-size:26px">Location keeps your family connected.</div><p class="muted" style="font-size:16px">Ajik and Ibuk can see where you are, and you can ask for pickup or help any time.</p><button class="btn block" style="margin-top:34px" data-a="join" data-v="loc2">Continue</button></div>`;
   if(j.step==='loc2'||j.step==='locask') return `<div class="center" style="padding-top:80px"><div style="font-size:76px">🛡️</div><div class="big" style="font-size:24px">JAENS Family needs location to show parents where you are and send safety alerts.</div><p class="muted">No microphone, no camera, nothing hidden.</p><button class="btn block" style="margin-top:34px" data-a="join" data-v="locask">Continue</button></div>
    ${j.step==='locask'?`<div class="iosbg"><div class="iosdlg" role="alertdialog" aria-label="Location permission"><h4>Allow “JAENS Family” to use your location?</h4><p>Shows your parents where you are and sends safety alerts.</p><svg viewBox="20 130 220 100" style="width:100%;height:100px;display:block" aria-hidden="true">${BASEMAP}<circle cx="70" cy="192" r="7" fill="#0A84FF" stroke="#fff" stroke-width="3"/></svg><button data-a="locallow" data-v="once">Allow Once</button><button data-a="locallow" data-v="while" style="font-weight:600">Allow While Using App</button><button data-a="locallow" data-v="no">Don’t Allow</button></div></div>`:''}`;
   if(j.step==='pin') return `<div class="big center" style="margin-top:30px">Pick 4 numbers</div><div class="pin">${[0,1,2,3].map(i=>`<i class="${i<j.pin.length?'f':''}"></i>`).join('')}</div><div class="pad">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(n=>n===''?'<span></span>':`<button data-a="pinkey" data-v="${n}" aria-label="${n==='⌫'?'Delete':n}">${n}</button>`).join('')}</div>`;
@@ -2281,6 +2290,7 @@ function mapView(o={}){
   s+='</svg>';
   const mk=(o.ids||[]).map(k=>{const L=LOC[k];return `<button class="mk ${tone(k)} ${o.big?'big':''} ${o.sel===k?'sel':''}" style="left:${(L.x/3.6).toFixed(2)}%;top:${(L.y/2.6).toFixed(2)}%" data-a="mk" data-v="${k}" aria-label="${nk(k)}: ${esc(where(k).long)}"><span class="p" style="background:${M[k].bg}">${M[k].emoji}</span>${o.names?`<span class="n">${nk(k)}</span>`:''}</button>`;}).join('');
   const pin=o.pin?`<span class="pinpt" style="left:${(o.pin.x/3.6).toFixed(2)}%;top:${(o.pin.y/2.6).toFixed(2)}%">📍</span>`:'';
+  if(!o.attr){const v=S.mz;return `<div class="map zm ${v.z>1?'zoomed':''} ${o.cls||''}"><div class="mz" style="--iz:${1/v.z};transform:translate(${v.x}%,${v.y}%) scale(${v.z})">${s}${mk}${pin}</div><div class="mzc"><button type="button" data-a="mzin" aria-label="Zoom in" ${v.z>=4?'disabled':''}>+</button><button type="button" data-a="mzout" aria-label="Zoom out" ${v.z<=1?'disabled':''}>−</button>${v.z>1?'<button type="button" class="rs" data-a="mzreset" aria-label="Show whole map">⤢</button>':''}</div></div>${o.cap?'<p class="muted small" style="margin:6px 2px 0">Preview drawing. The app shows Apple Maps. Pinch or use + and − to zoom.</p>':''}`;}
   return `<div class="map ${o.cls||''}" ${o.attr||''}>${s}${mk}${pin}</div>${o.cap?'<p class="muted small" style="margin:6px 2px 0">Preview drawing. The app shows Apple Maps.</p>':''}`;
 }
 const freshHtml=(f)=>`<span class="fresh ${f.c}">${f.c==='live'?'<i class="ldot"></i>':''}${esc(f.t)}</span>`;
@@ -2313,7 +2323,7 @@ function familyMap(){
      ${sel===me?`<button class="btn ghost block" style="margin-top:10px" data-a="ploc" data-v="${me}">${ic('pin')} My day & report</button>`:callActs(sel,ch?`<button data-a="childloc" data-v="${sel}">${ic('pin')}Details</button>`:isChild(me)?'':`<button data-a="ploc" data-v="${sel}">${ic('pin')}History</button>`)}</div>`;
   } else card=`<div class="sec">Tap a face for details</div><div class="card list">${ids.filter(isChild).map(statusRow).join('')}${ids.filter(k=>!isChild(k)).map(k=>{const w=where(k);return isChild(me)?`<div class="row static">${av(k)}<div class="t"><b>${nk(k)}</b><span>${w.e} ${esc(w.short)}</span></div></div>`:`<button class="row" data-a="ploc" data-v="${k}">${av(k)}<div class="t"><b>${nk(k)}${k===me?' (you)':''} <span style="display:inline;font-weight:600;color:var(--muted);font-size:14px">· ${w.e} ${esc(w.short)}</span></b>${freshHtml(pFresh(k))}</div>${ic('chev')}</button>`;}).join('')}
    ${!isChild(me)&&!PSHARE[partnerOf(me)].on?`<p class="muted small center">${nk(partnerOf(me))} paused location sharing.</p>`:''}</div>
-   ${M[me].role==='PARENT_GUARDIAN'&&!PERM.mamaLocation?'<p class="muted small center">Papa hasn’t shared the children’s location with you.</p>':''}`;
+   ${M[me].role==='PARENT_GUARDIAN'&&!PERM.mamaLocation?'<p class="muted small center">Ajik hasn’t shared the children’s location with you.</p>':''}`;
   return `<div class="hdr" style="padding-bottom:10px"><div class="grow"><h1 style="font-size:26px">Family Map</h1></div>${bell()}</div>
   <div class="filters">${[['all','All'],['kids','Children'],['parents','Parents']].map(([v,l])=>`<button aria-pressed="${f===v}" data-a="mapf" data-v="${v}">${l}</button>`).join('')}</div>
   ${mapView({ids,names:true,sel,cap:true})}${card}`;
@@ -2323,7 +2333,7 @@ const attnCard=k=>`<div class="alert attn" style="cursor:default"><span class="a
 const offCard=k=>`<div class="alert attn" style="cursor:default"><span class="ae">📵</span><div class="t"><b>${nk(k)}’s phone is offline.</b><span>Last seen at ${esc(where(k).short)} · ${LOC[k].age} min ago. New places sync when it’s back.</span></div></div>`;
 function childLoc(){
   const k=view().id,L=LOC[k];
-  if(!canSeeLoc(S.me,k)) return top(esc(M[k].nick))+empty('🔒','Location isn’t shared with you','Ask Papa for access.');
+  if(!canSeeLoc(S.me,k)) return top(esc(M[k].nick))+empty('🔒','Location isn’t shared with you','Ask Ajik for access.');
   const w=where(k),s=activeSOS(k),r=activePickup(k);
   const banners=[s?sosAlert(s):'',r?pickAlert(r):'',!L.perm?attnCard(k):'',L.perm&&!L.online?offCard(k):''].join('');
   return top(esc(M[k].nick),`<button class="chip" style="border:0;cursor:pointer" data-a="hist" data-v="${k}">History</button>`)+
@@ -2353,14 +2363,14 @@ function myLoc(asTab){
   const tabs=teen?`<div class="seg"><button aria-pressed="${!hist}" data-a="tloc" data-v="live">Live</button><button aria-pressed="${hist}" data-a="tloc" data-v="history">History</button></div>`:'';
   if(hist) return head+tabs+(PRIV.teenHistory?mapView({ids:[me],route:JOURNEY[me],places:'rel',rel:JOURNEY[me].ev.map(e=>e[2])})+`<div class="sec">Today</div><div class="card">${timeline(JOURNEY[me].ev,me)}</div><p class="muted small center">Only you and your parents see this. Kept 30 days.</p>`:empty('🔒','History is off','Ask a parent to turn it on.'));
   const sibs=PRIV.siblings?locKids().filter(k=>k!==me):[];
-  return head+tabs+(L.perm?'':`<div class="alert attn" style="cursor:default;margin-bottom:12px"><span class="ae">⚠️</span><div class="t"><b>Location is off</b><span>Ask Papa or Mama to help turn it on.</span></div></div>`)+
+  return head+tabs+(L.perm?'':`<div class="alert attn" style="cursor:default;margin-bottom:12px"><span class="ae">⚠️</span><div class="t"><b>Location is off</b><span>Ask Ajik or Ibuk to help turn it on.</span></div></div>`)+
    `<div class="card youare"><div class="muted">You are at:</div><div class="pl">${w.e} ${esc(w.kid)}</div>${freshHtml(f)}</div>`+
    mapView({ids:[me,...sibs],big:!teen&&!sibs.length,names:sibs.length>0,places:'rel',rel:[L.place].filter(Boolean)})+
    (!teen&&PRIV.kidsJourney?`<div class="sec">Today</div><div class="card">${timeline(JOURNEY[me].ev,me)}</div>`:'')+
-   `<p class="muted small center" style="margin-top:14px">Papa and Mama can see where you are. 💛</p>`;
+   `<p class="muted small center" style="margin-top:14px">Ajik and Ibuk can see where you are. 💛</p>`;
 }
 function pickTile(me,mini){
-  const r=activePickup(me),sub=r?(r.status==='ACCEPTED'?`${nk(r.by)} is coming`:'Asking Papa & Mama…'):'Tap to ask';
+  const r=activePickup(me),sub=r?(r.status==='ACCEPTED'?`${nk(r.by)} is coming`:'Asking Ajik & Ibuk…'):'Tap to ask';
   return mini?`<button class="mini pick" data-a="pickme">${ic('car')}<b>Pick Me Up</b><span class="s">${sub}</span></button>`
    :`<button class="tile pick" data-a="pickme"><span class="em">🚗</span><div><div class="nm">Pick Me Up</div><div class="sm">${sub}</div></div></button>`;
 }
@@ -2374,10 +2384,10 @@ function pickMe(){
   const me=S.me,r=activePickup(me)||[...PICKUPS].reverse().find(p=>p.kid===me&&p.day===TODAY);
   if(!r) return top('Pick Me Up')+empty('🚗','No pickup request');
   let h=top('Pick Me Up');
-  if(r.status==='REQUESTED') h+=`<div class="bigstate"><div class="e pulse">🚗</div><div class="big">Asking Papa and Mama…</div><p class="muted">They can see you are at <b>${esc(placeName(r))}</b>.</p><span class="chip upcoming">Sent at ${r.at}</span></div><button class="btn ghost block" data-a="pkcancel" data-v="${r.id}">Cancel request</button>`;
+  if(r.status==='REQUESTED') h+=`<div class="bigstate"><div class="e pulse">🚗</div><div class="big">Asking Ajik and Ibuk…</div><p class="muted">They can see you are at <b>${esc(placeName(r))}</b>.</p><span class="chip upcoming">Sent at ${r.at}</span></div><button class="btn ghost block" data-a="pkcancel" data-v="${r.id}">Cancel request</button>`;
   else if(r.status==='ACCEPTED') h+=`<div class="bigstate"><div class="e">${M[r.by].emoji}</div><div class="big">${nk(r.by)} is coming 🚗</div><p class="muted">Wait in a safe place.</p></div><div class="grid2"><button class="btn" data-a="call" data-v="${r.by}">${ic('phone')} Call ${nk(r.by)}</button><button class="btn ghost" data-a="dm" data-v="${r.by}">${ic('chat')} Message</button></div>`;
   else if(r.status==='COMPLETED') h+=`<div class="bigstate"><div class="e">🎉</div><div class="big">Picked up!</div><p class="muted">${nk(r.by)} picked you up at ${r.doneAt}.</p></div><button class="btn block" data-a="home">Done</button>`;
-  else h+=`<div class="bigstate"><div class="e">👍</div><div class="big">Request cancelled</div><p class="muted">Papa and Mama know you’re OK.</p></div><button class="btn block" data-a="home">Done</button>`;
+  else h+=`<div class="bigstate"><div class="e">👍</div><div class="big">Request cancelled</div><p class="muted">Ajik and Ibuk know you’re OK.</p></div><button class="btn block" data-a="home">Done</button>`;
   return h;
 }
 function pickupView(){
@@ -2401,14 +2411,14 @@ function pickups(){
 }
 function sosView(){const s=SOSE.find(x=>x.id==view().id);if(!s) return top('SOS')+empty('🆘','Not found');return isChild(S.me)?sosChild(s):sosParent(s);}
 function sosChild(s){
-  if(s.status==='CANCELLED') return top('SOS')+`<div class="bigstate"><div class="e">👍</div><div class="big">SOS cancelled</div><p class="muted">Papa and Mama were told it was a mistake.</p></div><button class="btn block" data-a="home">OK</button>`;
+  if(s.status==='CANCELLED') return top('SOS')+`<div class="bigstate"><div class="e">👍</div><div class="big">SOS cancelled</div><p class="muted">Ajik and Ibuk were told it was a mistake.</p></div><button class="btn block" data-a="home">OK</button>`;
   if(s.status==='RESOLVED') return top('SOS')+`<div class="bigstate"><div class="e">❤️</div><div class="big">You’re safe</div><p class="muted">${nk(s.resolvedBy)} ended the SOS.</p></div><button class="btn block" data-a="home">OK</button>`;
   const left=Math.ceil((s.cancelUntil-Date.now())/1000),canCancel=s.status==='ACTIVE'&&left>0,to=s.ackBy||'papa';
-  return `<div class="sosbig" style="margin-top:8px"><div class="e">🆘</div><div class="big">SOS sent</div><p>Papa and Mama can see where you are.</p></div>
-   ${s.status==='ACKNOWLEDGED'?`<div class="alert ok" style="cursor:default"><span class="ae">💛</span><div class="t"><b>${nk(s.ackBy)} saw your SOS.</b><span>Help is coming. Stay where you are if it’s safe.</span></div></div>`:`<div class="card center"><b>Waiting for Papa or Mama…</b><div class="muted small">Your location updates more often now.</div></div>`}
+  return `<div class="sosbig" style="margin-top:8px"><div class="e">🆘</div><div class="big">SOS sent</div><p>Ajik and Ibuk can see where you are.</p></div>
+   ${s.status==='ACKNOWLEDGED'?`<div class="alert ok" style="cursor:default"><span class="ae">💛</span><div class="t"><b>${nk(s.ackBy)} saw your SOS.</b><span>Help is coming. Stay where you are if it’s safe.</span></div></div>`:`<div class="card center"><b>Waiting for Ajik or Ibuk…</b><div class="muted small">Your location updates more often now.</div></div>`}
    <div class="grid2" style="margin-top:12px">${parents().slice(0,2).map(p=>`<button class="btn ghost" data-a="call" data-v="${p}">${ic('phone')} ${nk(p)}</button>`).join('')}</div>
    <button class="btn ghost block" style="margin-top:10px" data-a="dm" data-v="${to}">${ic('chat')} Message ${nk(to)}</button>
-   ${canCancel?`<button class="btn block" style="margin-top:10px;background:var(--ink);color:var(--surface)" data-a="soscancel" data-v="${s.id}">Cancel false alarm (${left}s)</button>`:`<p class="muted small center" style="margin-top:14px">Only Papa or Mama can end this SOS.</p>`}
+   ${canCancel?`<button class="btn block" style="margin-top:10px;background:var(--ink);color:var(--surface)" data-a="soscancel" data-v="${s.id}">Cancel false alarm (${left}s)</button>`:`<p class="muted small center" style="margin-top:14px">Only Ajik or Ibuk can end this SOS.</p>`}
    <button class="btn ghost block" style="margin-top:10px" data-a="home">Back to Home</button>`;
 }
 function sosParent(s){
@@ -2462,10 +2472,10 @@ function safetySet(){
 function privacy(){
   const owner=M[S.me].role==='FAMILY_OWNER';
   const sw=(obj,k,l,s,act)=>`<div class="switch"><span>${l}<small>${s}</small></span><button class="sw" role="switch" aria-checked="${obj[k]}" data-a="${act}" data-v="${k}" ${owner?'':'disabled'} aria-label="${l}"></button></div>`;
-  return top('History & privacy')+`<div class="card list"><div class="kv"><span>Location history</span><b>Kept 30 days</b></div><div class="kv"><span>Who sees routes</span><b>Papa${PERM.mamaLocation?', Mama':''}</b></div></div>
+  return top('History & privacy')+`<div class="card list"><div class="kv"><span>Location history</span><b>Kept 30 days</b></div><div class="kv"><span>Who sees routes</span><b>Ajik${PERM.mamaLocation?', Ibuk':''}</b></div></div>
   <div class="sec">Children</div><div class="card list">${sw(PRIV,'siblings','Children see each other','Where they are now, never history','priv')}${sw(PRIV,'kidsJourney','Kids see their own day','Today’s journey on their location page','priv')}${sw(PRIV,'teenHistory','Teens see their own history','The History tab for Radja','priv')}</div>
-  <div class="sec">Parents</div><div class="card list">${sw(PERM,'mamaLocation','Mama can see location','Map, history and place alerts','perm')}</div>
-  ${owner?'':'<p class="muted small center">Only Papa can change these.</p>'}`;
+  <div class="sec">Parents</div><div class="card list">${sw(PERM,'mamaLocation','Ibuk can see location','Map, history and place alerts','perm')}</div>
+  ${owner?'':'<p class="muted small center">Only Ajik can change these.</p>'}`;
 }
 function contacts(){
   return top('Emergency contacts')+`<div class="card list">${parents().map(p=>`<div class="row static">${av(p)}<div class="t"><b>${nk(p)}</b><span>${M[p].role==='FAMILY_OWNER'?'Family Owner':'Parent / Guardian'} · gets SOS</span></div><span class="chip ok">On</span></div>`).join('')}</div>
@@ -2494,7 +2504,7 @@ const reqCard=r=>`<div class="alert pick" style="cursor:default;flex-wrap:wrap">
   <div style="display:flex;gap:8px;width:100%"><button class="btn" style="flex:1;min-height:44px" data-a="treqok" data-v="${r.id}">Approve</button><button class="btn ghost" style="flex:1;min-height:44px" data-a="treqno" data-v="${r.id}">Decline</button></div></div>`;
 function dcHome(){
   const k=view().id,d=DC[k],st=dcStatus(k);
-  if(!can(S.me,'devices')) return top(`${esc(M[k].nick)}’s iPhone`)+empty('🔒','Only Papa can change device rules','Ask Papa for access.');
+  if(!can(S.me,'devices')) return top(`${esc(M[k].nick)}’s iPhone`)+empty('🔒','Only Ajik can change device rules','Ask Ajik for access.');
   if(!M[k].device) return top(`${esc(M[k].nick)}’s iPhone`)+empty('📱','No phone connected','Pair a phone first. Rules come back when a phone is paired.');
   if(d.setup==='none') return top(`${esc(M[k].nick)}’s iPhone`)+`<div class="bigstate"><div class="e">📱</div><div class="big">Device Control Setup Required</div><p class="muted">To manage ${nk(k)}’s iPhone, complete Apple Family Controls setup.</p></div><button class="btn block" data-a="dcsetup" data-v="${k}">SET UP DEVICE CONTROL</button>`;
   if(d.setup==='fail') return top(`${esc(M[k].nick)}’s iPhone`)+`<div class="bigstate"><div class="e">⚠️</div><div class="big">Device Control needs attention</div><p class="muted">Screen Time permission changed on ${nk(k)}’s iPhone. Rules may not be working right now. Check Family Sharing and Screen Time setup.</p></div><button class="btn block" data-a="dcfix" data-v="${k}">Try Again</button><button class="btn ghost block" style="margin-top:10px" data-a="dchelp">Help</button>`;
@@ -2581,7 +2591,7 @@ function myDevice(){
 }
 function timeReq(){
   const me=S.me,t=S.tr;
-  if(pendingReq(me)) return top('More time')+`<div class="bigstate"><div class="e">⏳</div><div class="big">Waiting for Parent</div><p class="muted">Papa or Mama will answer soon.</p></div><button class="btn block" data-a="home">OK</button>`;
+  if(pendingReq(me)) return top('More time')+`<div class="bigstate"><div class="e">⏳</div><div class="big">Waiting for Parent</div><p class="muted">Ajik or Ibuk will answer soon.</p></div><button class="btn block" data-a="home">OK</button>`;
   return top('More time')+`<div class="card"><div class="fld"><span class="l">How long?</span><div class="opts">${[15,30,60].map(m=>`<button type="button" aria-pressed="${t.mins===m}" data-a="trmins" data-v="${m}">${minsLabel(m)}</button>`).join('')}</div></div>
    <div class="fld" style="margin:0"><span class="l">Why? (optional)</span><div class="opts">${['Homework','Talk to friend','School task','Other'].map(x=>`<button type="button" aria-pressed="${t.reason===x}" data-a="trwhy" data-v="${x}">${x}</button>`).join('')}</div></div></div>
   <button class="btn block" style="margin-top:14px;min-height:56px" data-a="trsend">Ask Parent</button>`;
@@ -2617,7 +2627,7 @@ const nightBlocked=(id,o)=>isChild(S.me)&&inNight(S.me)&&!NIGHTC.famChat&&(id===
 function composer(id,o){
   const me=S.me;
   if(nightBlocked(id,o))
-    return `<div class="nightnote">🌙 Family chat rests during Night Mode. You can still message Papa and Mama, ask for pickup or send SOS.</div>`;
+    return `<div class="nightnote">🌙 Family chat rests during Night Mode. You can still message Ajik and Ibuk, ask for pickup or send SOS.</div>`;
   if(S.rec) return `<div class="recbar" role="group" aria-label="Recording voice note"><span class="rdot"></span><b>${mmss((Date.now()-S.rec.t0)/1000)}</b><span class="muted small" style="flex:1">Recording…</span><button class="btn ghost" data-a="reccancel">Cancel</button><button class="btn" data-a="recsend">Send</button></div>`;
   return `<form class="compose" id="cform"><button type="button" class="r" data-a="attach" aria-label="Add photo, video, file or location">${ic('plus')}</button><button type="button" class="r sm" data-a="emotog" aria-label="Emoji">${ic('smile')}</button><input id="cin" type="text" placeholder="Message…" autocomplete="off" aria-label="Message"><button type="button" class="r" data-a="recstart" aria-label="Record voice note">${ic('mic')}</button><button class="r send" type="submit" aria-label="Send">${ic('send')}</button></form>`;
 }
@@ -2681,13 +2691,13 @@ function callPick(){
 function callSet(){
   const owner=M[S.me].role==='FAMILY_OWNER';
   const sw=(k,l,s)=>`<div class="switch"><span>${l}<small>${s}</small></span><button class="sw" role="switch" aria-checked="${PERM[k]}" data-a="perm" data-v="${k}" ${owner?'':'disabled'} aria-label="${l}"></button></div>`;
-  return top('Chat & calls')+`<div class="card list">${sw('kidCalls','Family Calls for children','Calls between children and family group calls. Calls to Papa and Mama always work.')}${sw('kidsDM','Children can chat with each other','Private chats between brothers and sisters')}</div>
+  return top('Chat & calls')+`<div class="card list">${sw('kidCalls','Family Calls for children','Calls between children and family group calls. Calls to Ajik and Ibuk always work.')}${sw('kidsDM','Children can chat with each other','Private chats between brothers and sisters')}</div>
    <div class="sec">During Night Mode</div><div class="card list"><button class="row" data-a="go" data-v="dcset"><span class="ricon">🌙</span><div class="t"><b>Chat and calls at night</b><span>${NIGHTC.parentCalls?'Calls with parents on':'Calls with parents off'} · group calls ${NIGHTC.groupCalls?'on':'off'}</span></div>${ic('chev')}</button></div>
    <div class="sec">Privacy</div><div class="card list"><div class="kv"><span>Who can call or message</span><b>Family only</b></div><div class="kv"><span>Phone numbers</span><b>Never shown</b></div><div class="kv"><span>Photos, videos, files</span><b>Private links</b></div></div>
-   ${owner?'':'<p class="muted small center">Only Papa can change these.</p>'}`;
+   ${owner?'':'<p class="muted small center">Only Ajik can change these.</p>'}`;
 }
 const nightComms=()=>{const ed=can(S.me,'devices');const sw=(k,l,s)=>`<div class="switch"><span>${l}<small>${s}</small></span><button class="sw" role="switch" aria-checked="${NIGHTC[k]}" data-a="nightc" data-v="${k}" ${ed?'':'disabled'} aria-label="${l}"></button></div>`;
-  return `<div class="sec">Chat and calls at night</div><div class="card list">${sw('famChat','Family chat','Group chat and chats between children')}${sw('parentCalls','Calls with parents','Audio and video with Papa and Mama')}${sw('groupCalls','Group calls','Family audio and video calls')}<div class="switch"><span>SOS and Pick Me Up<small>Always work, always first</small></span><span class="chip ok">Always on</span></div></div>`;};
+  return `<div class="sec">Chat and calls at night</div><div class="card list">${sw('famChat','Family chat','Group chat and chats between children')}${sw('parentCalls','Calls with parents','Audio and video with Ajik and Ibuk')}${sw('groupCalls','Group calls','Family audio and video calls')}<div class="switch"><span>SOS and Pick Me Up<small>Always work, always first</small></span><span class="chip ok">Always on</span></div></div>`;};
 // ----- call screen (full-screen layer) -----
 const ctl=(a,icon,l,on)=>`<button class="cbtn ${on?'on':''}" data-a="${a}" aria-pressed="${!!on}"><span>${icon}</span>${l}</button>`;
 function callLayer(){
@@ -2866,7 +2876,7 @@ function txDetail(){const t=TX.find(x=>x.transaction_id===view().id),i=txIcon(t)
   <div class="card list"><div class="kv"><span>Jenis</span><b>${TYP[t.transaction_type]}</b></div>${t.category&&t.category!=='SAVING'?`<div class="kv"><span>Kategori</span><b>${esc(i.l)}</b></div>`:''}${g?`<div class="kv"><span>Tujuan</span><b>${esc(g.title)}</b></div>`:''}
    <div class="kv"><span>Tanggal</span><b>${dLabY(t.transaction_date)} · ${t.time}</b></div><div class="kv"><span>Milik</span><b>${esc(M[t.member_id].nick)}</b></div><div class="kv"><span>Dicatat oleh</span><b>${esc(M[t.created_by]?M[t.created_by].nick:t.created_by)}</b></div>
    <div class="kv"><span>Sumber</span><b>${SRC[t.source]}</b></div>${ref?`<div class="kv"><span>Membatalkan</span><b>${esc(ref.description)} (${RP(ref.amount)})</b></div>`:''}<div class="kv"><span>ID</span><b class="mono">${t.transaction_id}</b></div></div>
-  ${t.transaction_type!=='VOID'&&!vd?(par&&can(S.me,'money')?`<button class="btn ghost block" style="margin-top:14px;color:var(--danger)" data-a="txvoid" data-v="${t.transaction_id}">Batalkan transaksi ini</button><p class="muted small center">Catatan tetap disimpan. Pembatalan dibuat sebagai catatan koreksi.</p>`:`<p class="muted small center" style="margin-top:14px">Salah catat? Minta Papa atau Mama membetulkannya.</p>`):''}`;}
+  ${t.transaction_type!=='VOID'&&!vd?(par&&can(S.me,'money')?`<button class="btn ghost block" style="margin-top:14px;color:var(--danger)" data-a="txvoid" data-v="${t.transaction_id}">Batalkan transaksi ini</button><p class="muted small center">Catatan tetap disimpan. Pembatalan dibuat sebagai catatan koreksi.</p>`:`<p class="muted small center" style="margin-top:14px">Salah catat? Minta Ajik atau Ibuk membetulkannya.</p>`):''}`;}
 function goalView(){const g=GOALS.find(x=>x.goal_id===view().id),s=goalSaved(g),p=goalPct(g),others=goalsOf(g.member_id).filter(x=>x!==g),little=band()==='LITTLE';
   return top(little?'🎯':'Tujuan Tabungan')+`<div class="card gdet">${g.img&&IMG[g.img]?pic(g.img,'gbig'):`<div class="gbig emo">${g.icon}</div>`}
    <div class="gd1"><div><b>${esc(g.title)}</b><span>${RP(g.target_amount)}</span></div></div>
@@ -2901,7 +2911,7 @@ function goalForm(){const d=S.gdraft,par=!isChild(S.me),IMGS=['g_nintendo','g_ps
    ${d.err?`<div class="ferr" role="alert">${esc(d.err)}</div>`:''}<button class="btn block" type="submit">Buat Tujuan</button></form>`;}
 
 // ---------- PARENT: dashboard ----------
-function parentMoney(){const me=S.me;if(!can(me,'money')) return `<div class="hdr"><div class="grow"><h1>My Money</h1></div>${bell()}</div>`+empty('🔒','Papa hasn’t shared family money with you.');
+function parentMoney(){const me=S.me;if(!can(me,'money')) return `<div class="hdr"><div class="grow"><h1>My Money</h1></div>${bell()}</div>`+empty('🔒','Ajik hasn’t shared family money with you.');
   const P=perRange(),r=P.r,ks=kids(),exK=sumTx(ks,r,'EXPENSE'),exPrev=sumTx(ks,P.prev,'EXPENSE'),inK=sumTx(ks,r,'INCOME'),svK=sumTx(ks,r,'SAVING_DEPOSIT');
   const bs=ks.map(k=>({k,b:balances(k)})),tSp=bs.reduce((s,x)=>s+x.b.spend,0),tSv=bs.reduce((s,x)=>s+x.b.save,0);
   const days=daysIn(r),one=days.length===1,bars=one?svgBars(ks.map(k=>M[k].nick),[{n:'Pengeluaran',c:'#6366F1',vals:ks.map(k=>sumTx(k,r,'EXPENSE'))}],{label:'Pengeluaran per anak',bw:26})
@@ -2945,7 +2955,7 @@ function parentInsights(P){const ks=kids(),r=P.r,out=[];const segs=catSegs(byCat
   const quiet=ks.filter(k=>!cntTx(k,r));if(quiet.length&&out.length<5) out.push(['📝',`Belum ada catatan dari ${quiet.map(k=>esc(M[k].nick)).join(', ')} di periode ini.`]);
   return out.slice(0,5);}
 function kidMoney(){const k=view().id,b=balances(k),m=monthNow(),L=lookOf(k);
-  return top(esc(M[k].nick))+`<div class="card kmh">${av(k,'lg')}<div><b>${esc(M[k].name)} · ${ageOf(M[k].dob)} th</b><span class="muted small">${L.e} ${esc(L.name)} · hanya Papa, Mama dan ${esc(M[k].nick)} yang bisa lihat</span></div></div>
+  return top(esc(M[k].nick))+`<div class="card kmh">${av(k,'lg')}<div><b>${esc(M[k].name)} · ${ageOf(M[k].dob)} th</b><span class="muted small">${L.e} ${esc(L.name)} · hanya Ajik, Ibuk dan ${esc(M[k].nick)} yang bisa lihat</span></div></div>
   <div class="mbal two"><div class="mb"><span class="mbi">👛</span><div><span>Saldo</span><b>${RP(b.spend)}</b></div></div><div class="mb"><span class="mbi">🐷</span><div><span>Tabungan</span><b>${RP(b.save)}</b></div></div></div>
   <div class="qa" style="margin:12px 0"><button class="btn" data-a="pgive" data-v="${k}">💝 Beri Uang</button><button class="btn ghost" data-a="pexpk" data-v="${k}">🧾 Pengeluaran</button></div>
   <div class="card"><div class="tot4"><div><span>Masuk bulan ini</span><b class="inc">${RP(sumTx(k,m,'INCOME'))}</b></div><div><span>Keluar bulan ini</span><b class="exp">${RP(sumTx(k,m,'EXPENSE'))}</b></div><div><span>Ditabung</span><b>${RP(sumTx(k,m,'SAVING_DEPOSIT'))}</b></div><div><span>Anggaran ${esc(M[k].nick)}</span><b>${RP(BUDGET.kids[k]||0)}</b></div></div></div>
@@ -2978,7 +2988,7 @@ function fgoalForm(){const d=S.fgdraft;return top('Rencana baru')+`<form id="p5f
 function appearance(){const k=(view().id)||S.me,m=M[k],par=!isChild(S.me),self=k===S.me,locked=self&&!m.canTheme,opts=lookOpts(k,par),auto=autoLook('CHILD',m.dob,m.gender);
   const bandsShown=[...new Set(opts.map(l=>LOOKS[l].band))];
   return top('Appearance')+`<div class="card list"><div class="kv"><span>${self?'Kamu':esc(m.nick)}</span><b>${ageOf(m.dob)} th · ${BANDS[ageBand(ageOf(m.dob))]}</b></div><div class="kv"><span>Tema sekarang</span><b>${LOOKS[m.look].e} ${esc(LOOKS[m.look].name)}</b></div></div>
-  ${locked?`<div class="alert attn" style="margin-top:12px;cursor:default"><span class="ae">🔒</span><div class="t"><b>Ask a parent to change your theme</b><span>Papa or Mama can let you choose.</span></div></div>`:''}
+  ${locked?`<div class="alert attn" style="margin-top:12px;cursor:default"><span class="ae">🔒</span><div class="t"><b>Ask a parent to change your theme</b><span>Ajik or Ibuk can let you choose.</span></div></div>`:''}
   ${bandsShown.map(bd=>`<div class="sec">Theme · ${BANDS[bd]}</div><div class="looks">${opts.filter(l=>LOOKS[l].band===bd).map(l=>{const L=LOOKS[l];return `<button class="lk" aria-pressed="${m.look===l}" data-a="setlook" data-v="${l}" data-k="${k}" ${locked?'disabled':''} style="--lb:${L.background};--lp:${L.primary};--li:${L.inc};--le:${L.exp};--ls:${L.sav};--lt:${L.textPrimary};--lh:${L.heroBg};--lsf:${L.surface}">
     <div class="lk-prev">${pic(heroOf(k,L),'lk-img')}<div class="lk-ui"><i></i><i></i><i></i></div></div><b>${L.e} ${esc(L.name)}${l===auto?' <small>(auto)</small>':''}</b><span>${esc(L.sub)}</span></button>`;}).join('')}</div>`).join('')}
   ${par?`<div class="card" style="margin-top:14px"><div class="switch" style="border:0;padding:0"><span>${esc(m.nick)} can change theme<small>${ageOf(m.dob)>=15?'Teens can pick their own when allowed':'Only inside the age group'}</small></span><button class="sw" role="switch" aria-checked="${!!m.canTheme}" data-a="cantheme2" data-v="${k}" aria-label="${esc(m.nick)} can change theme"></button></div></div>
@@ -3044,7 +3054,7 @@ function routineItem(k,it,big){const st=itemDone(k,it,TISO),r=rule(it.rule),pts=
     const lbl=h.points_rule_id==='wake'?'I’M AWAKE':h.points_rule_id==='bed'?'GOING TO SLEEP':'';
     return `<div class="gri ${st?'is-'+st:''} ${big?'big':''}"><span class="ge">${h.e}</span><div class="gt"><b>${esc(h.title)}</b><span>${note}</span></div>
      ${st?`<span class="gok">${st==='late'?'✓':ic('check')}</span>`:`<button class="gbtn ${lbl?'wide':''}" data-a="gcheck" data-v="${h.id}" ${act} aria-label="${esc(lbl||'Selesai: '+h.title)}">${lbl||ic('check')}</button>`}</div>`;}
-  const a=it.act;note=st==='pending'?'Menunggu cek Papa/Mama':st==='done'?`+${(gFor(k,it.key,TISO)||{}).points||pts} ⭐`:`${a.start} · +${pts} ⭐${r.validation_type==='PARENT_VERIFY'?' · dicek orang tua':''}`;
+  const a=it.act;note=st==='pending'?'Menunggu cek Ajik/Ibuk':st==='done'?`+${(gFor(k,it.key,TISO)||{}).points||pts} ⭐`:`${a.start} · +${pts} ⭐${r.validation_type==='PARENT_VERIFY'?' · dicek orang tua':''}`;
   return `<div class="gri ${st?'is-'+st:''} ${big?'big':''}"><span class="ge">${a.icon}</span><div class="gt"><b>${esc(a.title)}</b><span>${note}</span></div>
    <button class="gbtn ${isDone(a,TODAY)?'on':''}" data-a="done" data-v="${a.id}" aria-label="${isDone(a,TODAY)?'Undo':'Selesai'}: ${esc(a.title)}">${ic('check')}</button></div>`;}
 const addClockAt=(t,m)=>{const x=(mins(t)+m+1440)%1440;return pad(Math.floor(x/60))+':'+pad(x%60);};
@@ -3106,7 +3116,7 @@ function rewardsView(){const me=S.me,a=available(me),mine=REDEEM.filter(r=>r.mem
   <div class="rwl">${REWARDS.filter(r=>r.active).map(r=>{const ok=a>=r.points_required,req=REDEEM.find(x=>x.member_id===me&&x.reward_id===r.id&&x.status==='REQUESTED');
    return `<div class="rw ${ok?'ok':''}"><span class="rwi">${r.icon}</span><div class="rwt"><b>${esc(r.title)}</b><span>${esc(r.description)}</span>${ok?'':`<div class="gbar"><i style="width:${Math.min(100,a/r.points_required*100)}%"></i></div>`}</div>
     ${req?'<span class="chip imp">Menunggu</span>':`<button class="btn ${ok?'':'ghost'}" style="min-height:38px;padding:0 12px;font-size:13px" data-a="rwask" data-v="${r.id}" ${ok?'':'disabled'}>⭐ ${PTS(r.points_required)}</button>`}</div>`;}).join('')}</div>
-  <p class="muted small" style="margin:8px 2px">Semua reward perlu persetujuan Papa atau Mama. Poin tidak berubah jadi uang secara otomatis.</p>
+  <p class="muted small" style="margin:8px 2px">Semua reward perlu persetujuan Ajik atau Ibuk. Poin tidak berubah jadi uang secara otomatis.</p>
   ${mine.length?`<div class="sec">Permintaanku</div><div class="card list">${mine.map(r=>{const w=REWARDS.find(x=>x.id===r.reward_id);return `<div class="row static"><span class="ricon">${w.icon}</span><div class="t"><b>${esc(w.title)}</b><span>${dLab(r.requested_at.slice(0,10))} · ${PTS(r.points_used)} poin</span></div><span class="chip ${RDS[r.status][1]}">${RDS[r.status][0]}</span></div>`;}).join('')}</div>`:''}`;}
 const GST={PENDING:['Menunggu','imp'],APPROVED:['Disetujui','done'],AUTO_APPROVED:['Otomatis','done'],REJECTED:['Tidak disetujui','upcoming']};
 const GSRC={ACTIVITY:'My Day',AUTOMATIC:'Otomatis',SELF_CHECK:'Cek sendiri',PARENT_RECOGNITION:'Dari orang tua',ACHIEVEMENT:'Prestasi',ADJUSTMENT:'Penyesuaian',VOID:'Koreksi'};
@@ -3142,7 +3152,7 @@ function gInsights(P,ks){const r=P.r,out=[];const cats=catSegsG(ptsByCat(ks,r)),
   if(hr&&hr.c.p<80) out.push(['🌙',`<b>${esc(rule(hr.x).title)}</b> paling sering terlewat (${hr.c.p}%). Mungkin jadwalnya perlu disesuaikan.`]);
   const pn=PEND().length+RREQ().length;if(pn) out.push(['✅',`<b>${pn}</b> hal menunggu persetujuanmu.`]);
   return out.slice(0,5);}
-function familyGrowth(){const me=S.me;if(!can(me,'growth')) return `<div class="hdr"><div class="grow"><h1>Family Growth</h1></div>${bell()}</div>`+empty('🔒','Papa hasn’t shared Family Growth with you.');
+function familyGrowth(){const me=S.me;if(!can(me,'growth')) return `<div class="hdr"><div class="grow"><h1>Family Growth</h1></div>${bell()}</div>`+empty('🔒','Ajik hasn’t shared Family Growth with you.');
   const P=perRange(),r=P.r,ks=kids(),hp=gHas(ks,P.prev),tot=ptsIn(ks,r),totP=ptsIn(ks,P.prev),c=compl(ks,r),cp=compl(ks,P.prev),hb=compl(ks,r,['wake','pray','bedmake','bath','bed']),hbp=compl(ks,P.prev,['wake','pray','bedmake','bath','bed']);
   const ach=MACH.filter(m=>m.earned_at>=r[0]&&m.earned_at<=r[1]).length+SCHOOLACH.filter(a=>a.date>=r[0]&&a.date<=r[1]).length,pend=PEND(),rq=RREQ(),fs=famStreak(ks);
   const days=daysIn(r),one=days.length===1;
@@ -3242,7 +3252,7 @@ function gRewardForm(){const d=S.grw||(S.grw={title:'',desc:'',icon:'🎁',pts:2
   <label class="lbl2" for="rw-d">Keterangan</label><input id="rw-d" class="inp" value="${esc(d.desc)}">
   <div class="lbl2">Ikon</div><div class="opts">${['🎁','🍕','🎬','🍦','🎡','📚','🧸','🏊','📱'].map(e=>`<button type="button" aria-pressed="${d.icon===e}" data-a="grwset" data-k="icon" data-v="${e}">${e}</button>`).join('')}</div>
   <div class="lbl2">Poin</div><div class="opts">${[100,150,200,300,400,600].map(p=>`<button type="button" aria-pressed="${d.pts===p}" data-a="grwset" data-k="pts" data-v="${p}">${p}</button>`).join('')}</div>
-  <p class="muted small" style="margin:0">Selalu perlu persetujuan Papa atau Mama.</p>
+  <p class="muted small" style="margin:0">Selalu perlu persetujuan Ajik atau Ibuk.</p>
   ${d.err?`<div class="ferr" role="alert">${esc(d.err)}</div>`:''}<button class="btn block" type="submit">Simpan reward</button></form>`;}
 function gSchool(){const d=S.gsa||(S.gsa={kid:'radja',type:'EXAM',subject:'',score:'',prev:'',desc:'',err:null}),prev=SCHOOLACH.filter(a=>a.member_id===d.kid&&a.subject&&a.subject.toLowerCase()===String(d.subject||'').trim().toLowerCase()).slice(-1)[0];
   const sc=+d.score||null,pv=d.prev!==''&&d.prev!=null?+d.prev:prev?prev.score:null,base=d.type==='EXAM'&&sc!=null?scorePts(sc,pv):d.type==='COMPETITION'?25:15,imp=d.type==='EXAM'&&sc!=null&&pv!=null&&sc-pv>=5?10:0;
@@ -3260,7 +3270,7 @@ function gSettings(){return top('Pengaturan Growth')+`<form id="p6set" class="st
   <div class="lbl2">Model poin sekolah</div><div class="opts">${[['SCORE','Nilai'],['EFFORT','Usaha'],['IMPROVE','Peningkatan']].map(([v,l])=>`<button type="button" aria-pressed="${GSET.schoolModel===v}" data-a="gsm" data-v="${v}">${l}</button>`).join('')}</div>
   <div class="lbl2">Target poin mingguan</div><div class="card list" style="box-shadow:none;padding:0">${kids().map(k=>`<div class="bfrow"><label for="gt-${k}">${esc(M[k].nick)}</label><input id="gt-${k}" inputmode="numeric" value="${GSET.weekTarget[k]||200}"></div>`).join('')}</div>
   <div class="lbl2">Kategori aktif</div><div class="card list" style="box-shadow:none;padding:0">${Object.values(GCAT).map(c=>`<div class="switch"><span>${c.e} ${esc(c.l)}</span><button type="button" class="sw" role="switch" aria-checked="${c.active}" data-a="gcattog" data-v="${c.id}" aria-label="${esc(c.l)}"></button></div>`).join('')}</div>
-  ${M[S.me].role==='FAMILY_OWNER'?`<div class="switch"><span>Mama bisa mengelola Growth<small>Poin spesial, persetujuan, reward</small></span><button type="button" class="sw" role="switch" aria-checked="${PERM.mamaGrowth}" data-a="perm" data-v="mamaGrowth" aria-label="Mama bisa mengelola Growth"></button></div>`:''}
+  ${M[S.me].role==='FAMILY_OWNER'?`<div class="switch"><span>Ibuk bisa mengelola Growth<small>Poin spesial, persetujuan, reward</small></span><button type="button" class="sw" role="switch" aria-checked="${PERM.mamaGrowth}" data-a="perm" data-v="mamaGrowth" aria-label="Ibuk bisa mengelola Growth"></button></div>`:''}
   <button class="btn block" type="submit">Simpan</button></form>
   <p class="muted small" style="margin:8px 2px">Tidak ada peringkat antar saudara. Setiap anak hanya melihat progresnya sendiri.</p>`;}
 function specialSheet(k0){const k=k0||S.gsp.kid,d=S.gsp;d.kid=k;
@@ -3383,7 +3393,7 @@ function submitP6(id){keepG();const done=(t)=>{S.stack.pop();render();toast(t);}
     const h=addHabit(d.kid,d.rule,d.title.trim()||rule(d.rule).title,d.time||(d.rule==='wake'?WS[d.kid].wake:d.rule==='bed'?WS[d.kid].bed:null),S.me);audit(`Routine created: ${h.title} (${M[d.kid].nick})`);
     nPush(d.kid,'GROWTH_POINT',`🗓️ Rutinitas baru: ${h.title}`,`+${rule(d.rule).default_points} poin setiap hari`,{k:'growth'});S.grt={kid:d.kid,rule:d.rule,title:'',time:'',err:null};rerender();toast('Rutinitas ditambahkan');return;}
   if(id==='p6rw'){const d=S.grw;if(!d.title.trim()){d.err='Tulis nama reward.';rerender();return;}
-    addReward(d.title.trim(),d.desc.trim()||'Disetujui Papa atau Mama',d.pts,d.icon,{created_by:S.me});audit('Reward created: '+d.title.trim());
+    addReward(d.title.trim(),d.desc.trim()||'Disetujui Ajik atau Ibuk',d.pts,d.icon,{created_by:S.me});audit('Reward created: '+d.title.trim());
     kids().forEach(k=>{if(available(k)>=d.pts) nPush(k,'REWARD_AVAILABLE',`${d.icon} Reward baru: ${d.title.trim()}`,`${d.pts} poin · poinmu sudah cukup`,{k:'rewards'});});done('Reward disimpan');return;}
   if(id==='p6sa'){const d=S.gsa,ex=d.type==='EXAM';const sc=+d.score;
     if(ex&&(!String(d.subject).trim()||!d.score||isNaN(sc)||sc<0||sc>100)){d.err='Isi mata pelajaran dan nilai 0–100.';rerender();return;}
@@ -3398,11 +3408,11 @@ function submitP6(id){keepG();const done=(t)=>{S.stack.pop();render();toast(t);}
     kids().forEach(k=>{const el=document.getElementById('gt-'+k);if(el&&+el.value>0) GSET.weekTarget[k]=+el.value;});audit('Growth settings updated');S.gsSp=null;done('Pengaturan disimpan');return;}}
 window.__jfEval=src=>eval(src); // test hook for the prototype QA scripts
 
-// ---------- Phase 7: Papa ↔ Mama location ----------
+// ---------- Phase 7: Ajik ↔ Ibuk location ----------
 const pName=(k,me)=>k===me?'You':nk(k);
 function pFresh(k){const f=fresh(k);return f.c==='live'?{c:'live',t:'Live · sharing 24 hours'}:f;}
 function shareBoth(me){const pt=partnerOf(me);
-  return `<div class="card pboth"><div class="pbh">🤝 Papa and Mama share location with each other</div>
+  return `<div class="card pboth"><div class="pbh">🤝 Ajik and Ibuk share location with each other</div>
    ${['papa','mama'].map(k=>`<div class="kv"><span>${av(k,'sm')} ${nk(k)}${k===me?' (you)':''}</span><b class="${PSHARE[k].on?'ok':'off'}">${PSHARE[k].on?'✓ Sharing 24 hours':'⏸ Paused'}</b></div>`).join('')}
    <div class="switch"><span>Share my location with ${nk(pt)}<small>${PSHARE[me].on?`${nk(pt)} sees where you are, your route and your report.`:`${nk(pt)} sees that you paused.`}</small></span><button class="sw" role="switch" aria-checked="${PSHARE[me].on}" data-a="pshare" aria-label="Share my location with ${nk(pt)}"></button></div>
    <p class="muted small" style="margin:8px 0 2px">Both of you always see when sharing is on. Nothing is hidden. Children never see this.</p></div>`;}
@@ -3421,7 +3431,7 @@ function partnerCard(me){const pt=partnerOf(me);if(isChild(me)||!M[pt]) return '
   <button class="card row pcard" data-a="ploc" data-v="${pt}">${av(pt)}<div class="t"><b>${nk(pt)} · ${w.e} ${esc(w.short)}</b>${freshHtml(pFresh(pt))}<span class="small muted">Today ${j.km.toFixed(1)} km · ${new Set(j.stays.map(s=>s.place)).size} places</span></div>${ic('chev')}</button>`;}
 function pLoc(){
   const me=S.me,k=view().id,self=k===me;
-  if(isChild(me)||isChild(k)) return top('Location')+empty('🔒','Only for Papa and Mama');
+  if(isChild(me)||isChild(k)) return top('Location')+empty('🔒','Only for Ajik and Ibuk');
   S.pl.k=k;
   if(!canSeePartner(me,k)) return top(nk(k))+empty('⏸️',`${nk(k)} paused location sharing`,`<p class="muted">You’ll see ${nk(k)} again when sharing is back on.</p>`)+shareBoth(me);
   const d=S.pl.d,j=pDay(k,d),today=d===TODAY,w=where(k),L=LOC[k];
@@ -3434,11 +3444,11 @@ function pLoc(){
    <div class="sec">${today?'Today’s timeline':'Timeline'}</div><div class="card">${timeline(j.ev,today?k:null)}</div>
    ${self?'':callActs(k)}
    <div class="sec">Sharing</div>${shareBoth(me)}
-   <p class="muted small center">History is kept ${PDAYS} days, then deleted. Only Papa and Mama see each other’s location.</p>`;}
+   <p class="muted small center">History is kept ${PDAYS} days, then deleted. Only Ajik and Ibuk see each other’s location.</p>`;}
 function pBars(rows,max,fmt){return `<div class="pbars">${rows.map(([p,v])=>{const pl=place(p);return `<div class="pbar"><span class="pi">${pl.icon}</span><div class="pt"><div class="pn"><b>${esc(plShort(pl))}</b><span>${fmt(v)}</span></div><div class="bar"><i style="width:${max?Math.max(3,v/max*100):0}%"></i></div></div></div>`;}).join('')}</div>`;}
 function pReport(){
   const me=S.me,k=view().id;
-  if(isChild(me)||isChild(k)) return top('Report')+empty('🔒','Only for Papa and Mama');
+  if(isChild(me)||isChild(k)) return top('Report')+empty('🔒','Only for Ajik and Ibuk');
   if(!canSeePartner(me,k)) return top('Report')+empty('⏸️',`${nk(k)} paused location sharing`);
   const d=S.pl.d,wk=S.plr==='week';
   let h=top(`${k===me?'My':nk(k)+'’s'} tracking report`)+`<div class="seg"><button aria-pressed="${!wk}" data-a="plr" data-v="day">Day</button><button aria-pressed="${wk}" data-a="plr" data-v="week">7 days</button></div>`+pDayPick();
@@ -3454,7 +3464,7 @@ function pReport(){
      <div class="sec">Distance per day</div><div class="card"><div class="wkbars">${ws.map(x=>`<button class="wb ${x.d===d?'on':''}" data-a="pldd" data-v="${x.d}" aria-label="${pdLabel(x.d)}: ${x.km.toFixed(1)} km"><span class="wv">${x.km.toFixed(1)}</span><i style="height:${Math.max(4,x.km/mx*100)}%"></i><span class="wl">${WD[wd(x.d)]}</span></button>`).join('')}</div><p class="muted small" style="margin:8px 0 0">km · tap a day to open it</p></div>
      <div class="sec">Time outside home</div><div class="card">${out.length?pBars(out,out[0][1],hm):'<p class="muted small" style="margin:0">Stayed home all week.</p>'}</div>`;}
   return h+`<p class="muted small center">Report made from ${nk(k)}’s shared location. Kept ${PDAYS} days.</p>`;}
-// profile photo for Papa and Mama (chosen on the phone, never sent anywhere in the prototype)
+// profile photo for Ajik and Ibuk (chosen on the phone, never sent anywhere in the prototype)
 function photoRow(me){const up=M[me].img&&M[me].img.startsWith('up_');
   return `<div class="sec" style="margin-top:4px">Profile photo</div><div class="card list"><label class="row" for="pp-file" style="cursor:pointer">${av(me)}<div class="t"><b>${up?'Change profile photo':'Add profile photo'}</b><span>Upload, then keep it as a photo or turn it into a cartoon</span></div>${ic('chev')}</label><input id="pp-file" type="file" accept="image/*" hidden>
    ${up?`<button class="row" data-a="pphodel"><span class="ricon">↺</span><div class="t"><b>Remove photo</b><span>Go back to the drawing</span></div></button>`:''}</div>`;}
@@ -3480,12 +3490,12 @@ function setPhoto(me,file){if(!file||!/^image\//.test(file.type||'')){toast('Cho
     img.onerror=()=>toast('That photo could not be opened');img.src=r.result;};r.readAsDataURL(file);}
 
 // ---------- Login: every family member has their own account ----------
-const LOGINS={papa:'papa',mama:'mama',radja:'radja',rada:'dinda',raiya:'raiya',renatta:'renatta',rixty:'tiana'};
+const LOGINS={ajik:'papa',ibuk:'mama',radja:'radja',rada:'dinda',raiya:'raiya',renatta:'renatta',rixty:'tiana'};
 const DEMO_PW='123456'; // prototype only: the real app signs in through Supabase Auth
 function loginView(){const e=S.lerr;
   return `<div class="login"><div class="lg-top"><div class="lg-logo">🏡</div><h1>JAENS Family</h1><p class="muted">Masuk ke akunmu</p></div>
   <form id="loginf" class="card" novalidate autocomplete="on">
-   <div class="fld"><label for="lg-u">Username</label><input id="lg-u" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="username" placeholder="contoh: papa" value="${esc(S.lu||'')}"></div>
+   <div class="fld"><label for="lg-u">Username</label><input id="lg-u" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="username" placeholder="contoh: ajik" value="${esc(S.lu||'')}"></div>
    <div class="fld"><label for="lg-p">Password</label><input id="lg-p" type="password" autocomplete="current-password" placeholder="••••••"></div>
    ${e?`<p class="lg-err" role="alert">${esc(e)}</p>`:''}
    <button class="btn block" type="submit">Masuk</button></form>
@@ -3560,7 +3570,7 @@ const rerender=()=>{S.keepScroll=true;render();};
 function toast(t){S.toast=t;rerender();clearTimeout(toast.t);toast.t=setTimeout(()=>{S.toast=null;rerender()},1600);}
 function sheet(html){S.sheet={html};rerender();}
 function renderWho(){
-  const opts=[['setup','First-time setup','Create Family onboarding','🏡'],['papa','Papa (Owner)','Parent mode'],['mama','Mama (Parent)','Parent mode'],['radja','Radja, 16',LOOKS[M.radja.look].name],['dinda','Rada, 14',LOOKS[M.dinda.look].name],['raiya','Raiya, 8',LOOKS[M.raiya.look].name],['new','New child device','Join Family with QR','📱']];
+  const opts=[['setup','First-time setup','Create Family onboarding','🏡'],['papa','Ajik (Owner)','Parent mode'],['mama','Ibuk (Parent)','Parent mode'],['radja','Radja, 16',LOOKS[M.radja.look].name],['dinda','Rada, 14',LOOKS[M.dinda.look].name],['raiya','Raiya, 8',LOOKS[M.raiya.look].name],['new','New child device','Join Family with QR','📱']];
   {const ls=document.getElementById('looksel');if(ls){ls.disabled=!M[S.me]||!isChild(S.me);ls.innerHTML=M[S.me]&&isChild(S.me)?lookOpts(S.me,true).map(l=>`<option value="${l}" ${M[S.me].look===l?'selected':''}>${LOOKS[l].e} ${LOOKS[l].name} · ${BANDS[LOOKS[l].band]}</option>`).join(''):'<option>Parents use the Parent theme</option>';}
    document.querySelectorAll('#form button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.form===S.form));}
   document.getElementById('who').innerHTML=opts.map(([k,l,s,e])=>`<button aria-pressed="${S.me===k}" data-who="${k}"><span class="em">${e||M[k].emoji}</span><span>${l}<small>${s}</small></span></button>`).join('');
@@ -3654,7 +3664,7 @@ phone.addEventListener('click',e=>{
   if(a==='close'){ if(e.target===b||b.tagName==='BUTTON'){S.sheet=null;rerender();} return; }
   if(a==='tab'){S.sheet=null;loadTab(v);return;}
   if(a==='go'){
-    if(v==='compose'){if(!can(S.me,'announce')){toast('Ask Papa to send announcements');return;}S.draft={title:'',body:'',target:'all',members:[],prio:'NORMAL',pinned:false,sched:null};}
+    if(v==='compose'){if(!can(S.me,'announce')){toast('Ask Ajik to send announcements');return;}S.draft={title:'',body:'',target:'all',members:[],prio:'NORMAL',pinned:false,sched:null};}
     if(v==='pair') S.pair={step:'pick'};
     if(v==='myday') S.day=TODAY;
     if(v==='notifs') S.nTab='ALL';
@@ -3664,14 +3674,14 @@ phone.addEventListener('click',e=>{
   if(a==='done'){const x=ACTS.find(q=>q.id==v),key=x.id+':'+TODAY;
     if(DONE.has(key)){DONE.delete(key);delete DONE_AT[key];p6Undo(x);rerender();return;}
     DONE.add(key);DONE_AT[key]='15:41';const g=p6Done(x);if(!g||g.validation_status!=='PENDING') parents().forEach(p=>nPush(p,'ACTIVITY',`${M[x.member].nick} finished ${x.title}`,'✓ Done at 15:41',{k:'act',v:x.id}));
-    if(g&&g.validation_status!=='PENDING'&&g.points) celebrate(g.points,x.title); else toast(g?'Great job! ⭐ Papa or Mama will check it':'Great job! ⭐');if(typeof syncOthers==='function') syncOthers();return;}
+    if(g&&g.validation_status!=='PENDING'&&g.points) celebrate(g.points,x.title); else toast(g?'Great job! ⭐ Ajik or Ibuk will check it':'Great job! ⭐');if(typeof syncOthers==='function') syncOthers();return;}
   if(a==='act'){go('act',{id:+v,d:+(b.dataset.d||TODAY)});return;}
   if(a==='day'){S.day=+v;rerender();return;}
   if(a==='cal'){S.cal=v;S.calSel=TODAY;rerender();return;}
   if(a==='calf'){S.calFilter=v;rerender();return;}
   if(a==='cday'){S.calSel=+v;rerender();return;}
   if(a==='actkid'){S.actKid=v;S.day=TODAY;if(S.tab!=='activities'||view()){S.tab='activities';S.stack=[];render();scrollTop();}else rerender();return;}
-  if(a==='addact'){if(!can(S.me,'activities')){toast('Ask Papa to add activities');return;}S.adraft=newActDraft();go('actform');return;}
+  if(a==='addact'){if(!can(S.me,'activities')){toast('Ask Ajik to add activities');return;}S.adraft=newActDraft();go('actform');return;}
   if(a==='editact'){S.adraft=newActDraft(v);go('actform');return;}
   if(a==='delact'){const x=ACTS.find(q=>q.id==v);sheet(`<h3>Delete ${esc(x.title)}?</h3><p>It will be removed from ${esc(M[x.member].nick)}’s days.</p><div class="stack"><button class="btn danger block" data-a="delyes" data-v="${x.id}">Delete</button><button class="btn ghost block" data-a="close">Cancel</button></div>`);return;}
   if(a==='delyes'){const i=ACTS.findIndex(q=>q.id==v);audit(`Activity deleted: ${ACTS[i].title} (${M[ACTS[i].member].nick})`);ACTS.splice(i,1);S.sheet=null;S.stack.pop();render();toast('Activity deleted');return;}
@@ -3698,10 +3708,12 @@ phone.addEventListener('click',e=>{
   if(a==='face'){S.face[S.me]=!S.face[S.me];rerender();return;}
   if(a==='pinon'){S.pinOn[S.me]=!S.pinOn[S.me];rerender();return;}
   if(a==='logout'){doLogout();return;}
+  if(a==='mzin'||a==='mzout'){S.mz=mzAt(S.mz,S.mz.z*(a==='mzin'?1.5:1/1.5),.5,.5);rerender();return;}
+  if(a==='mzreset'){S.mz={z:1,x:0,y:0};rerender();return;}
   if(a==='lgpick'){S.lu=v;S.lerr=null;rerender();const p=document.getElementById('lg-p');if(p)p.focus();return;}
-  if(a==='unlinkask'){sheet(`<h3>Ask a parent</h3><p>Only Papa or Mama can log this phone out of ${esc(FAMILY.name)}.</p><button class="btn block" data-a="close">OK</button>`);return;}
+  if(a==='unlinkask'){sheet(`<h3>Ask a parent</h3><p>Only Ajik or Ibuk can log this phone out of ${esc(FAMILY.name)}.</p><button class="btn block" data-a="close">OK</button>`);return;}
   if(a==='npref'){NPREF[S.me][v]=!NPREF[S.me][v];rerender();return;}
-  if(a==='perm'){PERM[v]=!PERM[v];audit(v==='kidCalls'?`Family calls for children ${PERM[v]?'on':'off'}`:v==='kidsDM'?`Children can chat with each other: ${PERM[v]?'on':'off'}`:v==='mamaDevices'?`Parent access changed: Mama device rules ${PERM[v]?'on':'off'}`:v==='mamaLocation'?`Location visibility changed: Mama ${PERM[v]?'can':'can’t'} see location`:`Parent access changed: Mama ${v==='mamaAnnounce'?'announcements':'activities'} ${PERM[v]?'on':'off'}`);rerender();return;}
+  if(a==='perm'){PERM[v]=!PERM[v];audit(v==='kidCalls'?`Family calls for children ${PERM[v]?'on':'off'}`:v==='kidsDM'?`Children can chat with each other: ${PERM[v]?'on':'off'}`:v==='mamaDevices'?`Parent access changed: Ibuk device rules ${PERM[v]?'on':'off'}`:v==='mamaLocation'?`Location visibility changed: Ibuk ${PERM[v]?'can':'can’t'} see location`:`Parent access changed: Ibuk ${v==='mamaAnnounce'?'announcements':'activities'} ${PERM[v]?'on':'off'}`);rerender();return;}
   if(a==='member'){if(isChild(S.me))return;go('member',{id:v});return;}
   if(a==='mtheme'){M[view().id].theme=v;audit(`Member edited: ${M[view().id].nick} theme ${THEMES[v]}`);toast('Theme updated');return;}
   if(a==='cantheme'){const m=M[view().id];m.canTheme=!m.canTheme;rerender();return;}
@@ -3733,9 +3745,9 @@ phone.addEventListener('click',e=>{
   if(a==='dm'){const t=isChild(S.me)!==isChild(v)?tid(S.me,v):'family';S.tab='chat';S.stack=[];S.thread=t;S.emo=false;render();return;}
   if(a==='fixloc'){LOC[v].perm=true;LOC[v].age=0;audit(`Location permission changed: ${M[v].nick} (on)`);toast('Location working again');return;}
   if(a==='pickme'){if(activePickup(S.me)){go('pickme');return;}
-    sheet(`<div class="center"><div style="font-size:54px">🚗</div><h3>Need someone to pick you up?</h3><p>Your location will be shared with Papa and Mama.</p></div><div class="stack"><button class="btn block" style="min-height:58px;font-size:18px" data-a="pkyes">YES, PICK ME UP</button><button class="btn ghost block" data-a="close">Cancel</button></div>`);return;}
+    sheet(`<div class="center"><div style="font-size:54px">🚗</div><h3>Need someone to pick you up?</h3><p>Your location will be shared with Ajik and Ibuk.</p></div><div class="stack"><button class="btn block" style="min-height:58px;font-size:18px" data-a="pkyes">YES, PICK ME UP</button><button class="btn ghost block" data-a="close">Cancel</button></div>`);return;}
   if(a==='pkyes'){requestPickup(S.me,nPush);S.sheet=null;go('pickme');return;}
-  if(a==='pkcancel'){sheet(`<h3>Cancel pickup?</h3><p>Papa and Mama will know you don’t need a ride.</p><div class="stack"><button class="btn block" data-a="pkcancelyes" data-v="${v}">Yes, cancel</button><button class="btn ghost block" data-a="close">Keep asking</button></div>`);return;}
+  if(a==='pkcancel'){sheet(`<h3>Cancel pickup?</h3><p>Ajik and Ibuk will know you don’t need a ride.</p><div class="stack"><button class="btn block" data-a="pkcancelyes" data-v="${v}">Yes, cancel</button><button class="btn ghost block" data-a="close">Keep asking</button></div>`);return;}
   if(a==='pkcancelyes'){cancelPickup(+v,S.me,nPush);S.sheet=null;rerender();return;}
   if(a==='openpick'){go('pickup',{id:+v});return;}
   if(a==='pkaccept'){if(!acceptPickup(+v,S.me,nPush)) toast('Someone already answered');else toast(`${M[PICKUPS.find(x=>x.id==v).kid].nick} sees you’re coming`);return;}
@@ -3747,7 +3759,7 @@ phone.addEventListener('click',e=>{
   if(a==='sossafe'){const s=SOSE.find(x=>x.id==v);sheet(`<h3>Is ${esc(M[s.kid].nick)} safe?</h3><p>This ends the SOS for everyone.</p><div class="stack"><button class="btn block" data-a="sossafeyes" data-v="${v}">Yes, ${esc(M[s.kid].nick)} is safe</button><button class="btn ghost block" data-a="close">Not yet</button></div>`);return;}
   if(a==='sossafeyes'){resolveSOS(+v,S.me,nPush);S.sheet=null;rerender();return;}
   if(a==='soscancel'){sheet(`<h3>Cancel SOS?</h3><p>Only if you pressed it by mistake.</p><div class="stack"><button class="btn block" style="background:var(--ink);color:var(--surface)" data-a="soscancelyes" data-v="${v}">Yes, it was a mistake</button><button class="btn danger block" data-a="close">Keep SOS on</button></div>`);return;}
-  if(a==='soscancelyes'){S.sheet=null;if(!cancelSOS(+v,nPush)) toast('Too late to cancel. Papa or Mama will end it.');rerender();return;}
+  if(a==='soscancelyes'){S.sheet=null;if(!cancelSOS(+v,nPush)) toast('Too late to cancel. Ajik or Ibuk will end it.');rerender();return;}
   if(a==='addplace'){S.pdraft={id:null,name:'',cat:'SCHOOL',icon:PCAT.SCHOOL.icon,x:180,y:110,r:200,rc:false,addr:'',kids:S.lkid&&view()&&view().k==='locnotif'?[S.lkid]:[],start:'07:00',end:'13:00',still:false};go('placeform');return;}
   if(a==='editplace'){const p=place(v);S.pdraft={...p,kids:[...p.kids],rc:![100,200,300,500].includes(p.r)};go('placeform');return;}
   if(a==='pset'){keepPlace();const d=S.pdraft,k=b.dataset.k;if(k==='r'){d.r=+v;d.rc=false;}else if(k==='rc'){d.rc=true;}else if(k==='cat'){d.cat=v;d.icon=PCAT[v].icon;}rerender();return;}
@@ -3795,8 +3807,8 @@ phone.addEventListener('click',e=>{
   if(a==='trmins'){S.tr.mins=+v;rerender();return;}
   if(a==='trwhy'){S.tr.reason=S.tr.reason===v?null:v;rerender();return;}
   if(a==='trsend'){if(S.offline){toast('No internet. Try again when you’re connected.');return;}
-    if(!requestTime(S.me,S.tr.mins,S.tr.reason,nPush)){toast('You already asked. Waiting for Papa or Mama.');return;}
-    S.stack.pop();pushView({k:'mydevice'});render();scrollTop();toast('Sent to Papa and Mama');if(typeof syncOthers==='function') syncOthers();return;}
+    if(!requestTime(S.me,S.tr.mins,S.tr.reason,nPush)){toast('You already asked. Waiting for Ajik or Ibuk.');return;}
+    S.stack.pop();pushView({k:'mydevice'});render();scrollTop();toast('Sent to Ajik and Ibuk');if(typeof syncOthers==='function') syncOthers();return;}
   if(a==='shield'){const r=activeRule(S.me),night=r!=='school';
     sheet(`<div class="shield"><div class="e">${night?'🌙':'🎓'}</div><h3>${night?'Time to Rest':'Focus Time'}</h3><p>This app is unavailable during ${night?'Night Mode':'School Focus'}.</p></div><p class="center small muted">This screen is shown by Apple’s Screen Time on your iPhone. JAENS Family, Phone and Messages still work.</p><button class="btn block" data-a="close">OK</button>`);return;}
   // ----- Phase 4: media, voice, calls -----
@@ -3914,11 +3926,11 @@ phone.addEventListener('click',e=>{
     else toast(`Tercatat ✓ Besok coba sebelum ${addClockAt(h.target_time,GSET.grace)} ya 🌱`);
     if(typeof syncOthers==='function') syncOthers();return;}
   if(a==='gfocus'){M[S.me].gfocus=!M[S.me].gfocus;rerender();toast(M[S.me].gfocus?'Focus Mode: poin dan badge disembunyikan':'Focus Mode mati');return;}
-  if(a==='rwask'){const w=REWARDS.find(x=>x.id===v);sheet(`<h3>${w.icon} ${esc(w.title)}</h3><p>Tukar ${PTS(w.points_required)} poin? Papa atau Mama akan menyetujui dulu. Poinmu disimpan selama menunggu.</p><div class="stack"><button class="btn block" data-a="rwaskyes" data-v="${w.id}">Minta reward ini</button><button class="btn ghost block" data-a="close">Batal</button></div>`);return;}
+  if(a==='rwask'){const w=REWARDS.find(x=>x.id===v);sheet(`<h3>${w.icon} ${esc(w.title)}</h3><p>Tukar ${PTS(w.points_required)} poin? Ajik atau Ibuk akan menyetujui dulu. Poinmu disimpan selama menunggu.</p><div class="stack"><button class="btn block" data-a="rwaskyes" data-v="${w.id}">Minta reward ini</button><button class="btn ghost block" data-a="close">Batal</button></div>`);return;}
   if(a==='rwaskyes'){const w=REWARDS.find(x=>x.id===v),k=S.me;S.sheet=null;if(available(k)<w.points_required){toast('Poinnya belum cukup');return;}
     const r={id:'rd'+(++rdn),reward_id:w.id,member_id:k,points_used:w.points_required,status:'REQUESTED',requested_at:TISO+'T'+NOWT,approved_by:null,approved_at:null};REDEEM.push(r);
     parents().filter(p=>can(p,'growth')).forEach(p=>nPush(p,'REWARD_REQUEST',`🎁 ${M[k].nick} minta ${w.title}`,`${PTS(w.points_required)} poin · perlu persetujuan`,{k:'gapprove'}));
-    rerender();toast('Permintaan dikirim ke Papa & Mama');if(typeof syncOthers==='function') syncOthers();return;}
+    rerender();toast('Permintaan dikirim ke Ajik & Ibuk');if(typeof syncOthers==='function') syncOthers();return;}
   if(a==='gtx'){sheet(gtxSheet(v));return;}
   if(a==='ghistk'){go('ghist',{id:v});return;}
   if(a==='ggkid'){if(isChild(S.me)) return;go('ggkid',{id:v});return;}
@@ -3964,6 +3976,27 @@ phone.addEventListener('click',e=>{
   if(a==='obplace'){S.ob.places[v]=!S.ob.places[v];render();return;}
   if(a==='obenter'){FAMILY.name=S.ob.fam||FAMILY.name;S.me='papa';S.tab='home';S.stack=[];S.ob=null;render();toast(`Welcome to ${FAMILY.name}`);return;}
 });
+// map zoom: + / − buttons, pinch with two fingers, drag to move, mouse wheel
+const MZ={p:new Map(),st:null,moved:false,block:false};
+const mzClamp=(z,x,y)=>{z=Math.max(1,Math.min(4,z));const m=-(z-1)*100;return {z,x:Math.min(0,Math.max(m,x)),y:Math.min(0,Math.max(m,y))};};
+const mzSet=(el,v)=>{el.style.setProperty('--iz',1/v.z);el.style.transform=`translate(${v.x}%,${v.y}%) scale(${v.z})`;};
+const mzAt=(v,z,fx,fy)=>{const ux=(fx*100-v.x)/v.z,uy=(fy*100-v.y)/v.z;return mzClamp(z,fx*100-ux*z,fy*100-uy*z);};
+phone.addEventListener('pointerdown',e=>{const m=e.target.closest('.map.zm');if(!m||e.target.closest('.mzc'))return;MZ.p.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  const pts=[...MZ.p.values()];MZ.st={v:{...S.mz},r:m.getBoundingClientRect(),pts:pts.map(q=>({...q})),el:m.querySelector('.mz'),m};if(MZ.p.size===1)MZ.moved=false;});
+phone.addEventListener('pointermove',e=>{if(!MZ.p.has(e.pointerId)||!MZ.st)return;MZ.p.set(e.pointerId,{x:e.clientX,y:e.clientY});const st=MZ.st,r=st.r,pts=[...MZ.p.values()];let v;
+  if(pts.length>=2&&st.pts.length>=2){const d0=Math.hypot(st.pts[0].x-st.pts[1].x,st.pts[0].y-st.pts[1].y)||1,d=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+    const mx0=(st.pts[0].x+st.pts[1].x)/2,my0=(st.pts[0].y+st.pts[1].y)/2,mx=(pts[0].x+pts[1].x)/2,my=(pts[0].y+pts[1].y)/2;
+    v=mzAt(st.v,st.v.z*d/d0,(mx0-r.left)/r.width,(my0-r.top)/r.height);v=mzClamp(v.z,v.x+(mx-mx0)/r.width*100,v.y+(my-my0)/r.height*100);MZ.moved=true;}
+  else{const dx=pts[0].x-st.pts[0].x,dy=pts[0].y-st.pts[0].y;if(Math.abs(dx)+Math.abs(dy)>5)MZ.moved=true;if(st.v.z<=1||!MZ.moved)return;v=mzClamp(st.v.z,st.v.x+dx/r.width*100,st.v.y+dy/r.height*100);}
+  e.preventDefault();MZ.cur=v;mzSet(st.el,v);});
+const mzEnd=e=>{if(!MZ.p.has(e.pointerId))return;MZ.p.delete(e.pointerId);if(MZ.p.size)return;
+  if(MZ.moved&&MZ.cur){S.mz=MZ.cur;MZ.block=true;setTimeout(()=>{MZ.block=false;},60);rerender();}MZ.st=null;MZ.cur=null;};
+phone.addEventListener('pointerup',mzEnd);phone.addEventListener('pointercancel',mzEnd);
+phone.addEventListener('click',e=>{if(MZ.block){e.stopPropagation();e.preventDefault();MZ.block=false;}},true);
+phone.addEventListener('wheel',e=>{const m=e.target.closest('.map.zm');if(!m)return;e.preventDefault();const r=m.getBoundingClientRect();
+  S.mz=mzAt(S.mz,S.mz.z*(e.deltaY<0?1.15:1/1.15),(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);mzSet(m.querySelector('.mz'),S.mz);
+  clearTimeout(MZ.wt);MZ.wt=setTimeout(rerender,200);},{passive:false});
+
 phone.addEventListener('change',e=>{if(e.target.id==='hcat'){S.hf.c=e.target.value;rerender();}
   if(e.target.id==='pl-date'){const d=pdFromIso(e.target.value);if(d==null||d>TODAY||d<=TODAY-PDAYS){toast(`Pick a day in the last ${PDAYS} days`);rerender();return;}S.pl.d=d;S.pl.pick=true;rerender();}
   if(e.target.id==='pp-file'&&!isChild(S.me)) setPhoto(S.me,e.target.files&&e.target.files[0]);});
@@ -4078,7 +4111,7 @@ document.getElementById('try4').addEventListener('click',e=>{const b=e.target.cl
     startCall(from,[me],k==='vcall',null,{live:[me],ringMs:k==='missed'?6000:20000});rerender();return;}
   if(k==='photo'){const from=me==='mama'?'papa':'mama',th=isChild(me)?tid(me,from):'family',m=mkMedia(th,from,'PHOTO',{g:GALLERY[3],cap:'Surprise! 🎂'},NOWT,'delivered');thread(th).msgs.push(m);
     const id=notify(me,'CHAT',`📷 ${M[from].nick} sent a photo.`,m.cap,{k:'thread',v:th});showPush({cat:'CHAT',title:`📷 ${M[from].nick} sent a photo.`,body:m.cap,ref:{k:'thread',v:th},nid:id});return;}
-  if(!cur||cur.status!=='ACTIVE'){toast(k==='poor'?'Start a video call first (try 📹 Mama video-calls you)':'Start a call first');return;}
+  if(!cur||cur.status!=='ACTIVE'){toast(k==='poor'?'Start a video call first (try 📹 Ibuk video-calls you)':'Start a call first');return;}
   const p=cur.parts[me];
   if(k==='poor'){if(!cur.video){toast('This works in a video call');return;}p.poor=true;rerender();}
   if(k==='drop'){p.rec=true;rerender();setTimeout(()=>{p.rec=false;rerender();},2600);}
@@ -4086,7 +4119,7 @@ document.getElementById('try4').addEventListener('click',e=>{const b=e.target.cl
 document.getElementById('try5').addEventListener('click',e=>{const b=e.target.closest('[data-sim5]');if(!b)return;const k=b.dataset.sim5;
   S.stack=[];S.thread=null;S.sheet=null;S.join=null;S.ob=null;let push=null;
   if(k==='give'){S.me='raiya';S.tab='money';const t=postTx({member_id:'raiya',transaction_type:'INCOME',category:'PARENT',amount:20000,description:'Untuk beli buku cerita',created_by:'papa',source:'PARENT_ENTRY'});
-    const id=notify('raiya','MONEY','💝 Papa memberimu Rp 20.000',t.description,{k:'money'});push={cat:'MONEY',title:'💝 Papa memberimu Rp 20.000',body:t.description,ref:{k:'money'},nid:id};}
+    const id=notify('raiya','MONEY','💝 Ajik memberimu Rp 20.000',t.description,{k:'money'});push={cat:'MONEY',title:'💝 Ajik memberimu Rp 20.000',body:t.description,ref:{k:'money'},nid:id};}
   if(k==='spend'){S.me='dinda';S.tab='money';S.tx={kind:'EXPENSE',kid:'dinda',amt:15000,cat:'FOOD',note:'Es teh & roti',date:TISO,goal:null,err:null};S.stack=[{k:'txform'}];}
   if(k==='dash'){if(isChild(S.me)||['new','setup'].includes(S.me))S.me='papa';S.tab='money';}
   if(k==='budget'){if(isChild(S.me)||['new','setup'].includes(S.me))S.me='papa';S.tab='money';S.stack=[{k:'budget'}];}
@@ -4095,7 +4128,7 @@ document.getElementById('try5').addEventListener('click',e=>{const b=e.target.cl
 document.getElementById('looksel').addEventListener('change',e=>{if(!M[S.me]||!isChild(S.me))return;setLook(S.me,e.target.value);render();});
 document.getElementById('try6').addEventListener('click',e=>{const b=e.target.closest('[data-sim6]');if(!b)return;const k=b.dataset.sim6;
   S.stack=[];S.thread=null;S.sheet=null;S.join=null;S.ob=null;S.cele=null;let push=null;const P=x=>{const n=NOTIF.find(y=>y.id===x);push={cat:n.type,title:n.title,body:n.body,ref:n.ref,nid:x};};
-  if(k==='special'){S.me='raiya';S.tab='growth';recognize('raiya','papa',15,'Membantu Rixty merapikan mainan','FAM');P(notify('raiya','SPECIAL_RECOGNITION','❤️ Papa gave you +15','Membantu Rixty merapikan mainan',{k:'growth'}));checkAch('raiya',true);}
+  if(k==='special'){S.me='raiya';S.tab='growth';recognize('raiya','papa',15,'Membantu Rixty merapikan mainan','FAM');P(notify('raiya','SPECIAL_RECOGNITION','❤️ Ajik gave you +15','Membantu Rixty merapikan mainan',{k:'growth'}));checkAch('raiya',true);}
   if(k==='sleep'){S.me='raiya';S.tab='growth';const x=ACTS.find(a=>a.member==='raiya'&&a.rule==='bed'),key=x.id+':'+TODAY;if(!DONE.has(key)){DONE.add(key);DONE_AT[key]='20:25';p6Done(x,'20:25');}
     const n=NOTIF.find(y=>y.member==='raiya'&&y.type==='DEVICE_RULE_START');if(n)P(n.id);}
   if(k==='reward'){S.me='dinda';S.tab='growth';S.stack=[{k:'rewards'}];}
@@ -4109,7 +4142,7 @@ document.getElementById('try7').addEventListener('click',e=>{const b=e.target.cl
   S.stack=[];S.thread=null;S.sheet=null;S.join=null;S.ob=null;S.cele=null;let push=null;
   if(k==='live'||k==='date'){S.me='papa';S.tab='map';PSHARE.mama.on=true;S.pl={d:k==='date'?2:TODAY,pick:k==='date'};S.stack=[{k:'ploc',id:'mama'}];}
   if(k==='week'){S.me='mama';S.tab='map';PSHARE.papa.on=true;S.pl={d:TODAY,pick:false};S.plr='week';S.stack=[{k:'ploc',id:'papa'},{k:'preport',id:'papa'}];}
-  if(k==='pause'){S.me='papa';S.tab='home';if(PSHARE.mama.on){PSHARE.mama.on=false;audit('Mama paused location sharing with Papa');const id=notify('papa','SYSTEM','⏸️ Mama paused location sharing',`Since ${NOWT}`,{k:'ploc',v:'mama'});const n=NOTIF.find(y=>y.id===id);if(n)push={cat:n.type,title:n.title,body:n.body,ref:n.ref,nid:id};}}
+  if(k==='pause'){S.me='papa';S.tab='home';if(PSHARE.mama.on){PSHARE.mama.on=false;audit('Ibuk paused location sharing with Ajik');const id=notify('papa','SYSTEM','⏸️ Ibuk paused location sharing',`Since ${NOWT}`,{k:'ploc',v:'mama'});const n=NOTIF.find(y=>y.id===id);if(n)push={cat:n.type,title:n.title,body:n.body,ref:n.ref,nid:id};}}
   render();scrollTop();if(push)showPush(push);if(typeof syncOthers==='function') syncOthers();
 });
 document.getElementById('form').addEventListener('click',e=>{const b=e.target.closest('[data-form]');if(!b)return;S.form=b.dataset.form;try{localStorage.setItem('jf_form',S.form);}catch(e){}render();});
