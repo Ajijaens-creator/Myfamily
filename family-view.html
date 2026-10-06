@@ -833,6 +833,28 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   .ft{grid-template-columns:repeat(7,minmax(0,1fr))}.pd-rm{grid-template-columns:repeat(3,minmax(0,1fr))}.chg{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 .gh-top h1{font-size:26px;font-weight:800;font-family:var(--font)}.gk .dchip{white-space:normal;line-height:1.25}
+/* Phase 7: Papa ↔ Mama location */
+.pboth .pbh{font-weight:800;margin-bottom:2px}
+.pboth .kv span{display:flex;align-items:center;gap:8px}.pboth .kv .av{width:28px;height:28px;font-size:16px}
+.pboth b.ok{color:var(--success)}.pboth b.off{color:var(--muted)}
+.pcard{width:100%;border:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.pdate{display:flex;align-items:center;gap:10px;margin:-2px 0 10px}.pdate label{font-weight:700;font-size:14px}
+.pdate input{flex:1;min-height:44px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;background:var(--surface);color:var(--ink)}
+.pstat{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.pstat>div{background:var(--surface2);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.pstat b{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pstat span{font-size:12px;color:var(--muted);font-weight:600}
+.prep .phd{display:flex;gap:10px;align-items:center;margin-bottom:10px}.prep .phd>div{display:flex;flex-direction:column}
+.pbars{display:flex;flex-direction:column;gap:12px}
+.pbar{display:flex;gap:10px;align-items:center}.pbar .pi{font-size:22px;width:30px;text-align:center}.pbar .pt{flex:1;min-width:0}
+.pbar .pn{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-bottom:5px}.pbar .pn span{color:var(--muted);font-weight:600;white-space:nowrap}
+.wkbars{display:flex;gap:6px;align-items:flex-end;height:150px}
+.wkbars .wb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:inherit;min-width:0}
+.wkbars .wb i{display:block;width:70%;max-width:34px;border-radius:8px 8px 4px 4px;background:color-mix(in srgb,var(--primary) 45%,transparent)}
+.wkbars .wb.on i{background:var(--primary)}
+.wkbars .wv{font-size:11px;font-weight:700;color:var(--muted)}.wkbars .wl{font-size:12px;font-weight:700}
+.phone:is([data-form="desktop"],[data-form="laptop"],[data-form="ipadl"],[data-form="ipad"]) .pstat{grid-template-columns:repeat(4,1fr)}
+.av.lg{flex:none}
+.phone:is([data-form="desktop"],[data-form="laptop"],[data-form="ipadl"]) .pmap{max-width:720px;margin-left:auto;margin-right:auto}
 @media (max-width:760px){
   body{padding:0}
   .wrap{flex-direction:column;align-items:stretch;gap:0;padding-block:0}
@@ -888,10 +910,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   </div>
   <div class="fv-sim fv-sim2" aria-label="Try Phase 2 safety">
     <button data-sim2="pickup">🚗 Raiya asks for pickup</button>
-    <button data-sim2="sos">🆘 Dinda sends SOS</button>
+    <button data-sim2="sos">🆘 Rada sends SOS</button>
     <button data-sim2="arrive">📍 Radja arrives at GOR Futsal</button>
     <button data-sim2="attn">⚠️ Raiya’s location needs attention</button>
-    <button data-sim2="offline">📵 Dinda’s phone goes offline</button>
+    <button data-sim2="offline">📵 Rada’s phone goes offline</button>
   </div>
   <div class="fv-sim fv-sim3" aria-label="Try Phase 3 device control">
     <button data-sim3="night">🌙 Raiya’s Night Mode starts</button>
@@ -905,12 +927,12 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
   </div>
   <div class="fv-sim fv-sim5" aria-label="Try Phase 5 money">
     <button data-sim5="give">💝 Papa gives Raiya Rp 20.000</button>
-    <button data-sim5="spend">🧾 Dinda buys lunch Rp 15.000</button>
+    <button data-sim5="spend">🧾 Rada buys lunch Rp 15.000</button>
     <button data-sim5="bonus">⭐ Mama gives Radja a Rp 50.000 bonus</button>
   </div>
   <div class="fv-sim fv-sim6" aria-label="Try Phase 6 growth points">
     <button data-sim6="special">❤️ Papa gives Raiya +15 special points</button>
-    <button data-sim6="reward">🎁 Dinda asks for a family movie</button>
+    <button data-sim6="reward">🎁 Rada asks for a family movie</button>
     <button data-sim6="school">🎓 Mama records Radja’s 92 in Physics</button>
     <span class="fv-msg" id="fvmsg" role="status"></span>
   </div>
@@ -967,10 +989,10 @@ const M={
  papa:{id:'papa',name:'Aji',nick:'Papa',role:'FAMILY_OWNER',rel:'Father',emoji:'👨🏻',bg:'#DCEBE6',theme:'PARENT'},
  mama:{id:'mama',name:'Ariani',nick:'Mama',role:'PARENT_GUARDIAN',rel:'Mother',emoji:'👩🏻',bg:'#F4E2D8',theme:'PARENT'},
  radja:{id:'radja',name:'Radja',nick:'Radja',role:'CHILD',rel:'Son',dob:'2010-05-11',gender:'male',emoji:'🧑🏻',bg:'#E1E4F8',theme:'TEEN',device:'iPhone 15',canTheme:false},
- dinda:{id:'dinda',name:'Dinda',nick:'Dinda',role:'CHILD',rel:'Daughter',dob:'2012-01-22',gender:'female',emoji:'👧🏻',bg:'#FFD6E6',theme:'KIDS_GIRL',device:'iPhone 12',canTheme:true},
+ dinda:{id:'dinda',name:'Rada',nick:'Rada',role:'CHILD',rel:'Daughter',dob:'2012-01-22',gender:'female',emoji:'👧🏻',bg:'#FFD6E6',theme:'KIDS_GIRL',device:'iPhone 12',canTheme:true},
  renatta:{id:'renatta',name:'Renatta',nick:'Renatta',role:'CHILD',rel:'Daughter',dob:'2015-11-03',gender:'female',emoji:'👧🏻',bg:'#E8DDFB',theme:'KIDS_GIRL',device:null,canTheme:true},
  raiya:{id:'raiya',name:'Raiya',nick:'Raiya',role:'CHILD',rel:'Daughter',dob:'2018-02-23',gender:'female',emoji:'👧🏻',bg:'#CFE5FF',theme:'KIDS_GIRL',device:'iPhone SE',canTheme:true},
- tiana:{id:'tiana',name:'Tiana',nick:'Tiana',role:'CHILD',rel:'Daughter',dob:'2020-01-18',gender:'female',emoji:'👶🏻',bg:'#FFE9C7',theme:'KIDS_GIRL',device:null,canTheme:true}
+ tiana:{id:'tiana',name:'Rixty',nick:'Rixty',role:'CHILD',rel:'Daughter',dob:'2020-01-18',gender:'female',emoji:'👶🏻',bg:'#FFE9C7',theme:'KIDS_GIRL',device:null,canTheme:true}
 };
 const ORDER=['papa','mama','radja','dinda','renatta','raiya','tiana'];
 const kids=()=>ORDER.filter(k=>M[k].role==='CHILD');
@@ -979,7 +1001,7 @@ const isChild=id=>!!M[id]&&M[id].role==='CHILD';
 const PERM={mamaAnnounce:true,mamaActivities:true,mamaLocation:true,mamaDevices:true};
 const can=(me,cap)=>{const r=M[me].role; if(r==='FAMILY_OWNER') return true; if(r==='CHILD') return false;
   if(cap==='money') return PERM.mamaMoney; if(cap==='growth') return PERM.mamaGrowth; if(cap==='announce') return PERM.mamaAnnounce; if(cap==='devices') return PERM.mamaDevices; if(cap==='activities') return PERM.mamaActivities; return false;};
-const AUDIT=['Device paired: Dinda’s iPhone 12','Member created: Dinda'];const audit=t=>AUDIT.unshift(t);
+const AUDIT=['Device paired: Rada’s iPhone 12','Member created: Rada'];const audit=t=>AUDIT.unshift(t);
 
 // ===== Activities (Activity + ActivityCompletion) =====
 const CAT={School:{icon:'🏫',c:'#3B7BE8'},Study:{icon:'📘',c:'#8B5CF6'},Sport:{icon:'⚽',c:'#22A35A'},Family:{icon:'🏠',c:'#F08A24'},Health:{icon:'🩺',c:'#E5487F'},Bedtime:{icon:'🌙',c:'#4A4FB0'},Other:{icon:'⭐',c:'#8A94A6'}};
@@ -1088,10 +1110,10 @@ const notify=(member,type,title,body,ref,time='15:41',read=false)=>{NOTIF.unshif
  ['radja','ANNOUNCEMENT','⚠️ School starts early','School starts at 06:30 tomorrow.',{k:'ann',v:2},'12:40'],
  ['radja','ACTIVITY','Futsal at 16:00','⚽ Reminder: 30 min before',{k:'act',v:findA('radja','Futsal').id},'15:30'],
  ['radja','CHAT','Papa','Take your jacket',{k:'thread',v:tid('radja','papa')},'15:33'],
- ['papa','SYSTEM','Dinda’s iPhone 12 connected','Device paired to Jaens Family',{k:'members'},'Thu',true],
+ ['papa','SYSTEM','Rada’s iPhone 12 connected','Device paired to Jaens Family',{k:'members'},'Thu',true],
  ['papa','ACTIVITY','Raiya finished Tidy my room','✓ Done at 13:45',{k:'act',v:findA('raiya','Tidy my room').id},'13:45'],
  ['papa','CHAT','Radja','Can I go to Rafi’s after futsal?',{k:'thread',v:tid('radja','papa')},'15:30',true],
- ['mama','ACTIVITY','Dinda has English Class','📘 Today at 16:00',{k:'act',v:findA('dinda','English Class').id},'15:30']
+ ['mama','ACTIVITY','Rada has English Class','📘 Today at 16:00',{k:'act',v:findA('dinda','English Class').id},'15:30']
 ].forEach(x=>notify(...x));
 const notifUnread=me=>NOTIF.filter(n=>n.member===me&&!n.read).length;
 const NICON={GROWTH_POINT:'⭐',ACTIVITY_APPROVAL:'✅',STREAK_MILESTONE:'🔥',ACHIEVEMENT:'🏆',REWARD_AVAILABLE:'🎁',REWARD_REQUEST:'🎁',SPECIAL_RECOGNITION:'❤️',MONEY:'💰',ACTIVITY:'⏰',CHAT:'💬',ANNOUNCEMENT:'📣',SYSTEM:'⚙️'};
@@ -1138,6 +1160,68 @@ function dayJourney(k,d){
   const j=JOURNEY[k],e=j.ev.findIndex(x=>x[1]==='arrive'&&x[2]==='home'),p=j.pts.findIndex((x,i)=>i>0&&x[0]===70&&x[1]===192);
   return {pts:j.pts.slice(0,p+1),ev:j.ev.slice(0,e+1)};
 }
+// ---------- Phase 7: Papa ↔ Mama location (always on, both sides see it) ----------
+PLACES.push(P('mkt','Pasar Segar','OTHER',336,26,150,{icon:'🛒'}),P('cafe','Kopi Pagi','OTHER',150,150,80,{icon:'☕'}));
+LOC.papa.battery=72;LOC.mama.battery=58;LOC.papa.age=0;LOC.mama.age=0; // parents share live, all day
+// Each parent decides to share with the other. Pausing is never silent: the other parent sees it.
+const PSHARE={papa:{on:true,since:'1 Sep'},mama:{on:true,since:'1 Sep'}};
+const partnerOf=k=>k==='papa'?'mama':'papa';
+const canSeePartner=(me,k)=>!isChild(me)&&!isChild(k)&&M[me]&&M[k]&&(me===k||PSHARE[k].on);
+// tiny road router on the preview map: 1px ≈ 12.5 m
+const ROADS={H:[[40,0,360],[172,0,360],[212,90,360]],V:[[110,0,260],[240,0,260]]};
+const ACCESS={home:[[70,192],[70,172]],sd:[[150,72],[110,72]],sdh:[[262,62],[262,40]],sma:[[304,140],[240,140]],course:[[200,142],[200,172]],
+ gor:[[292,214],[292,212]],grandma:[[40,58],[40,40]],spa:[[160,232],[160,212]],mkt:[[336,26],[336,40]],cafe:[[150,150],[150,172]]};
+function roadPath(a,b){ // a,b are points on a road; Dijkstra over junctions + the two points
+  const onLine=p=>[...ROADS.H.filter(([y,x0,x1])=>p[1]===y&&p[0]>=x0&&p[0]<=x1).map(r=>'H'+r[0]),...ROADS.V.filter(([x,y0,y1])=>p[0]===x&&p[1]>=y0&&p[1]<=y1).map(r=>'V'+r[0])];
+  const nodes=[a,b];ROADS.H.forEach(([y,x0,x1])=>ROADS.V.forEach(([x,y0,y1])=>{if(x>=x0&&x<=x1&&y>=y0&&y<=y1) nodes.push([x,y]);}));
+  const lines={};nodes.forEach((p,i)=>onLine(p).forEach(l=>(lines[l]=lines[l]||[]).push(i)));
+  const adj=nodes.map(()=>[]);Object.entries(lines).forEach(([l,ix])=>{const H=l[0]==='H';ix.sort((i,j)=>H?nodes[i][0]-nodes[j][0]:nodes[i][1]-nodes[j][1]);
+    for(let t=1;t<ix.length;t++){const i=ix[t-1],j=ix[t],w=Math.abs(nodes[i][0]-nodes[j][0])+Math.abs(nodes[i][1]-nodes[j][1]);adj[i].push([j,w]);adj[j].push([i,w]);}});
+  const dist=nodes.map(()=>Infinity),prev=nodes.map(()=>-1),done=new Set();dist[0]=0;
+  while(done.size<nodes.length){let u=-1;dist.forEach((d,i)=>{if(!done.has(i)&&(u<0||d<dist[u])) u=i;});if(u<0||dist[u]===Infinity) break;done.add(u);
+    adj[u].forEach(([v,w])=>{if(dist[u]+w<dist[v]){dist[v]=dist[u]+w;prev[v]=u;}});}
+  const out=[];for(let i=1;i>=0;i=prev[i]) out.unshift(nodes[i]);return out;}
+const plen=pts=>pts.reduce((s,p,i)=>i?s+Math.hypot(p[0]-pts[i-1][0],p[1]-pts[i-1][1]):0,0);
+function legRoute(from,to){const A=ACCESS[from],B=ACCESS[to];const mid=roadPath(A[A.length-1],B[B.length-1]);
+  const pts=[...A.slice(0,-1),...mid,...B.slice(0,-1).reverse()];return {pts,km:Math.round(plen(pts)*12.5/100)/10};}
+// day plans: [place, arrive, leave]; '' = before midnight / still there
+const PPLAN={
+ papa:{wk:[[['home','','06:45'],['sd','07:00','07:08'],['spa','07:25','12:20'],['sd','12:35','12:42'],['home','13:00','13:40'],['spa','13:55','19:10'],['home','19:30','']],
+   [['home','','07:30'],['cafe','07:40','08:20'],['spa','08:35','17:45'],['mkt','18:05','18:35'],['home','19:00','']],
+   [['home','','06:40'],['sma','06:58','07:05'],['spa','07:20','13:00'],['cafe','13:10','13:50'],['spa','14:00','18:30'],['gor','18:45','19:40'],['home','20:00','']]],
+  we:[[['home','','09:30'],['grandma','09:50','13:30'],['home','13:55','16:00'],['gor','16:15','17:30'],['home','17:45','']],
+   [['home','','10:00'],['mkt','10:20','11:10'],['home','11:30','']]]},
+ mama:{wk:[[['home','','06:35'],['sd','06:55','07:05'],['home','07:25','08:30'],['mkt','08:50','10:05'],['home','10:25','14:40'],['course','15:02','15:08'],['home','15:25','']],
+   [['home','','09:00'],['spa','09:20','12:00'],['cafe','12:10','13:00'],['home','13:15','']],
+   [['home','','10:00'],['grandma','10:20','14:30'],['home','14:50','17:00'],['course','17:15','17:25'],['home','17:40','']]],
+  we:[[['home','','08:00'],['mkt','08:20','09:30'],['home','09:50','']],
+   [['home','','09:30'],['grandma','09:50','13:30'],['home','13:55','']]]}};
+const PDAYS=30; // history kept 30 days, same as the children
+const pdIso=d=>d>=1?`2026-10-${String(d).padStart(2,'0')}`:`2026-09-${String(d+30).padStart(2,'0')}`;
+const pdFromIso=s=>{const m=/^2026-(09|10)-(\d\d)$/.exec(s||'');if(!m) return null;return m[1]==='10'?+m[2]:+m[2]-30;};
+const pdLabel=d=>d===TODAY?'Today':d===TODAY-1?'Yesterday':`${WD[wd(d)]} ${d>=1?d:d+30} ${d>=1?'Oct':'Sep'}`;
+const pdLong=d=>`${WDL[wd(d)]}, ${d>=1?d+' October':(d+30)+' September'}`;
+const _pdc={};
+function pDay(k,d){ // → {stays,legs,ev,pts,km,away,live}
+  const key=k+d+(d===TODAY?NOWT:'');if(_pdc[key]) return _pdc[key];
+  const w=wd(d),pl=PPLAN[k],plan=d===TODAY?pl.wk[0]:w>=5?pl.we[(d+30)%2]:pl.wk[(d+30)%3];
+  const cut=d===TODAY?mins(NOWT):24*60;
+  const stays=[],legs=[],ev=[];
+  plan.forEach(([p,a,l],i)=>{const am=a?mins(a):0;if(am>cut) return;const lm=l?mins(l):24*60;const open=lm>cut;
+    stays.push({place:p,from:a||'00:00',to:open?(d===TODAY?'Now':'24:00'):l,min:Math.min(lm,cut)-am,now:open&&d===TODAY});
+    if(a) ev.push([a,'arrive',p]);
+    if(l&&!open){ev.push([l,'leave',p]);const n=plan[i+1];if(n&&mins(n[1])<=cut){const r=legRoute(p,n[0]);legs.push({from:p,to:n[0],dep:l,arr:n[1],min:mins(n[1])-mins(l),pts:r.pts,km:r.km});}}});
+  if(stays.length===1&&!ev.length) ev.push([d===TODAY?'00:00':'All day','stay',stays[0].place]);
+  const pts=legs.length?legs.reduce((a,g)=>a.concat(a.length?g.pts.slice(1):g.pts),[]):[[...ACCESS[stays[0].place][0]]];
+  const km=Math.round(legs.reduce((s,g)=>s+g.km,0)*10)/10,away=stays.filter(s=>s.place!=='home').reduce((s,x)=>s+x.min,0)+legs.reduce((s,g)=>s+g.min,0);
+  return _pdc[key]={stays,legs,ev,pts,km,away,drive:legs.reduce((s,g)=>s+g.min,0)};}
+// today's journeys for the parents feed the same map + timeline as the children
+JOURNEY.papa={get pts(){return pDay('papa',TODAY).pts;},get ev(){return pDay('papa',TODAY).ev;}};
+JOURNEY.mama={get pts(){return pDay('mama',TODAY).pts;},get ev(){return pDay('mama',TODAY).ev;}};
+function pWeek(k,end){const out=[];for(let d=end-6;d<=end;d++) out.push({d,...pDay(k,d)});return out;}
+function placeTotals(days){const t={};days.forEach(x=>x.stays.forEach(s=>{t[s.place]=(t[s.place]||0)+s.min;}));return Object.entries(t).sort((a,b)=>b[1]-a[1]);}
+const hm=m=>m<60?m+' min':`${Math.floor(m/60)} h${m%60?' '+(m%60)+' min':''}`;
+
 let pkid=0,sosid=0;
 const PICKUPS=[
  {id:++pkid,kid:'radja',day:TODAY-3,at:'14:40',place:'sma',status:'COMPLETED',by:'papa',doneAt:'14:58'},
@@ -1258,7 +1342,7 @@ const CATL={LOCATION_ENTER:'LOCATION',LOCATION_EXIT:'LOCATION',LOCATION_ATTENTIO
 [['papa','LOCATION_EXIT','🔔 Raiya left SD Cendekia','12:42',{k:'loc',v:'raiya'},'12:42',true],
  ['raiya','PICKUP_COMPLETED','Papa picked you up','SD Cendekia · 12:42',{k:'pickup',v:2},'12:42',true],
  ['papa','LOCATION_ENTER','✅ Raiya arrived at Home','13:05',{k:'loc',v:'raiya'},'13:05',true],
- ['papa','LOCATION_ENTER','✅ Dinda arrived at Home','13:34',{k:'loc',v:'dinda'},'13:34',true],
+ ['papa','LOCATION_ENTER','✅ Rada arrived at Home','13:34',{k:'loc',v:'dinda'},'13:34',true],
  ['papa','LOCATION_EXIT','🔔 Radja left SMA Nusantara','14:38',{k:'loc',v:'radja'},'14:38',true],
  ['papa','LOCATION_ENTER','✅ Raiya arrived at English Course','15:02',{k:'loc',v:'raiya'},'15:02'],
  ['mama','LOCATION_ENTER','✅ Raiya arrived at English Course','15:02',{k:'loc',v:'raiya'},'15:02']
@@ -1752,7 +1836,7 @@ function recognize(k,by,pts,reason,cat,date,time){const g=award(k,{rule_id:cat==
   recognize('dinda','mama',10,'Jujur mengembalikan uang kembalian','CHAR','2026-09-20','18:10');
   recognize('radja','mama',20,'Mengajari Raiya matematika','FAM','2026-09-28','20:05');
   recognize('raiya','papa',15,'Membantu Mama tanpa diminta','FAM','2026-10-03','17:40');
-  recognize('renatta','papa',10,'Menjaga Tiana saat Mama memasak','FAM','2026-10-04','17:15');
+  recognize('renatta','papa',10,'Menjaga Rixty saat Mama memasak','FAM','2026-10-04','17:15');
   addSchoolAch({member_id:'radja',subject:'Matematika',type:'EXAM',score:84,previous_score:75,description:'Ulangan Matematika 84',date:'2026-09-25',by:'papa'});
   addSchoolAch({member_id:'dinda',subject:'Bahasa Inggris',type:'EXAM',score:92,description:'Ulangan Bahasa Inggris 92',date:'2026-09-30',by:'mama'});
   addSchoolAch({member_id:'renatta',type:'COMPETITION',points:30,description:'Juara 2 lomba menggambar',date:'2026-09-18',by:'papa'});
@@ -1764,6 +1848,11 @@ function recognize(k,by,pts,reason,cat,date,time){const g=award(k,{rule_id:cat==
 })();
 PERM.mamaGrowth=true;
 
+// originals, so "Remove photo" can go back to them
+const PHOTO0={papa:M.papa.img||null,mama:M.mama.img||null};
+// profile photos chosen on the phone stay on that device
+try{['papa','mama'].forEach(k=>{const v=localStorage.getItem('jf_photo_'+k);if(v&&v.startsWith('data:image/')){IMG['up_'+k]=v;M[k].img='up_'+k;}});}catch(e){}
+
 const G={offline:false};const PHONES=[];
 
 function Phone(phone,initialMe){
@@ -1773,7 +1862,7 @@ const S={me:initialMe,tab:'home',stack:[],cal:'today',calSel:TODAY,calFilter:'al
   face:{raiya:true,dinda:false,radja:true,papa:true,mama:true},pinOn:{raiya:false,dinda:false,radja:true},
   mapF:'all',mapSel:null,live:{},hist:null,tLoc:'live',lkid:'raiya',pdraft:null,hold:null,ddraft:null,dcs:null,tr:{mins:30,reason:null},att:null,rec:null,play:null,mtab:'PHOTO',cpick:null,os:null,spk:false,
   mp:{per:'month',from:'2026-09-01',to:'2026-09-30'},hf:{t:'all',r:'all',c:''},mtab2:'overview',tinsR:'month',trend:'EXPENSE',btab:'cat',form:'phone',tx:null,gdraft:null,fgdraft:null,
-  cele:null,grd:null,grt:null,grw:null,gsa:null,gsp:null,gsSp:null};
+  cele:null,grd:null,grt:null,grw:null,gsa:null,gsp:null,gsSp:null,pl:{d:TODAY,pick:false},plr:'day'};
 const view=()=>S.stack[S.stack.length-1]||null;
 const theme=()=>S.me==='new'||S.me==='setup'?'PARENT':M[S.me].theme;
 const mode=()=>S.me==='new'?'kids_boy':MODE[theme()];
@@ -1784,7 +1873,7 @@ const navFor=()=>isChild(S.me)?(band()==='LITTLE'?[['home','Home','home'],['grow
   :WIDE()?[['home','Dashboard','home'],['children','Children','user'],['activities','My Day','act'],['growth','Growth','star'],['map','Location','map'],['money','My Money','wallet'],['calendar','Calendar','cal'],['chat','Chat','chat'],['devctl','Device Control','phone'],['reports','Reports','chart'],['profile','Settings','gear']]
   :[['home','Home','home'],['map','Map','map'],['growth','Growth','star'],['money','Money','wallet'],['chat','Chat','chat'],['more','More','dots']];
 
-const av=(id,c='')=>M[id].img&&IMG[M[id].img]?`<div class="av pic ${c} ${M[id].img.startsWith('av_')?'f-av':''}" style="background:${M[id].bg}" aria-hidden="true"><img src="${IMG[M[id].img]}" alt=""></div>`:`<div class="av ${c}" style="background:${M[id].bg}" aria-hidden="true">${M[id].emoji}</div>`;
+const av=(id,c='')=>M[id].img&&IMG[M[id].img]?`<div class="av pic ${c} ${/^(av|up)_/.test(M[id].img)?'f-av':''}" style="background:${M[id].bg}" aria-hidden="true"><img src="${IMG[M[id].img]}" alt=""></div>`:`<div class="av ${c}" style="background:${M[id].bg}" aria-hidden="true">${M[id].emoji}</div>`;
 const top=(t,extra='')=>`<div class="top"><button class="back" data-a="back" aria-label="Back">${ic('back')}</button><h2>${t}</h2>${extra}</div>`;
 const bell=()=>{const n=notifUnread(S.me);return `<button class="bell" data-a="go" data-v="notifs" aria-label="Notifications${n?', '+n+' unread':''}">${ic('bell')}${n?`<span class="badge">${n}</span>`:''}</button>`;};
 const empty=(e,b,t='')=>`<div class="empty"><div class="e">${e}</div><b>${b}</b>${t}</div>`;
@@ -1839,6 +1928,7 @@ function parentHome(){
   ${familyToday(me)}
   <div class="sec">Family status ${seen.length?'<button data-a="tab" data-v="map">Open map</button>':''}</div>
   <div class="card list">${seen.map(statusRow).join('')||'<p class="muted small" style="padding:10px 0;margin:0">Papa hasn’t shared the children’s location with you.</p>'}</div>
+  ${partnerCard(me)}
   <div class="sec">Today’s summary</div>
   <div class="card"><div class="sum"><div><div class="n">${tn}</div><div class="l">activities</div></div><div><div class="n" style="color:var(--success)">${td}</div><div class="l">completed</div></div><div style="flex:1;min-width:0"><div class="bar"><i style="width:${tn?td/tn*100:0}%"></i></div><div class="l" style="margin-top:6px">${td} of ${tn} completed</div></div></div></div>
   ${parentMoneyCard(me)}
@@ -2026,7 +2116,8 @@ function childProfile(){
 function parentProfile(){
   const me=S.me,m=M[me],owner=m.role==='FAMILY_OWNER';
   return `<div class="hdr">${av(me,'lg')}<div class="grow"><h1 style="font-size:24px">Settings</h1><div class="d">${esc(m.name)} · ${owner?'Family Owner':'Parent'}</div></div>${bell()}</div>
-  <div class="sec" style="margin-top:4px">Family</div><div class="card list">
+  ${photoRow(me)}
+  <div class="sec">Family</div><div class="card list">
    <button class="row" data-a="go" data-v="members"><span class="ricon">👨‍👩‍👧‍👦</span><div class="t"><b>Family Members</b><span>${ORDER.length} members</span></div>${ic('chev')}</button>
    <button class="row" data-a="go" data-v="devices"><span class="ricon">📱</span><div class="t"><b>Devices</b><span>${kids().filter(k=>M[k].device).length} of ${kids().length} children connected</span></div>${ic('chev')}</button>
    ${owner?`<button class="row" data-a="go" data-v="access"><span class="ricon">🛡️</span><div class="t"><b>Parent access</b><span>What Mama can do</span></div>${ic('chev')}</button>`:''}
@@ -2164,14 +2255,15 @@ function timeline(ev,k){
 const callActs=(k,extra='')=>`<div class="acts ${extra?'five':'four'}">${extra}<button data-a="call" data-v="${k}">${ic('phone')}Call</button><button data-a="vcall" data-v="${k}">${ic('vid')}Video</button><button data-a="dm" data-v="${k}">${ic('chat')}Message</button><button data-a="navto" data-v="${k}">${ic('nav')}Navigate</button></div>`;
 
 function familyMap(){
-  const me=S.me,f=S.mapF;let ids=ORDER.filter(k=>LOC[k]&&(isChild(k)?canSeeLoc(me,k):true));
+  const me=S.me,f=S.mapF;let ids=ORDER.filter(k=>LOC[k]&&(isChild(k)?canSeeLoc(me,k):isChild(me)||canSeePartner(me,k)));
   if(f==='kids') ids=ids.filter(isChild); else if(f==='parents') ids=ids.filter(k=>!isChild(k));
   const sel=ids.includes(S.mapSel)?S.mapSel:null;
   let card;
   if(sel){const w=where(sel),ch=isChild(sel);
-    card=`<div class="card" style="margin-top:12px"><div style="display:flex;gap:12px;align-items:center">${av(sel)}<div style="flex:1;min-width:0"><b style="font-size:17px">${nk(sel)}${sel===me?' (you)':''}</b><div class="small">${w.e} ${esc(w.long)}</div>${freshHtml(fresh(sel,S.live[sel]))}</div></div>
-     ${sel===me?'':callActs(sel,ch?`<button data-a="childloc" data-v="${sel}">${ic('pin')}Details</button>`:'')}</div>`;
-  } else card=`<div class="sec">Tap a face for details</div><div class="card list">${ids.filter(isChild).map(statusRow).join('')}${ids.filter(k=>!isChild(k)).map(k=>{const w=where(k);return `<div class="row static">${av(k)}<div class="t"><b>${nk(k)}${k===me?' (you)':''}</b><span>${w.e} ${esc(w.short)}</span></div></div>`;}).join('')}</div>
+    card=`<div class="card" style="margin-top:12px"><div style="display:flex;gap:12px;align-items:center">${av(sel)}<div style="flex:1;min-width:0"><b style="font-size:17px">${nk(sel)}${sel===me?' (you)':''}</b><div class="small">${w.e} ${esc(w.long)}</div>${freshHtml(ch?fresh(sel,S.live[sel]):pFresh(sel))}</div></div>
+     ${sel===me?`<button class="btn ghost block" style="margin-top:10px" data-a="ploc" data-v="${me}">${ic('pin')} My day & report</button>`:callActs(sel,ch?`<button data-a="childloc" data-v="${sel}">${ic('pin')}Details</button>`:isChild(me)?'':`<button data-a="ploc" data-v="${sel}">${ic('pin')}History</button>`)}</div>`;
+  } else card=`<div class="sec">Tap a face for details</div><div class="card list">${ids.filter(isChild).map(statusRow).join('')}${ids.filter(k=>!isChild(k)).map(k=>{const w=where(k);return isChild(me)?`<div class="row static">${av(k)}<div class="t"><b>${nk(k)}</b><span>${w.e} ${esc(w.short)}</span></div></div>`:`<button class="row" data-a="ploc" data-v="${k}">${av(k)}<div class="t"><b>${nk(k)}${k===me?' (you)':''} <span style="display:inline;font-weight:600;color:var(--muted);font-size:14px">· ${w.e} ${esc(w.short)}</span></b>${freshHtml(pFresh(k))}</div>${ic('chev')}</button>`;}).join('')}
+   ${!isChild(me)&&!PSHARE[partnerOf(me)].on?`<p class="muted small center">${nk(partnerOf(me))} paused location sharing.</p>`:''}</div>
    ${M[me].role==='PARENT_GUARDIAN'&&!PERM.mamaLocation?'<p class="muted small center">Papa hasn’t shared the children’s location with you.</p>':''}`;
   return `<div class="hdr" style="padding-bottom:10px"><div class="grow"><h1 style="font-size:26px">Family Map</h1></div>${bell()}</div>
   <div class="filters">${[['all','All'],['kids','Children'],['parents','Parents']].map(([v,l])=>`<button aria-pressed="${f===v}" data-a="mapf" data-v="${v}">${l}</button>`).join('')}</div>
@@ -3185,7 +3277,8 @@ function childrenTab(){const ks=kids();
     ${M[k].device?`<button class="chd" data-a="dc" data-v="${k}"><span class="chip ${st.c}">${st.t}</span><span class="muted small">${esc(M[k].device)}</span></button>`:''}</div>`;}).join('')}</div>`;}
 function devTab(){return dcSet().replace(top('Device Control'),`<div class="hdr"><div class="grow"><h1 style="font-size:26px">Device Control</h1><div class="d">Apple Screen Time</div></div>${bell()}</div>`);}
 function moreSheet(){const it=[['activities','📅','My Day'],['calendar','🗓️','Calendar'],['children','👨‍👩‍👧‍👦','Children'],['devctl','📱','Device Control'],['reports','📊','Reports'],['profile','⚙️','Settings']];
-  return `<h3>More</h3><div class="moreg">${it.map(([v,e,l])=>`<button data-a="tab" data-v="${v}"><span>${e}</span>${l}</button>`).join('')}</div>`;}
+  const pt=partnerOf(S.me);
+  return `<h3>More</h3><div class="moreg">${it.map(([v,e,l])=>`<button data-a="tab" data-v="${v}"><span>${e}</span>${l}</button>`).join('')}${isChild(S.me)?'':`<button data-a="ploc" data-v="${pt}"><span>📍</span>${nk(pt)}’s location</button>`}</div>`;}
 // child home entry points
 function starsTile(me){const st=topStreak(me);return `<button class="tile h t-stars" data-a="tab" data-v="growth"><span class="em">⭐</span><div><div class="nm">My Stars</div><div class="sm">${PTS(available(me))} poin · 🔥 ${st.current_streak}</div></div></button>`;}
 function calTile(){const ev=EVENTS.filter(v=>v.d>=TODAY&&evMembers(v).includes(S.me))[0];return `<button class="tile h t-a3" data-a="tab" data-v="calendar"><span class="em">🗓️</span><div><div class="nm">Calendar</div><div class="sm">${ev?esc(ev.title):'Nothing planned'}</div></div></button>`;}
@@ -3256,6 +3349,72 @@ function submitP6(id){keepG();const done=(t)=>{S.stack.pop();render();toast(t);}
     kids().forEach(k=>{const el=$('gt-'+k);if(el&&+el.value>0) GSET.weekTarget[k]=+el.value;});audit('Growth settings updated');S.gsSp=null;done('Pengaturan disimpan');return;}}
 window.__jfEval=src=>eval(src); // test hook for the prototype QA scripts
 
+// ---------- Phase 7: Papa ↔ Mama location ----------
+const pName=(k,me)=>k===me?'You':nk(k);
+function pFresh(k){const f=fresh(k);return f.c==='live'?{c:'live',t:'Live · sharing 24 hours'}:f;}
+function shareBoth(me){const pt=partnerOf(me);
+  return `<div class="card pboth"><div class="pbh">🤝 Papa and Mama share location with each other</div>
+   ${['papa','mama'].map(k=>`<div class="kv"><span>${av(k,'sm')} ${nk(k)}${k===me?' (you)':''}</span><b class="${PSHARE[k].on?'ok':'off'}">${PSHARE[k].on?'✓ Sharing 24 hours':'⏸ Paused'}</b></div>`).join('')}
+   <div class="switch"><span>Share my location with ${nk(pt)}<small>${PSHARE[me].on?`${nk(pt)} sees where you are, your route and your report.`:`${nk(pt)} sees that you paused.`}</small></span><button class="sw" role="switch" aria-checked="${PSHARE[me].on}" data-a="pshare" aria-label="Share my location with ${nk(pt)}"></button></div>
+   <p class="muted small" style="margin:8px 0 2px">Both of you always see when sharing is on. Nothing is hidden. Children never see this.</p></div>`;}
+function pDayPick(){const d=S.pl.d,pick=S.pl.pick||d<TODAY-1;
+  const seg=[['t','Today',d===TODAY&&!S.pl.pick],['y','Yesterday',d===TODAY-1&&!S.pl.pick],['p','Pick date',pick]];
+  return `<div class="seg">${seg.map(([v,l,on])=>`<button aria-pressed="${on}" data-a="pld" data-v="${v}">${l}</button>`).join('')}</div>`+
+   (pick?`<div class="pdate"><label for="pl-date">Date</label><input id="pl-date" type="date" min="${pdIso(TODAY-PDAYS+1)}" max="${pdIso(TODAY)}" value="${pdIso(d)}"></div>
+   <div class="filters">${Array.from({length:7},(_,i)=>TODAY-i).map(x=>`<button aria-pressed="${x===d}" data-a="pldd" data-v="${x}">${pdLabel(x)}</button>`).join('')}</div>`:'');}
+function pStats(j,d){const places=new Set(j.stays.map(s=>s.place)).size,left=j.ev.find(e=>e[1]==='leave'),back=[...j.ev].reverse().find(e=>e[1]==='arrive'&&e[2]==='home');
+  return `<div class="pstat"><div><b>${j.km.toFixed(1)} km</b><span>Distance</span></div><div><b>${places}</b><span>Places</span></div><div><b>${hm(j.away)}</b><span>Away from home</span></div><div><b>${hm(j.drive)}</b><span>On the road</span></div></div>
+  ${left?`<div class="muted small" style="margin:8px 2px 0">First left home ${left[0]}${back&&mins(back[0])>mins(left[0])?` · last back home ${back[0]}`:''}</div>`:''}`;}
+function partnerCard(me){const pt=partnerOf(me);if(isChild(me)||!M[pt]) return '';
+  if(!PSHARE[pt].on) return `<div class="sec">${nk(pt)}</div><button class="card row pcard" data-a="ploc" data-v="${pt}">${av(pt)}<div class="t"><b>${nk(pt)} paused location sharing</b><span>You’ll see ${nk(pt)} again when it’s back on</span></div>${ic('chev')}</button>`;
+  const w=where(pt),j=pDay(pt,TODAY);
+  return `<div class="sec">${nk(pt)} <button data-a="ploc" data-v="${pt}">Location</button></div>
+  <button class="card row pcard" data-a="ploc" data-v="${pt}">${av(pt)}<div class="t"><b>${nk(pt)} · ${w.e} ${esc(w.short)}</b>${freshHtml(pFresh(pt))}<span class="small muted">Today ${j.km.toFixed(1)} km · ${new Set(j.stays.map(s=>s.place)).size} places</span></div>${ic('chev')}</button>`;}
+function pLoc(){
+  const me=S.me,k=view().id,self=k===me;
+  if(isChild(me)||isChild(k)) return top('Location')+empty('🔒','Only for Papa and Mama');
+  S.pl.k=k;
+  if(!canSeePartner(me,k)) return top(nk(k))+empty('⏸️',`${nk(k)} paused location sharing`,`<p class="muted">You’ll see ${nk(k)} again when sharing is back on.</p>`)+shareBoth(me);
+  const d=S.pl.d,j=pDay(k,d),today=d===TODAY,w=where(k),L=LOC[k];
+  return top(self?'My location':`${nk(k)}’s location`,`<button class="chip" style="border:0;cursor:pointer" data-a="preport" data-v="${k}">${ic('chart')} Report</button>`)+
+   (today?`<div class="card pcur" style="margin-bottom:12px"><div style="display:flex;gap:12px;align-items:center">${av(k,'lg')}<div style="flex:1;min-width:0"><b style="font-size:18px">${w.e} ${esc(w.long)}</b><div>${freshHtml(pFresh(k))}</div>${L.battery!=null?`<div class="small muted">🔋 ${L.battery}%</div>`:''}</div></div></div>`:'')+
+   pDayPick()+
+   mapView({ids:today?[k]:[],route:{pts:j.pts},routeEnd:!today,places:'rel',rel:j.stays.map(s=>s.place),cls:'pmap'})+
+   `<div class="sec">${pdLong(d)}</div><div class="card">${pStats(j,d)}</div>
+   <button class="btn block" style="margin-top:12px" data-a="preport" data-v="${k}">${ic('chart')} Tracking report</button>
+   <div class="sec">${today?'Today’s timeline':'Timeline'}</div><div class="card">${timeline(j.ev,today?k:null)}</div>
+   ${self?'':callActs(k)}
+   <div class="sec">Sharing</div>${shareBoth(me)}
+   <p class="muted small center">History is kept ${PDAYS} days, then deleted. Only Papa and Mama see each other’s location.</p>`;}
+function pBars(rows,max,fmt){return `<div class="pbars">${rows.map(([p,v])=>{const pl=place(p);return `<div class="pbar"><span class="pi">${pl.icon}</span><div class="pt"><div class="pn"><b>${esc(plShort(pl))}</b><span>${fmt(v)}</span></div><div class="bar"><i style="width:${max?Math.max(3,v/max*100):0}%"></i></div></div></div>`;}).join('')}</div>`;}
+function pReport(){
+  const me=S.me,k=view().id;
+  if(isChild(me)||isChild(k)) return top('Report')+empty('🔒','Only for Papa and Mama');
+  if(!canSeePartner(me,k)) return top('Report')+empty('⏸️',`${nk(k)} paused location sharing`);
+  const d=S.pl.d,wk=S.plr==='week';
+  let h=top(`${k===me?'My':nk(k)+'’s'} tracking report`)+`<div class="seg"><button aria-pressed="${!wk}" data-a="plr" data-v="day">Day</button><button aria-pressed="${wk}" data-a="plr" data-v="week">7 days</button></div>`+pDayPick();
+  if(!wk){const j=pDay(k,d),tot=placeTotals([j]);
+    h+=`<div class="card prep"><div class="phd">${av(k,'sm')}<div><b>${pdLong(d)}</b><span class="muted small">${d===TODAY?'So far today · until '+NOWT:'Whole day'}</span></div></div>${pStats(j,d)}</div>
+    ${mapView({ids:[],route:{pts:j.pts},routeEnd:true,places:'rel',rel:j.stays.map(s=>s.place),cls:'pmap'})}
+    <div class="sec">Time at places</div><div class="card">${pBars(tot,tot.length?tot[0][1]:0,hm)}</div>
+    <div class="sec">Trips (${j.legs.length})</div><div class="card list">${j.legs.map(g=>{const a=place(g.from),b=place(g.to);return `<div class="row static ptrip"><span class="ricon">🚗</span><div class="t"><b>${a.icon} ${esc(plShort(a))} → ${b.icon} ${esc(plShort(b))}</b><span>${g.dep}–${g.arr} · ${hm(g.min)} · ${g.km.toFixed(1)} km</span></div></div>`;}).join('')||'<p class="muted small" style="margin:10px 0">No trips. Stayed at one place.</p>'}</div>`;}
+  else{const ws=pWeek(k,d),mx=Math.max(...ws.map(x=>x.km),1),out=placeTotals(ws).filter(([p])=>p!=='home'),km=ws.reduce((s,x)=>s+x.km,0),aw=ws.reduce((s,x)=>s+x.away,0);
+    const top1=out[0]?place(out[0][0]):null;
+    h+=`<div class="card prep"><div class="phd">${av(k,'sm')}<div><b>${pdLabel(d-6)} – ${pdLabel(d)}</b><span class="muted small">7 days</span></div></div>
+     <div class="pstat"><div><b>${km.toFixed(1)} km</b><span>Total distance</span></div><div><b>${ws.reduce((s,x)=>s+x.legs.length,0)}</b><span>Trips</span></div><div><b>${hm(Math.round(aw/7))}</b><span>Away per day</span></div><div><b>${top1?top1.icon+' '+esc(plShort(top1)):'Home'}</b><span>Most visited</span></div></div></div>
+     <div class="sec">Distance per day</div><div class="card"><div class="wkbars">${ws.map(x=>`<button class="wb ${x.d===d?'on':''}" data-a="pldd" data-v="${x.d}" aria-label="${pdLabel(x.d)}: ${x.km.toFixed(1)} km"><span class="wv">${x.km.toFixed(1)}</span><i style="height:${Math.max(4,x.km/mx*100)}%"></i><span class="wl">${WD[wd(x.d)]}</span></button>`).join('')}</div><p class="muted small" style="margin:8px 0 0">km · tap a day to open it</p></div>
+     <div class="sec">Time outside home</div><div class="card">${out.length?pBars(out,out[0][1],hm):'<p class="muted small" style="margin:0">Stayed home all week.</p>'}</div>`;}
+  return h+`<p class="muted small center">Report made from ${nk(k)}’s shared location. Kept ${PDAYS} days.</p>`;}
+// profile photo for Papa and Mama (chosen on the phone, never sent anywhere in the prototype)
+function photoRow(me){const up=M[me].img&&M[me].img.startsWith('up_');
+  return `<div class="sec" style="margin-top:4px">Profile photo</div><div class="card list"><label class="row" for="pp-file" style="cursor:pointer">${av(me)}<div class="t"><b>${up?'Change profile photo':'Add profile photo'}</b><span>Family sees it in Home, Map and Chat</span></div>${ic('chev')}</label><input id="pp-file" type="file" accept="image/*" hidden>
+   ${up?`<button class="row" data-a="pphodel"><span class="ricon">↺</span><div class="t"><b>Remove photo</b><span>Go back to the drawing</span></div></button>`:''}</div>`;}
+function setPhoto(me,file){if(!file||!/^image\//.test(file.type||'')){toast('Choose a photo');return;}
+  const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const n=320,c=document.createElement('canvas'),sc=Math.max(n/img.width,n/img.height);c.width=c.height=n;
+    c.getContext('2d').drawImage(img,(n-img.width*sc)/2,(n-img.height*sc)/2,img.width*sc,img.height*sc);const url=c.toDataURL('image/jpeg',.85);
+    IMG['up_'+me]=url;M[me].img='up_'+me;try{localStorage.setItem('jf_photo_'+me,url);}catch(e){}audit(`${M[me].nick} changed profile photo`);render();toast('Profile photo updated');if(typeof syncOthers==='function') syncOthers();};
+    img.onerror=()=>toast('That photo could not be opened');img.src=r.result;};r.readAsDataURL(file);}
+
 // ================= RENDER =================
 function screen(){
   if(S.me==='new') return joinFamily();
@@ -3278,6 +3437,7 @@ function screen(){
     case 'appearance':return appearance(); case 'ptx':return allTx();
     case 'badges':return badgesView(); case 'rewards':return rewardsView(); case 'ghist':return gHist(); case 'ggkid':return gKidView(); case 'gapprove':return gApprove(); case 'gall':return gAll();
     case 'grules':return gRules(); case 'gruleform':return gRuleForm(); case 'groutine':return gRoutine(); case 'grewards':return gRewards(); case 'grewardform':return gRewardForm(); case 'gschool':return gSchool(); case 'gset':return gSettings();
+    case 'ploc':return pLoc(); case 'preport':return pReport();
     case 'chatinfo':return chatInfo(); case 'callpick':return callPick(); case 'callset':return callSet();
   }
   switch(S.tab){
@@ -3341,6 +3501,7 @@ function openRef(ref){
   if(ref.k==='ann'){const a=ANN.find(x=>x.id==ref.v);S.tab='home';S.thread=null;S.stack=[{k:'ann'}];render();if(a)openAnn(a);return;}
   if(ref.k==='act'){S.thread=null;S.stack.push({k:'act',id:ref.v,d:TODAY});render();scrollTop();return;}
   if(ref.k==='money'){S.thread=null;S.tab='money';S.stack=[];render();scrollTop();return;}
+  if(ref.k==='ploc'){S.thread=null;S.tab='map';S.pl={d:TODAY,pick:false};S.stack=[{k:'ploc',id:ref.v}];render();scrollTop();return;}
   if(['growth','ggkid','gapprove','rewards'].includes(ref.k)){S.thread=null;S.tab='growth';S.stack=ref.k==='ggkid'&&!isChild(S.me)?[{k:'ggkid',id:ref.v}]:ref.k==='gapprove'&&!isChild(S.me)?[{k:'gapprove'}]:ref.k==='rewards'&&isChild(S.me)?[{k:'rewards'}]:[];render();scrollTop();return;}
   if(ref.k==='members'){S.thread=null;S.stack.push({k:'members'});render();return;}
   if(ref.k==='loc'){S.thread=null;pushView(isChild(S.me)?{k:'myloc'}:{k:'childloc',id:ref.v});render();scrollTop();return;}
@@ -3637,6 +3798,17 @@ phone.addEventListener('click',e=>{
     if(!lookOpts(k,!isChild(S.me)).includes(v)) return;setLook(k,v);if(!self) audit(`Theme: ${M[k].nick} → ${LOOKS[v].name}`);render();toast(`${LOOKS[v].e} ${LOOKS[v].name}`);return;}
   if(a==='cantheme2'){const m=M[v];m.canTheme=!m.canTheme;const c=LS.get('cantheme',{});c[v]=m.canTheme;LS.set('cantheme',c);audit(`Theme choice for ${m.nick}: ${m.canTheme?'allowed':'parent only'}`);rerender();return;}
   if(a==='appearance'){go('appearance',{id:v||S.me});return;}
+  // ----- Phase 7 -----
+  if(a==='ploc'){if(isChild(S.me)) return;S.sheet=null;S.pl={d:TODAY,pick:false};go('ploc',{id:v});return;}
+  if(a==='preport'){if(isChild(S.me)) return;go('preport',{id:v});return;}
+  if(a==='plr'){S.plr=v;rerender();return;}
+  if(a==='pld'){S.pl.pick=v==='p';if(v==='t') S.pl.d=TODAY;if(v==='y') S.pl.d=TODAY-1;rerender();return;}
+  if(a==='pldd'){S.pl.d=+v;S.pl.pick=+v<TODAY-1;rerender();return;}
+  if(a==='pshare'){const me=S.me,pt=partnerOf(me);if(isChild(me)) return;PSHARE[me].on=!PSHARE[me].on;
+    audit(`${M[me].nick} ${PSHARE[me].on?'resumed':'paused'} location sharing with ${M[pt].nick}`);
+    nPush(pt,'SYSTEM',PSHARE[me].on?`📍 ${M[me].nick} is sharing location again`:`⏸️ ${M[me].nick} paused location sharing`,PSHARE[me].on?'Live 24 hours':`Since ${NOWT}`,{k:'ploc',v:me});
+    rerender();toast(PSHARE[me].on?`${M[pt].nick} can see your location again`:`Paused. ${M[pt].nick} is told.`);if(typeof syncOthers==='function') syncOthers();return;}
+  if(a==='pphodel'){const me=S.me;M[me].img=PHOTO0[me];delete IMG['up_'+me];try{localStorage.removeItem('jf_photo_'+me);}catch(e){}rerender();toast('Photo removed');if(typeof syncOthers==='function') syncOthers();return;}
   // ----- Phase 6 -----
   if(a==='more'){sheet(moreSheet());return;}
   if(a==='celeclose'){S.cele=null;rerender();return;}
@@ -3698,7 +3870,9 @@ phone.addEventListener('click',e=>{
   if(a==='obplace'){S.ob.places[v]=!S.ob.places[v];render();return;}
   if(a==='obenter'){FAMILY.name=S.ob.fam||FAMILY.name;S.me='papa';S.tab='home';S.stack=[];S.ob=null;render();toast(`Welcome to ${FAMILY.name}`);return;}
 });
-phone.addEventListener('change',e=>{if(e.target.id==='hcat'){S.hf.c=e.target.value;rerender();}});
+phone.addEventListener('change',e=>{if(e.target.id==='hcat'){S.hf.c=e.target.value;rerender();}
+  if(e.target.id==='pl-date'){const d=pdFromIso(e.target.value);if(d==null||d>TODAY||d<=TODAY-PDAYS){toast(`Pick a day in the last ${PDAYS} days`);rerender();return;}S.pl.d=d;S.pl.pick=true;rerender();}
+  if(e.target.id==='pp-file'&&!isChild(S.me)) setPhoto(S.me,e.target.files&&e.target.files[0]);});
 phone.addEventListener('submit',e=>{
   e.preventDefault();const id=e.target.id;
   if(id.startsWith('p5')){submitP5(id);return;}
@@ -3781,7 +3955,7 @@ render();
 return self;
 
 }
-const ROLES=[['papa','👨🏻 Papa (Owner)'],['mama','👩🏻 Mama (Parent)'],['radja','🧑🏻 Radja · Teen 16'],['dinda','👧🏻 Dinda · Kids 14'],['raiya','👧🏻 Raiya · Kids 8'],['setup','🏡 First-time setup'],['new','📱 New child device']];
+const ROLES=[['papa','👨🏻 Papa (Owner)'],['mama','👩🏻 Mama (Parent)'],['radja','🧑🏻 Radja · Teen 16'],['dinda','👧🏻 Rada · Kids 14'],['raiya','👧🏻 Raiya · Kids 8'],['setup','🏡 First-time setup'],['new','📱 New child device']];
 const row=document.getElementById('row');
 ['papa','raiya','dinda','radja'].forEach((who,i)=>{
   const slot=document.createElement('section');slot.className='slot';
@@ -3815,10 +3989,10 @@ document.querySelector('.fv-sim2').addEventListener('click',e=>{const b=e.target
   const send=(m,type,title,body,ref)=>{const id=notify(m,type,title,body,ref);if(!NPREF[m]||NPREF[m][type]!==false)pushTo(m,{cat:type,title,body,ref,nid:id});return id;};
   const openOn=(who,ref)=>PHONES.filter(p=>p.me()===who).forEach(p=>p.openRef(ref));
   if(k==='pickup'){if(activePickup('raiya'))msg='Raiya already has an open pickup request.';else{const r=requestPickup('raiya',send);openOn('raiya',{k:'pickup',v:r.id});}}
-  if(k==='sos'){if(activeSOS('dinda'))msg='Dinda’s SOS is already active.';else{const s=startSOS('dinda',send);openOn('dinda',{k:'sos',v:s.id});}}
+  if(k==='sos'){if(activeSOS('dinda'))msg='Rada’s SOS is already active.';else{const s=startSOS('dinda',send);openOn('dinda',{k:'sos',v:s.id});}}
   if(k==='arrive'){if(!geofence('radja','gor','ENTER',send))msg='Same arrival again: no second alert.';}
   if(k==='attn'){if(!needsAttention('raiya',send)){LOC.raiya.perm=true;msg='Raiya’s location is working again.';}}
-  if(k==='offline'){const L=LOC.dinda;L.online=!L.online;L.age=L.online?0:12;msg=L.online?'Dinda’s phone is back online.':'Dinda’s phone is offline.';}
+  if(k==='offline'){const L=LOC.dinda;L.online=!L.online;L.age=L.online?0:12;msg=L.online?'Rada’s phone is back online.':'Rada’s phone is offline.';}
   rerenderAll();if(msg)note(msg);
 });
 document.querySelector('.fv-sim3').addEventListener('click',e=>{const b=e.target.closest('[data-sim3]');if(!b)return;const k=b.dataset.sim3;let msg=null;
@@ -3840,16 +4014,16 @@ document.querySelector('.fv-sim4').addEventListener('click',e=>{const b=e.target
 document.querySelector('.fv-sim5').addEventListener('click',e=>{const b=e.target.closest('[data-sim5]');if(!b)return;const k=b.dataset.sim5;
   const send=(m,title,body)=>{const id=notify(m,'MONEY',title,body,{k:'money'});pushTo(m,{cat:'MONEY',title,body,ref:{k:'money'},nid:id});};
   if(k==='give'){postTx({member_id:'raiya',transaction_type:'INCOME',category:'PARENT',amount:20000,description:'Untuk beli buku cerita',created_by:'papa',source:'PARENT_ENTRY'});send('raiya','💝 Papa memberimu Rp 20.000','Untuk beli buku cerita');}
-  if(k==='spend'){postTx({member_id:'dinda',transaction_type:'EXPENSE',category:'FOOD',amount:15000,description:'Makan siang',created_by:'dinda',source:'CHILD_ENTRY'});note('Dinda’s expense is in her history and in the parent money dashboard.');}
+  if(k==='spend'){postTx({member_id:'dinda',transaction_type:'EXPENSE',category:'FOOD',amount:15000,description:'Makan siang',created_by:'dinda',source:'CHILD_ENTRY'});note('Rada’s expense is in her history and in the parent money dashboard.');}
   if(k==='bonus'){postTx({member_id:'radja',transaction_type:'INCOME',category:'BONUS',amount:50000,description:'Bonus: rajin minggu ini',created_by:'mama',source:'PARENT_ENTRY'});send('radja','⭐ Mama memberi bonus Rp 50.000','Bonus: rajin minggu ini');}
   rerenderAll();
 });
 document.querySelector('.fv-sim6').addEventListener('click',e=>{const b=e.target.closest('[data-sim6]');if(!b)return;const k=b.dataset.sim6;
   const send=(m,type,title,body,ref)=>{const id=notify(m,type,title,body,ref);pushTo(m,{cat:type,title,body,ref,nid:id});};
-  if(k==='special'){recognize('raiya','papa',15,'Membantu Tiana merapikan mainan','FAM');checkAch('raiya',true);send('raiya','SPECIAL_RECOGNITION','❤️ Papa gave you +15','Membantu Tiana merapikan mainan',{k:'growth'});}
-  if(k==='reward'){const w=REWARDS.find(x=>x.id==='rw2');if(REDEEM.some(r=>r.member_id==='dinda'&&r.reward_id==='rw2'&&r.status==='REQUESTED')){note('Dinda already asked. Approve it on Papa’s or Mama’s phone in Growth.');return;}
+  if(k==='special'){recognize('raiya','papa',15,'Membantu Rixty merapikan mainan','FAM');checkAch('raiya',true);send('raiya','SPECIAL_RECOGNITION','❤️ Papa gave you +15','Membantu Rixty merapikan mainan',{k:'growth'});}
+  if(k==='reward'){const w=REWARDS.find(x=>x.id==='rw2');if(REDEEM.some(r=>r.member_id==='dinda'&&r.reward_id==='rw2'&&r.status==='REQUESTED')){note('Rada already asked. Approve it on Papa’s or Mama’s phone in Growth.');return;}
     REDEEM.push({id:'rd'+(++rdn),reward_id:'rw2',member_id:'dinda',points_used:w.points_required,status:'REQUESTED',requested_at:TISO+'T'+NOWT,approved_by:null,approved_at:null});
-    parents().forEach(p=>send(p,'REWARD_REQUEST','🎁 Dinda minta Pilih film keluarga',`${w.points_required} poin · perlu persetujuan`,{k:'gapprove'}));}
+    parents().forEach(p=>send(p,'REWARD_REQUEST','🎁 Rada minta Pilih film keluarga',`${w.points_required} poin · perlu persetujuan`,{k:'gapprove'}));}
   if(k==='school'){const a=addSchoolAch({member_id:'radja',subject:'Fisika',type:'EXAM',score:92,previous_score:81,description:'Ulangan Fisika 92',by:'mama',time:NOWT});checkAch('radja',true);
     send('radja','ACHIEVEMENT','🎓 Ulangan Fisika 92',`+${a.points_awarded} poin dari Mama`,{k:'growth'});}
   rerenderAll();
