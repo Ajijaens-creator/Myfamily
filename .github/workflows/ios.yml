@@ -1,0 +1,53 @@
+name: Family OS app
+
+on:
+  pull_request:
+    paths: ["ios/**", "supabase/**", ".github/workflows/ios.yml"]
+  push:
+    branches: [main]
+    paths: ["ios/**", "supabase/**", ".github/workflows/ios.yml"]
+  workflow_dispatch:
+
+jobs:
+  database:
+    name: Database rules (Supabase SQL)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_PASSWORD: postgres }
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply migrations and run security tests
+        run: |
+          psql -v ON_ERROR_STOP=1 -q -f supabase/tests/local_auth_stub.sql
+          for f in supabase/migrations/*.sql; do psql -v ON_ERROR_STOP=1 -q -f "$f"; done
+          psql -v ON_ERROR_STOP=1 -q -f supabase/tests/stage1_rls_test.sql | tee out.txt
+          grep -q "ALL STAGE 1 TESTS PASSED" out.txt
+
+  ios:
+    name: iPhone app builds
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Xcode project
+        working-directory: ios
+        run: |
+          brew install xcodegen
+          cp Config/Secrets.example.xcconfig Config/Secrets.xcconfig
+          xcodegen generate
+      - name: Build for iPhone simulator
+        working-directory: ios
+        run: |
+          xcodebuild -version
+          xcodebuild build \
+            -project FamilyOS.xcodeproj -scheme FamilyOS \
+            -destination 'generic/platform=iOS Simulator' \
+            -skipPackagePluginValidation \
+            -quiet CODE_SIGNING_ALLOWED=NO
