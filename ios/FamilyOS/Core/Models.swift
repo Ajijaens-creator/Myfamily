@@ -115,7 +115,7 @@ struct DayItem: Codable, Identifiable, Hashable {
             return day < now ? .missed : .upcoming
         }
         let start = DateFormats.time(startTime, on: day)
-        let end = endTime.map { DateFormats.time($0, on: day) }
+        let end = endTime.flatMap { DateFormats.time($0, on: day) }
         if let start, now < start { return .upcoming }
         if let end { return now <= end ? .now : .missed }
         return .now
